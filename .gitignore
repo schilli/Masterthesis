@@ -1,3 +1,6 @@
+masterthesis.pdf
+savedrecs.bib
+
 *.acn
 *.acr
 *.alg
@@ -30,3 +33,5 @@
 *.vrb
 *.xdy
 *.tdo
+
+*.swp

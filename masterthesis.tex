@@ -42,6 +42,15 @@
 }
 
 
+% Figure template
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
+%    \caption{}
+%    \label{fig:}
+%\end{figure} 
+
+
 % ============================================================================ %
 
 
@@ -87,6 +96,25 @@ RWTH Aachen
 
 % ============================================================================ %
 
+\onehalfspacing
+
+\begin{abstract}
+
+The structure and kinetics of two proteins under investigation are well known:
+The periplasmic domain of sensor \textit{Klebsiella pneumoniae} histidine kinase CitA (PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2J80}{2J80}) \cite{CitA_2J80}
+and the lipase LipA of \textit{Bacillus subtilis} (BsLA, PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=1I6W}{1I6W}), \cite{BsLA_1I6W} both in their ligand bound and ligand free states.
+What is not understood is the structure and kinetics of a fusion protein of these two peptides.
+Experiments indicate that citrate binding to the kinase down-regulates lipase activity (Figure \ref{fig:BsLAactivity}).
+This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
+As chemical applications would benefit from the opposite effect, a controlled up-regulation of lipase activity triggered by citrate addition, this research focused on the structure elucidation of the fused protein, as well as on the mechanism by which lipase activity is regulated.
+A thorough understanding of this mechanism might in the future enable us to engineer the protein to invert the regulatory effect of citrate binding.
+The main methods used for structure elucidation are global optimization using the Monte Carlo-minimization approach basin hopping, followed by high-throughput molecular dynamics simulations. 
+
+\end{abstract}
+
+
+% ============================================================================ %
+
 \tableofcontents
 
 \pagebreak
@@ -96,12 +124,65 @@ RWTH Aachen
 % ============================================================================ %
 
 \section{Introduction}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
+    \caption{The activity of the BsLA -- CitA complex is reduced after citrate addition while the uncomplexed lipase is not affected. Experiments performed by Karl Erich Jaeger et al., data unpublished.}
+    \label{fig:BsLAactivity}
+\end{figure}
+
+
+% ============================================================================ %
+
+\section{Proteins Under Investigation}
+
+
+% ============================================================================ %
+
 \section{Methods}
+\subsection{Molecular Dynamics}
+\subsubsection{Force Fields}
+\subsubsection{Water Model}
+\subsection{Basin Hopping with GMIN}
+
+
+% ============================================================================ %
+
 \section{Simulation Setups}
+\subsection{Equilibration}
+\subsection{Production Runs}
+
+
+% ============================================================================ %
+
 \section{Results}
+
+
+% ============================================================================ %
+
 \section{Discussion \& Conclusion}
+
+
+% ============================================================================ %
+
+\section{Outlook}
+The results should be combined with experimental data from small angle X-ray scattering, and NMR experiments. The mechanism of activity regulation is investigated with the help of non-equilibrium molecular dynamics.
+
+
+% ============================================================================ %
+
 \section{Acknowledgments}
 
+
+% ============================================================================ %
+
+\singlespacing
+\small
+
+\bibliographystyle{unsrt}
+\bibliography{masterthesis}
+ 
 % ============================================================================ %
 
 \end{document}
