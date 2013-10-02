@@ -1,0 +1,108 @@
+% Masterthesis
+%
+% Multiscale Modelling Group of Jun.-Prof. Birgit Strodel
+%
+% Author:
+% Oliver Schillinger
+
+
+\ifdefined\isdraft
+    \documentclass[english, a4paper, 12pt, titlepage, draft]{article}
+\else
+    \documentclass[english, a4paper, 12pt, titlepage, final]{article}
+\fi
+
+\usepackage{geometry}
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,url,color,cite}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{setspace}
+
+\hypersetup{
+    %bookmarks=false,                      % show bookmarks bar?
+    unicode=true,                          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,                       % show Acrobat’s toolbar?
+    pdfmenubar=true,                       % show Acrobat’s menu?
+    pdffitwindow=false,                    % window fit to page when opened
+    pdfstartview={FitH},                   % fits the width of the page to the window
+    pdftitle={Masterthesis},               % title
+    pdfauthor={Oliver Schillinger},
+    pdfsubject={Masterthesis},             % subject of the document
+    pdfcreator={Oliver Schillinger},       % creator of the document
+    pdfproducer={Oliver Schillinger},      % producer of the document
+    pdfkeywords={Lipase} {CitA} {GROMACS}, % list of keywords
+    pdfnewwindow=true,                     % links in new window
+    colorlinks=true,                       % false: boxed links; true: colored links
+    linkcolor=black,                       % color of internal links
+    citecolor=blue,                        % color of links to bibliography
+    filecolor=red,                         % color of file links
+    urlcolor=cyan                          % color of external links
+}
+
+
+% ============================================================================ %
+
+
+\begin{document}
+
+% ============================================================================ %
+
+\begin{titlepage}
+\begin{center}
+{\huge \textbf{Masterthesis}}\\
+\vspace{2cm}
+{\large \textbf{Protein Structure and Dynamics} \\
+\vspace{1cm}
+of Bacillus Subtilis Lipase A Fused to the Ligand-Binding Domain of Sensor Histidine Kinase CitA
+}
+
+\vspace{2cm}
+
+Oliver Schillinger \\
+Forschungszentrum J\"ulich \\ Institute of Complex Systems 6 - Structural Biochemistry \\ Multiscale Modelling Group \\
+Supervisor: Jun.-Prof. Dr. Birgit Strodel \\
+\vspace{1cm}
+German Research School for Simulation Sciences \\
+RWTH Aachen
+
+\vspace{1cm}
+
+\today
+
+\vfill
+
+\begin{figure}[h!]
+\includegraphics[width=.3\textwidth]{figures/logos/grs_logo.pdf}
+\hspace{0.5cm}
+\includegraphics[width=.3\textwidth]{figures/logos/fzj_logo.pdf}
+\hspace{0.5cm}
+\includegraphics[width=.3\textwidth]{figures/logos/rwth_logo.pdf}
+\end{figure}
+ 
+\end{center}
+\end{titlepage}
+
+
+% ============================================================================ %
+
+\tableofcontents
+
+\pagebreak
+
+\onehalfspacing
+
+% ============================================================================ %
+
+\section{Introduction}
+\section{Methods}
+\section{Simulation Setups}
+\section{Results}
+\section{Discussion \& Conclusion}
+\section{Acknowledgments}
+
+% ============================================================================ %
+
+\end{document}
+ 
