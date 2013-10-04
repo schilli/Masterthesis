@@ -166,9 +166,9 @@ Its structure is in accordance with the secondary structure topology of the cano
 This catalytic triad is constituted of Ser77 (nucleophile), Asp133 (acid) and His156.
 Serine 77 is located at the so called nucleophilic elbow \cite{nucleophileElbow}, a sharp turn at the bottom of the binding pocket.
 The ester hydrolysis catalyzed by BSLA is depicted in Figure \ref{fig:BSLAreaction}.
-The ligand binds covalently with its phosphonyl group to Ser77.
+The ligand binds covalently with its phosphoryl group to Ser77.
 A tetrahedral intermediate structure is formed.
-One phosphonyl oxygen of the substrate is hydrogen bound to the \ce{NH} atoms of Met78 and Ile12, forming the oxyanion hole that is common to most lipases \cite{BSLA_1I6W}.
+One phosphoryl oxygen of the substrate is hydrogen bound to the \ce{NH} atoms of Met78 and Ile12, forming the oxyanion hole that is common to most lipases \cite{BSLA_1I6W}.
 The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance from the Ser77 \ce{O^{$\gamma$}} atom and the substrate esther oxygen.
 
 
@@ -198,6 +198,85 @@ The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance f
 
 \subsection{Periplasmic Domain of Sensor Histidine Kinase CitA}
 
+CitA is the sensor histidine kinase of a two component regulatory system of \textit{Klebsiella Pneumoniae} \cite{CitA_original}.
+These systems generaly consist of a sensor histidine kinase and a response regulator (CitB in the present case).
+Sensor histidine kinases respond to environmental conditions by autophosphorilation of a conserved histidine residue.
+The phosphoryl group is subsequently transferred to a conserved Aspartate residue on the response regulator.
+The phosphorylated response regulator in turn triggers a change in gene expression or cell behaviour \cite{CitA_original}.
+The CitA/CitB regulatory system controls the expression of citrate frementation genes.
+Citrate metabolims requires careful regulation, as an uncontrolled upregulation in the absence of citrate would break the citric acid cycle with servere consequences for the organism \cite{CitA_original}.
+
+Like most known sensor histidine kinases, CitA is a membrane protein, the domain composition of which is shown in Figure \ref{fig:CitA_organization}.
+Its extracellular N-terminal sensor domain is flanked by two transmembrane helices, one of which links to the intracellular autokinase domain.
+Like virtually all known sensor histidine kinases, CitA appears to be dimeric \cite{2CST}.
+In many cases only the structures of extracellular domains of sensor kinases are known, due to the inherent difficulties of obtaining structural information about membrane proteins.
+This is also true for CitA, where only structures of the periplasmic domain (CitAP) have been resolved.
+The overall fold of the periplasmic domain of sensor histidine kinases classifies them as members of the Per-Arnt-Sim domain superfamily.
+This superfamily comprises many well studied sensor histidine kinases \cite{PAS}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/CitA_organization.png}
+    \caption{CitA domain organization. Only the structure of the periplasmic domain (CitAP) is known and was used in the reported research. Histidine 350 gets phosphorylated after signal transduction as described in the text. Figure taken from \cite{CitA_original}}
+    \label{fig:CitA_organization}
+\end{figure}   
+
+
+The mechanism of action of CitA \cite{CitA_original} is initiated by citrate binding, triggering a conformational change of the periplasmic domain that is mediated by a transmembrane helix to the cytoplasmic kinase domain.
+It has been hypothesized that this mediation happens by a piston-like mechanism (see Figure \ref{fig:CitA_mechanism}) in which transmembrane helix 2 is pulled out of the membrane.
+The resulting conformational change in the kinase domain allows the interaction of the ATP-binding subdomain with the cytoplasmic phosphorylation subdomain.
+After autophosphorylation the subdomains dissociate.
+The phosphorylation subdomain can now bind to the receiver domain of the response regulator CitB.
+A final phosphotransfer on the phosphorylation domain from histidine to an aspartate completes the CitA cycle and new response can be triggered.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/CitA_mechanism.png}
+    \caption{Hypothetical mode of action of CitA. The citrate triggered conformational change of the periplasmic domain is mediated to the cytoplasmic kinase domain by a piston-like mechanism. Figure taken from \cite{CitA_2J80}}
+    \label{fig:CitA_mechanism}
+\end{figure}    
+
+
+
+The binding pocket of CitAP build up from the $\beta$-sheet core that forms the bottom and two loops, the minor loop (residue 96 to 106) and the major loop (residue 63 to 92).
+These loops form tight lids covering the bound ligand and forming a closed pocket.
+While the \textit{in vivo} conformation of the termini remains uncertain due to crystal packing artifacts the core structure of the bound CitAP has been solved with 1.6 $\mathring{A}$ resolution and has been experimentally found to be well folded in solution \cite{CitA_2J80}.
+The major loop is unresolved in the unbound CitAP structures, indicating that it is highly mobile without the stabilizing effect of the ligand.
+The core structure of the protein is highly similar for the bound and unbound structures with similar backbone positions and sidechain orientations of the binding residues not located in the loops \cite{CitA_2J80}.
+A sodium ion has been crystalized in the citrate bound structures.
+Its physiological significance had already been indicated by the fact that sodium is required for the induction of the CitA/CitB target genes \cite{KlebsiellaMetabolism} and is backed by the by the fact that no sodium has been found in the citrate free crystal structure.
+
+It has been reported that citrate binding to CitA is highly specific and that virtually all CitA is in the bound state under physiological citrate concentrations \cite{CitA_2J80}.
+Citrate interacts mainly with Thr58, Arg66, His69, Glu80, Ser101, Leu102, Arg107, Lys109 and Ser124 by hydrogen bonding (\ref{fig:citrate_interactions}).
+A further hydrogen bond is mediated by a water molecule to Gly103.
+The conformational change in the periplasmic domain of sensor histidine kinase CitA is illustrated in Figure \ref{fig:CitA_opening}.
+The main conformational change is the flattening of the $\beta$-sheet that forms the minor loop.
+Upon citrate binding this $\beta$-sheet is pulled in due to interaction with the ligand.
+This disrupts some of the interactions with neighbouring $\beta$-sheets and subsequently pulls the C-terminus away from the membrane.
+The unstructured major loop in the citrate free crystal structure indicates that the citrate binding pocket is less stable when citrate is not present.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
+    \caption{The conformational change in the periplasmic domain of sensor histidine kinase CitA.
+    The closed conformation has been taken from the citrate bound structure with PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2J80}{2J80}.
+The open conformation is a snapshot from a 100 ns molecular dynamics simulation in which the citrate had been removed.}
+    \label{fig:CitA_opening}
+\end{figure}     
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/citrate_interactions/citrate_interactions.pdf}
+    \caption{Interactions of CitA with its bound ligand citrate as determined by visual inspection of a 1ns molecular dynamics trajectory. The minor loop is the domain with the largest RMSD during active site opening.}
+    \label{fig:citrate_interactions}
+\end{figure}      
+
+
 % ==================================== %
 
 \subsection{Fusion Complex}
@@ -207,16 +286,35 @@ The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance f
 
 \section{Methods}
 \subsection{Molecular Dynamics}
+
+The main method that was be used in the presented research is Molecular Dynamics simulations (MD) based on classical Molecular Mechanics (MM) \cite{MDintro}.
+In Molecular Mechanics molecules are modelled as systems of chemically inert atoms that interact through Newtonian mechanics.
+The interaction energy between atoms is described by preferably simple mathematical equations, mainly harmonic and trigonometric functions, as well as the well known electrostatic and Lennard-Jones potentials.
+A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces.
+These forces are then numerically integrated to obtain a trajectory in phase-space.
+This trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
+Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
+
+A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
+Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
+
+To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
+ 
 \subsubsection{Force Fields}
 \subsubsection{Water Model}
 \subsection{Basin Hopping with GMIN}
-\subsection{pKa Prediction}
+%\subsection{pKa Prediction}
 \subsection{k-Means Clustering}
 
 
 % ============================================================================ %
 
 \section{Simulation Setups}
+
+All citrate bound CitA structures in the PDB contain a specific sodium ion attached to the first $\alpha$-helix as well as 3 water molecules in similar orientations in the vicinity of citrate.
+This regularity makes it probable that these molecules might fulfill an active roll in CitA's dynamics.
+They have therefore been included in the simulation setups.
+
 \subsection{Equilibration}
 \subsection{Production Runs}
 
