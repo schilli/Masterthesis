@@ -128,7 +128,7 @@ The main methods used for structure elucidation are global optimization using th
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
+    \includegraphics[width=0.5\textwidth]{figures/BSLA_activity/BSLA_activity.png}
     \caption{The activity of the BSLA -- CitA complex is reduced after citrate addition while the uncomplexed lipase is not affected. Experiments performed by Karl Erich Jaeger et al., data unpublished.}
     \label{fig:BSLAactivity}
 \end{figure}
@@ -142,29 +142,29 @@ The main methods used for structure elucidation are global optimization using th
 
 \subsection{\textit{Bacillus Subtilis} Lipase LipA}
 
-\textit{Bacillus Subtilis} is a gram-positive, aerobic bacterium found in soil and water that is subject to active research since 1992 \cite{bacillusSubtilis}.
+\textit{Bacillus Subtilis} is a gram-positive, aerobic bacterium found in soil and water, that is subject to active research since 1992 \cite{bacillusSubtilis}.
 \textit{Bacillus Subtilis} is of major industrial interest because of its highly efficient protein secretion system \cite{BSsecretion} enabling the production of proteases and amylases in bulk quantities \cite{BSworkhorse}.
-Of special interest are its excreted lipases as these catalyze the hydrolysis and synthesis of long chain triacylglycerols \cite{BSLA_1I6W}.
+Of special interest are its excreted lipases, as these catalyze the hydrolysis and synthesis of long chain triacylglycerols \cite{BSLA_1I6W}.
 These lipases possess a wide substrate specificity.
 They find applications in transesterification reactions, the synthesis of esthers, the resolution of racemic mixtures and are used as additives in laundry detergents \cite{BSdetergents}.
 
-In the reported experiments lipase LipA from \textit{Bacillus Subtilis} was used (hereafter called BSLA).
-Compared to lipases from other organisms its size is relatively small, consisting of 181 amino acids and weighting slightly more than 19 kDA.
+The reported experiments where performed using lipase LipA from \textit{Bacillus Subtilis} (BSLA).
+Compared to lipases from other organisms BSLA is relatively small, consisting of 181 amino acids and weighting slightly more than 19 kDA.
 BSLA belongs to the $\alpha$-$\beta$ hydrolase fold enzymes.
-This protein family are constituted by a twisted $\beta$-strand core flanked by alpha helices on both sides \cite{alphaBetaHydrolases}.
-Because of its small size it can be considered a minimal $\alpha$-$\beta$ hydrolase.
+Members of this protein family are constituted by a twisted $\beta$-strand core flanked by alpha helices on both sides \cite{alphaBetaHydrolases}.
+Because of its small size and because other known $\alpha$-$\beta$ hydrolase fold enzymes extend on this core structure, it can be considered a minimal $\alpha$-$\beta$ hydrolase.
 BSLA hydrolyses sn-1 and sn-3 glycerol esthers with long fatty acid chains, while its highest activity is exhibited on medium sized fatty acids \cite{BSLA_1I6W}.
-The optimum activity is reported to be found at pH 10 \cite{BSLA_1I6W}.
+The optimum environment is reported to be found at pH 10 \cite{BSLA_1I6W}.
+
 Most known lipases possess an $\alpha$-helical segment that covers the active site.
 The encounter of lipid-aggregates triggers the opening of this lid, exposing the active site and triggering catalytic activity.
 This behaviour is known as interfacial activation \cite{alphaBetaHydrolases}.
-This lid is absent in BSLA.
+BSLA lacks this lid, resulting in an active site that is solvent exposed and thus activlely hydrolising fatty acids even in the absence of lipid-aggregates.
 
-BSLA lacks this lid, resulting in an active site that is solvent exposed.
 The active site is located at the bottom of a shallow cleft formed by four turns (Figure \ref{fig:BSLAactiveSite}).
-Its structure is in accordance with the secondary structure topology of the canonical $\alpha$/$\beta$-hydrolase fold, in which the acitve site is formed by a nucleophile, an acid and a histidine, called the catalytic triad \cite{BSLA_1I6W}.
-This catalytic triad is constituted of Ser77 (nucleophile), Asp133 (acid) and His156.
-Serine 77 is located at the so called nucleophilic elbow \cite{nucleophileElbow}, a sharp turn at the bottom of the binding pocket.
+Its structure is in accordance with the secondary structure topology of the canonical $\alpha$/$\beta$-hydrolase fold, in which the acitve site is formed by a nucleophile, an acid and a histidine, together called the catalytic triad \cite{BSLA_1I6W}.
+In BSLA this catalytic triad is constituted of Ser77 (nucleophile), Asp133 (acid) and His156.
+Serine 77 is located at the so called nucleophilic elbow \cite{nucleophileElbow}, a sharp turn at the bottom of the binding pocket connecting a central $beta$-sheet to a peripheral $\alpha$-helix.
 The ester hydrolysis catalyzed by BSLA is depicted in Figure \ref{fig:BSLAreaction}.
 The ligand binds covalently with its phosphoryl group to Ser77.
 A tetrahedral intermediate structure is formed.
@@ -338,6 +338,42 @@ The results should be combined with experimental data from small angle X-ray sca
 % ============================================================================ %
 
 \section{Acknowledgments}
+
+% ============================================================================ %
+
+\section{Declaration of Authorship}
+
+% \declareAuthorship{date}{place}{name}
+% date is optional and defaults to \today
+\newcommand{\declareAuthorship}[3][\today]{
+
+    \noindent
+    I, #3, hereby declare that I have created this work completely on my own and
+    used no other sources or tools than the ones listed, and that I have marked
+    any citations accordingly.  
+
+    \begin{minipage}[c]{\textwidth}
+
+        \vspace{2cm}
+
+        \makebox[\textwidth][c]{
+            \makebox[.4\textwidth][l] {\textrm{#2, #1}}
+            \hfill
+            \makebox[.4\textwidth][c] {\hrulefill}
+            \hfill
+        }
+        \makebox[\textwidth][c]{
+            \hfill
+            \makebox[.4\textwidth][c] {}
+            \emph{#3}
+            \hfill
+        }
+        \vspace{1cm}
+    \end{minipage}
+}
+
+\declareAuthorship{J\"ulich}{Oliver Schillinger}
+
 
 
 % ============================================================================ %
