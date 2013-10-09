@@ -252,7 +252,7 @@ It has been reported that citrate binding to CitA is highly specific and that vi
 Citrate interacts mainly with Thr58, Arg66, His69, Glu80, Ser101, Leu102, Arg107, Lys109 and Ser124 by hydrogen bonding (\ref{fig:citrate_interactions}).
 A further hydrogen bond is mediated by a water molecule to Gly103.
 The conformational change in the periplasmic domain of sensor histidine kinase CitA is illustrated in Figure \ref{fig:CitA_opening}.
-The main conformational change is the flattening of the $\beta$-sheet that forms the minor loop.
+The main conformational change is a flattening of the $\beta$-sheet that forms the minor loop.
 Upon citrate binding this $\beta$-sheet is pulled in due to interaction with the ligand.
 This disrupts some of the interactions with neighbouring $\beta$-sheets and subsequently pulls the C-terminus away from the membrane.
 The unstructured major loop in the citrate free crystal structure indicates that the citrate binding pocket is less stable when citrate is not present.
@@ -281,29 +281,96 @@ The open conformation is a snapshot from a 100 ns molecular dynamics simulation 
 
 \subsection{Fusion Complex}
 
+The two proteins described earlier have been fused in the laboratory.
+The motivation to do so is the desire to regulate the lipolytic activity of BSLA.
+A controlled upregulation by a simple and harmless molecule such as citrate could be utilized as a switchable detergents, among other usages.
+It was assumed that the conformational change of CitAP triggered by citrate binding could have a regulatory effect on lipase activity.
+
+The sequence of the fused construct as used in the experiments performed in the group of Karl-Erich Jaeger is shown in Figure \ref{fig:complex_sequence}.
+CitA was connected to BSLA by means of a linker helix that was taken from YtvA, the blue light sensor of \textit{Bacillus Subtilis} (PDB accession code: \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2PR5}{2PR5}).
+A polyhistidine-tag (His-tag) was attached to allow easy purification.
+An Xa protease site was included in the complexed protein because it was found experimentally that it increased the effect of citrate on BSLA activity.
+
+Although it was attempted to up-regulate the lipase activity by citrate binding, experiments indicated the opposite effect (Figure \ref{fig:BSLAactivity}).
+While increasing citrate concentrations had no effect on uncomplexed BSLA activity, lipolysis was significantly reduced at higher citrate concentrations in the CitAP-BSLA complex protein to about 40\% of the initial activity of the complex.
+Jaeger et al. determined by sedimentation velocity analytical ultracentrifugation, that the fusion protein exists mainly as a monomer with globular shape (results not published).
+
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Complex_sequence/Complex_sequence.pdf}
+    \caption{Amino acid sequence of the BSLA -- CitAP complex. The coordinates of amino acids represented in bold font have been taken from the respective PDB coordinate files.
+    The remaining amino acids are present in the construct that was used in experiments performed in the group of Prof. Jaeger.}
+    \label{fig:complex_sequence}
+\end{figure}       
+
 
 % ============================================================================ %
 
 \section{Methods}
 \subsection{Molecular Dynamics}
 
-The main method that was be used in the presented research is Molecular Dynamics simulations (MD) based on classical Molecular Mechanics (MM) \cite{MDintro}.
+The main method that was used in the presented research is Molecular Dynamics simulations (MD) based on classical Molecular Mechanics (MM) \cite{MDintro}.
 In Molecular Mechanics molecules are modelled as systems of chemically inert atoms that interact through Newtonian mechanics.
 The interaction energy between atoms is described by preferably simple mathematical equations, mainly harmonic and trigonometric functions, as well as the well known electrostatic and Lennard-Jones potentials.
-A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces.
+A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces (see also section \ref{sec:forcefields}).
 These forces are then numerically integrated to obtain a trajectory in phase-space.
 This trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
 Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
 
-A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
-Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
 
 To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
  
+% ==================================== %
+ 
 \subsubsection{Force Fields}
-\subsubsection{Water Model}
+\label{sec:forcefields}
+
+A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
+Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
+ 
+% ==================================== %
+
+%\subsubsection{Water Model}
+
+% ==================================== %
+
 \subsection{Basin Hopping with GMIN}
+
+Global minima of energy landscapes in the conformational space of macromolecules are hard to determine due to the large dimensionality and the overwhelming number of possible conformations.
+A clever approach to nevertheless takle this problem has been invented by David Wales et al.
+Their basin hopping algorithm attempts to find the global minimum of the energy landscape by generating conformations randomly, that are subsequently minimized in energy to get to the bottom of a local energy minimum \cite{basinHopping}, as depicted in Figure \ref{fig:GMIN}.
+
+At each step the basin hopping algorithm minimizes the given structure to find the closest local energy minimum, the energy basin.
+This can for example be done by a gaussian minimization or a conjugate gradient approach.
+Subsequently a new conformation is generated by a Monte Carlo procedure. 
+In general, molecular Monte Carlo simulations randomly generate new conformations by translating or rotating atoms or groups of atoms.
+The generated conformation is then accepted with a probability that decreases exponentially with the energy difference between the new and old conformations.
+Plain Monte Carlo simulations theoretically sample the complete energy landscape, but unforutnately this is a very slow process.
+Basin hopping provides a much faster alternative if one is only interested in local energy minima instead of the detailed structure of the energy surface.
+This is the case if the structure of interes is the global minimum of a system or if the goal is to find out about relative differences between energy minima.
+The newly generated structure has a significant chance of being located distantly enough from the previous structure on the energy landscape, such that a new energy minimization finds a distinct energy basin.
+
+In repeating these steps, the landscape of local energy minima can be sampled as depicted by the rectangular energy surface in Figure \ref{fig:GMIN}.
+If the energy minima are the property of interest this reveals all interesting information contained in the full energy surface (curved line in Figure \ref{fig:GMIN}) at a much smaller computational cost.
+
+The basin hopping algorithm is implemented in the program GMIN \cite{GMIN}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/GMIN.pdf}
+    \caption{The energy landscape as it is explored during a GMIN run.}
+    \label{fig:GMIN}
+\end{figure}        
+
+% ==================================== %
+
 %\subsection{pKa Prediction}
+
+% ==================================== %
+
 \subsection{k-Means Clustering}
 
 
@@ -348,9 +415,9 @@ The results should be combined with experimental data from small angle X-ray sca
 \newcommand{\declareAuthorship}[3][\today]{
 
     \noindent
-    I, #3, hereby declare that I have created this work completely on my own and
-    used no other sources or tools than the ones listed, and that I have marked
-    any citations accordingly.  
+    I, #3, hereby declare that I have created this work, excluding this
+    declaration, completely on my own and used no other sources or tools
+    than the ones listed, and that I have marked any citations accordingly.
 
     \begin{minipage}[c]{\textwidth}
 

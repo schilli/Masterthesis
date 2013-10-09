@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1171.0968"
+   height="400"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Complex_sequence.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="551.06221"
+     inkscape:cy="190.12112"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer8"
+     showgrid="true"
+     inkscape:window-width="1680"
+     inkscape:window-height="995"
+     inkscape:window-x="1918"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <sodipodi:guide
+       position="0,-456.13272"
+       orientation="0,744.09448"
+       id="guide3007" />
+    <sodipodi:guide
+       position="-61.619305,329.76596"
+       orientation="-1052.3622,0"
+       id="guide3009" />
+    <sodipodi:guide
+       position="744.09448,596.22948"
+       orientation="0,-744.09448"
+       id="guide3011" />
+    <sodipodi:guide
+       position="0,596.22948"
+       orientation="1052.3622,0"
+       id="guide3013" />
+    <sodipodi:guide
+       position="0,-456.13272"
+       orientation="0,744.09448"
+       id="guide3015" />
+    <sodipodi:guide
+       position="-286.88332,350.97916"
+       orientation="-1052.3622,0"
+       id="guide3017" />
+    <sodipodi:guide
+       position="744.09448,596.22948"
+       orientation="0,-744.09448"
+       id="guide3019" />
+    <sodipodi:guide
+       position="0,596.22948"
+       orientation="1052.3622,0"
+       id="guide3021" />
+    <sodipodi:guide
+       position="0,-456.13272"
+       orientation="0,1052.3622"
+       id="guide3023" />
+    <sodipodi:guide
+       position="1052.3622,-456.13272"
+       orientation="-744.09448,0"
+       id="guide3025" />
+    <sodipodi:guide
+       position="-238.396,407.54771"
+       orientation="0,-1052.3622"
+       id="guide3027" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid3219"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="background"
+     transform="translate(0,112.03824)">
+    <rect
+       style="fill:#00ffff"
+       id="rect3050"
+       width="1171.0968"
+       height="287.96176"
+       x="0"
+       y="-111" />
+    <rect
+       style="fill:#ffff00"
+       id="rect3121"
+       width="538.49994"
+       height="92"
+       x="633.57086"
+       y="-110.99887" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="blue"
+     transform="translate(0,112.03824)">
+    <rect
+       style="fill:#0066ff"
+       id="rect3110"
+       width="319.70831"
+       height="37.471581"
+       x="0.002787903"
+       y="-110.99823" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="yellow"
+     transform="translate(0,112.03824)">
+    <rect
+       style="fill:#ffff00"
+       id="rect3117"
+       width="314.09073"
+       height="142.94827"
+       x="319.71094"
+       y="-110.99918" />
+    <rect
+       style="fill:#ffff00"
+       id="rect3119"
+       width="319.71765"
+       height="105.48177"
+       x="-0.0018398762"
+       y="-73.525833" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="green"
+     transform="translate(0,112.03824)">
+    <rect
+       style="fill:#00ff00"
+       id="rect3166"
+       width="320.97601"
+       height="50.950821"
+       x="633.79443"
+       y="-19.006989" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="pink"
+     transform="translate(0,112.03824)">
+    <rect
+       style="fill:#ff00ff"
+       id="rect3169"
+       width="74.234375"
+       height="50.945312"
+       x="954.76562"
+       y="-19.003082" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-196.22946)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2985"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-27.151786,9.79989)"><flowRegion
+         id="flowRegion2987"><rect
+           id="rect2989"
+           width="1165.2284"
+           height="299.20007"
+           x="31.428572"
+           y="175.21933" /></flowRegion><flowPara
+         id="flowPara2993"><flowSpan
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono"
+           id="flowSpan3005">MGSSHHHHHHSSGLVPRGSHMDI</flowSpan><flowSpan
+           style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono Bold"
+           id="flowSpan3037">TEERLHYQVGQRALIQAMQISAMPELVEAVQKRDLARIKALIDPMRSFSDATYITVGDASGQRLYHVNPDEIGKSMEGGDSDEALINAKSYVSVRKGSLGSSLRGKSPIQDATGKVIGIVSVGYTIEQL</flowSpan><flowSpan
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono"
+           id="flowSpan3033">EN</flowSpan><flowSpan
+           style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono Bold"
+           id="flowSpan3041">YEKLLEDSLTEITALS</flowSpan><flowSpan
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono"
+           id="flowSpan3039">IEGREA</flowSpan><flowSpan
+           style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu Mono;-inkscape-font-specification:Ubuntu Mono Bold"
+           id="flowSpan3043">EHNPVVMVHGIGGASFNFAGIKSYLVSQGWSRDKLYAVDFWDKTGTNYNNGPVLSRFVQKVLDETGAKKVDIVAHSMGGANTLYYIKNLDGGNKVANVVTLGGANRLTTGKALPGTDPNQKILYTSIYSSADMIVMNYLSRLDGARNVQIHGVGHIGLLYSSQVNSLIKEGLNGGGQNTN</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3137"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3139"><rect
+           id="rect3141"
+           width="303"
+           height="63"
+           x="252"
+           y="318" /></flowRegion><flowPara
+         id="flowPara3143"></flowPara></flowRoot>  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="Legend_colors">
+    <rect
+       id="rect3224"
+       width="130"
+       height="40"
+       x="5"
+       y="310"
+       style="fill:#0066ff;fill-opacity:1" />
+    <rect
+       style="fill:#ffff00;fill-opacity:1"
+       id="rect3226"
+       width="105"
+       height="39.75"
+       x="150"
+       y="310.25" />
+    <rect
+       style="fill:#00ffff;fill-opacity:1"
+       id="rect3228"
+       width="105"
+       height="40"
+       x="150"
+       y="360" />
+    <rect
+       style="fill:#00ff00;fill-opacity:1"
+       id="rect3230"
+       width="265"
+       height="40"
+       x="270"
+       y="310" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:1"
+       id="rect3232"
+       width="265"
+       height="40"
+       x="270"
+       y="360" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="Legend">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3146"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(-9,10.097525)"><flowRegion
+         id="flowRegion3148"><rect
+           id="rect3150"
+           width="259"
+           height="76"
+           x="19"
+           y="300"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara3152">His-Tag</flowPara></flowRoot>    <flowRoot
+       transform="translate(248.02197,2.2567049)"
+       xml:space="preserve"
+       id="flowRoot3146-9"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"><flowRegion
+         id="flowRegion3148-8"><rect
+           id="rect3150-6"
+           width="259"
+           height="76"
+           x="19"
+           y="300"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara3152-9" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3181"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(-62,0.09752517)"><flowRegion
+         id="flowRegion3183"><rect
+           id="rect3185"
+           width="194"
+           height="60"
+           x="217"
+           y="310"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara3187">CitAP</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3189"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(-113,-0.90247483)"><flowRegion
+         id="flowRegion3191"><rect
+           id="rect3193"
+           width="310"
+           height="47"
+           x="388"
+           y="311"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara3195">YtvA <flowSpan
+   style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+   id="flowSpan3205">linker helix</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3197"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(-547,46.097525)"><flowRegion
+         id="flowRegion3199"><rect
+           id="rect3201"
+           width="288"
+           height="67"
+           x="702"
+           y="314"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara3203">BSLA</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3207"
+       style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       transform="translate(-555,46.097525)"><flowRegion
+         id="flowRegion3209"><rect
+           id="rect3211"
+           width="333"
+           height="57"
+           x="830"
+           y="314"
+           style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+         id="flowPara3213"><flowSpan
+   style="font-size:30px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans Bold"
+   id="flowSpan3215">Xa</flowSpan> protease site</flowPara></flowRoot>  </g>
+</svg>
