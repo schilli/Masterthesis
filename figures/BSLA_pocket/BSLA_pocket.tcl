@@ -1,6 +1,6 @@
 #set  inFile "1I6W_hydrogen.pdb"
 set  inFile "1R50_hydrogen.pdb"
-set outFile "BSLA_pocket"
+set outFile "BSLA_pocket_zoom"
 
 display rendermode GLSL
 display shadows on

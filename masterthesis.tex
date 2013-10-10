@@ -15,7 +15,7 @@
 \usepackage{geometry}
 \usepackage[british]{babel}
 \usepackage{graphicx,hyperref,url,color,cite}
-\usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage[latin1]{inputenc}
 
 \usepackage{setspace}
@@ -45,6 +45,7 @@
 \newcommand{\PDB}[1]{
     \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}
 }
+\newcommand{\vect}[1]{\mathbf{#1}}
 
 
 % Figure template
@@ -105,15 +106,16 @@ RWTH Aachen
 
 \begin{abstract}
 
-The structure and kinetics of two proteins under investigation are well known:
-The periplasmic domain of sensor \textit{Klebsiella pneumoniae} histidine kinase CitA (PDB accession code \PDB{2J80}) \cite{CitA_2J80}
-and the lipase LipA of \textit{Bacillus subtilis} (BSLA, PDB accession code \PDB{1I6W}), \cite{BSLA_1I6W} both in their ligand bound and ligand free states.
-What is not understood is the structure and kinetics of a fusion protein of these two peptides.
-Experiments indicate that citrate binding to the kinase down-regulates lipase activity (Figure \ref{fig:BSLAactivity}).
-This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
-As chemical applications would benefit from the opposite effect, a controlled up-regulation of lipase activity triggered by citrate addition, this research focused on the structure elucidation of the fused protein, as well as on the mechanism by which lipase activity is regulated.
-A thorough understanding of this mechanism might in the future enable us to engineer the protein to invert the regulatory effect of citrate binding.
-The main methods used for structure elucidation are global optimization using the Monte Carlo-minimization approach basin hopping, followed by high-throughput molecular dynamics simulations. 
+A fusion protein of the periplasmic domain of sensor histidine kinase CitA from \textit{Klebsiella Pneumoniae} and the lipase LipA from \textit{Bacillus Subtilis} is investigated by means of molecular dynamics simulation.
+The research was motivated by experiments indicating that CitA's natural ligand citrate down-regulates lipase activity upon binding.
+Both proteins have first been studied independently.
+It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100ns molecular dynamics simulation after carefull equilibration.
+The unfused lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their conformations.
+As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by basin hopping.
+The fusion protein showed dynamics that differ significantly from those of the isolated proteins.
+The presence of citrate in the receptor binding pocket did not stabilize the structure to the same extend compared to the isolated CitA.
+The presence of a covalently bound citrate binding domain to the lipase destabilized the LipA binding pocket significantly.
+This is most likely the reason for the experimentally found activity degradation in lipase activity.
 
 \end{abstract}
 
@@ -129,6 +131,20 @@ The main methods used for structure elucidation are global optimization using th
 % ============================================================================ %
 
 \section{Introduction}
+
+The structure and kinetics of two proteins under investigation are well known:
+The periplasmic domain of sensor \textit{Klebsiella pneumoniae} histidine kinase CitA (CitAP, PDB accession code \PDB{2J80}) \cite{CitA_2J80}
+and the lipase LipA of \textit{Bacillus subtilis} (BSLA, PDB accession code \PDB{1I6W}), \cite{BSLA_1I6W} both in their ligand bound and ligand free states.
+CitAP is a periplasmic citrate receptor that, upon activation by citrate binding, triggers a cytoplasmic reaction cascade starting with the autophosphorylation of the endoplasmic domain of CitA and finally leading to the transcription of citrate fermentation genes.
+%BSLA's efficient lipid hydrolysis capability is industrially utilized for many applications, including its use as an additive in laundry detergents.
+What is not understood is the structure and kinetics of a fusion protein of these two peptides.
+It was speculated if citrate binding could influcence lipase activity, thus creating a switchable detergent.
+Experiments indicate that citrate binding to the sensor kinase domain indeed down-regulates lipase activity (Figure \ref{fig:BSLAactivity}).
+This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
+As chemical applications would benefit from the opposite effect, a controlled up-regulation of lipase activity triggered by citrate addition, this research focused on the structure elucidation of the fused protein, as well as on the mechanism by which lipase activity is regulated.
+A thorough understanding of this mechanism might in the future enable us to engineer the protein to invert the regulatory effect of citrate binding.
+The main methods used for structure elucidation are global optimization using the Monte Carlo-minimization approach basin hopping, followed by high-throughput molecular dynamics simulations. 
+ 
 
 \begin{figure}
     \centering
@@ -182,7 +198,7 @@ The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance f
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/BSLA_pocket/BSLA_pocket.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/BSLA_pocket/BSLA_pocket_zoom.pdf}
     \caption{Active site of \textit{Bacillus Subtilis} lipase LipA with Sc-IPG-phosphonate-inhibitor bound.
     The catalytic triad residues are colored, as well as the backbone nitrogen atoms forming the oxyanion hole.
     Coordinates taken from PDB accession code \PDB{1R50}.}
@@ -378,7 +394,79 @@ The basin hopping algorithm is implemented in the program GMIN \cite{GMIN}.
 
 % ==================================== %
 
+\subsection{Dimensionality Reduction}
+
+The data obtained in molecular simulations is high dimensional as every atom position is specified by 3 coordinates (ignoring velocities and forces).
+Often the important features of a system can be described by a reduced set of coordinates to make the analysis less complicated.
+Knowledge of the system can guide the definition of these reduced, or collective coordinates, but techniques exist to automatically reduce the dimensionality wihtout prior assumptions.
+Techniques of both kinds have been used in the reported research and are described here as applied to the fused CitAP--BSLA complex.
+
+A well established technique used for dimensionality reduction in all kinds of applications is Principal Component Analysis (PCA) \cite{PCAoriginal} \cite{PCA}.
+PCA is an orthogonal linear transform that transforms the dataset into a space whose basis is spanned by the principal component vectors.
+The key feature of PCA is that the dataset has its largest variance (i.e. highest information content) along the first principal component vector and the variances decrease along the following principal components.
+This ordering allows the removal of principal components from the dataset with low variance, therefore reducing its complexity but at the same time maintainting the maximal information content for the reduced dataset.
+
+Mathematically, PCA works as follows.
+Let the matrix $\vect{X}$ represent a dataset whose row vectors represent datapoints with zero empirical mean.
+The covariance matrix of this dataset is defined as
+\begin{equation}
+    \vect{\Sigma} = \vect{X}^{T} \vect{X},
+\end{equation}
+where the superscript $T$ denotes the transpose of $\vect{X}$.
+The covariance is then diagonalized:
+\begin{equation}
+    \vect{\Sigma} = \vect{W} \vect{\Lambda} \vect{W}^{T},
+\end{equation}
+in which $\vect{\Lambda}$ is a diagonal matrix of eigenvalues in decreasing order and $\vect{W}$ is a matrix with eigenvectors of $\vect{X}$ as rows.
+These eigenvectors now span the desired space in which the data has maximal variance along the eigenvector corresponding to the largest eigenvalue and decreasing variance along the other eigenvectors in the same order as the corresponding eigenvalues.
+The dataset $\vect{X}$ can be mapped into the space spanned by the eigenvectors of its covariance matrix:
+\begin{equation}
+    \vect{T} = \vect{X} \vect{W}
+\end{equation}
+Removing dimensions from the end of the transformed dataset $\vect{T}$ reduces the dimensionality of the data but retains a maximum of the variances and therefore maximizes the information content in the data for the given number of remaining dimensions.
+
+If for example two dimensional datapoints are distributed along a straight line, but subject to noise, PCA will approximate the dimension along which the data is correlated with the first principal component (Figure \ref{fig:PCA}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/GaussianScatterPCA.png}
+    \caption{Principal components of gaussian data. Figure taken from Wikipedia.org \url{http://en.wikipedia.org/wiki/File:GaussianScatterPCA.png}}
+    \label{fig:PCA}
+\end{figure}         
+
+
+
+The GROMACS molecular dynamics package \cite{GROMACS4} contains an implementation of PCA that is particularly well suited to study the motions of proteins.
+The analysis tool \texttt{g\_covar} computes the covariance matrix of the trajectory data.
+Each time frame in the trajectory is treated as a datapoint.
+The definition of the mean is chosen by the user and the frames of the trajectory are usually fit using least squares to a meaningful set of coordinates that describes the molecular conformation well (e.g. backbone or c-alpha atoms in the case of proteins).
+The covariance matrix is then constructed using the same or a different set of coordinates, e.g. including side chain atoms as well.
+The covariance matrix is diagonalized and the eigenvectors and eigenvalues are written to disk for use with the GROMACS tool \texttt{g\_anaeig}.
+This tool is able to project each frame of the trajectory onto a given subset of principal component vectors, but keeping all spatial coordinates of the trajectory.
+This results in a trajectory that displays the motion of the system along the chosen principal components and is very useful to study the most important conformational changes without the noise introduced by random thermal fluctuations and other smaller variations.
+
+One drawback of this method for the study of proteins is its inability to detect non-linear motions that are of particular importance in protein folding \cite{SciMAP}.
+This could be overcome by the usage of non-linear dimensionality reduction techniques and might offer interesting new insights in the dynamics of the peptide folding process.
+
+
+
+If the system under study is well known or the problem at hand allows an \emph{a priori} definition of collective coordinates, the usage of principal component analysis can be circumvented.
+For the determination of local energy minima of the CitAP--BSLA complex for example, most parts of the fusion protein was kept rigid and only the backbone dihedral angles of the linker domain were sampled by basin hopping.
+The main quantities of interest were the orientation of the two globular protein parts to each other in the energy basins.
+In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shiftet to the origin of the coordiante system.
+Next, the protein was rotatet to align a specified atom () with the positive x-axis.
+The orientation of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass, the polar angle and the azimuthal angle.
+Finally, the orientation of BSLA with respect to the original coordinate system shiftet to the BSLA center of mass was defined again with the spherical polar and azimuthal angles.
+This resulted in reduced set of only 3 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structured determined by basin hopping where all at similar distances.
+
+
+
+% ==================================== %
+
 \subsection{k-Means Clustering}
+
+Two common strategies to analyse large amounts of high dimensional data are the reduction of the number of datapoints to get insight into the most important features of a dataset and the reduction of the number of dimensions of the feature space for easier representations and classification.
+If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space it
 
 
 % ============================================================================ %
@@ -397,11 +485,19 @@ They have therefore been included in the simulation setups.
 
 \section{Results}
 
+\subsection{Unkomplexed CitAP MD}
+\subsection{Unkomplexed BSLA MD}
+\subsection{Complex Basin Hopping}
+\subsection{CitAP--BSLA fusion protein MD}
+
 
 % ============================================================================ %
 
-\section{Discussion \& Conclusion}
+\section{Discussion}
 
+% ============================================================================ %
+
+\section{Conclusion}
 
 % ============================================================================ %
 
