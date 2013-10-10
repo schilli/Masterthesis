@@ -42,6 +42,10 @@
     urlcolor=cyan                          % color of external links
 }
 
+\newcommand{\PDB}[1]{
+    \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}
+}
+
 
 % Figure template
 %\begin{figure}
@@ -102,8 +106,8 @@ RWTH Aachen
 \begin{abstract}
 
 The structure and kinetics of two proteins under investigation are well known:
-The periplasmic domain of sensor \textit{Klebsiella pneumoniae} histidine kinase CitA (PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2J80}{2J80}) \cite{CitA_2J80}
-and the lipase LipA of \textit{Bacillus subtilis} (BSLA, PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=1I6W}{1I6W}), \cite{BSLA_1I6W} both in their ligand bound and ligand free states.
+The periplasmic domain of sensor \textit{Klebsiella pneumoniae} histidine kinase CitA (PDB accession code \PDB{2J80}) \cite{CitA_2J80}
+and the lipase LipA of \textit{Bacillus subtilis} (BSLA, PDB accession code \PDB{1I6W}), \cite{BSLA_1I6W} both in their ligand bound and ligand free states.
 What is not understood is the structure and kinetics of a fusion protein of these two peptides.
 Experiments indicate that citrate binding to the kinase down-regulates lipase activity (Figure \ref{fig:BSLAactivity}).
 This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
@@ -129,7 +133,7 @@ The main methods used for structure elucidation are global optimization using th
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/BSLA_activity/BSLA_activity.png}
-    \caption{The activity of the BSLA -- CitA complex is reduced after citrate addition while the uncomplexed lipase is not affected. Experiments performed by Karl Erich Jaeger et al., data unpublished.}
+    \caption{The activity of the BSLA -- CitAP complex is reduced after citrate addition while the uncomplexed lipase is not affected. Experiments performed by Karl Erich Jaeger et al., data unpublished.}
     \label{fig:BSLAactivity}
 \end{figure}
 
@@ -178,8 +182,10 @@ The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance f
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
-    \caption{Active site of \textit{Bacillus Subtilis} lipase LipA.}
+    \includegraphics[width=0.8\textwidth]{figures/BSLA_pocket/BSLA_pocket.pdf}
+    \caption{Active site of \textit{Bacillus Subtilis} lipase LipA with Sc-IPG-phosphonate-inhibitor bound.
+    The catalytic triad residues are colored, as well as the backbone nitrogen atoms forming the oxyanion hole.
+    Coordinates taken from PDB accession code \PDB{1R50}.}
     \label{fig:BSLAactiveSite}
 \end{figure} 
 
@@ -248,8 +254,8 @@ The core structure of the protein is highly similar for the bound and unbound st
 A sodium ion has been crystalized in the citrate bound structures.
 Its physiological significance had already been indicated by the fact that sodium is required for the induction of the CitA/CitB target genes \cite{KlebsiellaMetabolism} and is backed by the by the fact that no sodium has been found in the citrate free crystal structure.
 
-It has been reported that citrate binding to CitA is highly specific and that virtually all CitA is in the bound state under physiological citrate concentrations \cite{CitA_2J80}.
-Citrate interacts mainly with Thr58, Arg66, His69, Glu80, Ser101, Leu102, Arg107, Lys109 and Ser124 by hydrogen bonding (\ref{fig:citrate_interactions}).
+It has been reported that citrate binding to CitAP is highly specific and that virtually all CitAP is in the bound state under physiological citrate concentrations \cite{CitA_2J80}.
+Citrate interacts mainly with Thr58, Arg66, His69, Glu80, Ser101, Leu102, Arg107, Lys109 and Ser124 by hydrogen bonding (Figure \ref{fig:citrate_interactions}).
 A further hydrogen bond is mediated by a water molecule to Gly103.
 The conformational change in the periplasmic domain of sensor histidine kinase CitA is illustrated in Figure \ref{fig:CitA_opening}.
 The main conformational change is a flattening of the $\beta$-sheet that forms the minor loop.
@@ -260,10 +266,11 @@ The unstructured major loop in the citrate free crystal structure indicates that
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/draft/draft.pdf}
+    \includegraphics[width=0.7\textwidth]{figures/CitAP_conf_change/CitAP_conf_change.pdf}
     \caption{The conformational change in the periplasmic domain of sensor histidine kinase CitA.
-    The closed conformation has been taken from the citrate bound structure with PDB accession code \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2J80}{2J80}.
-The open conformation is a snapshot from a 100 ns molecular dynamics simulation in which the citrate had been removed.}
+    The minor loop flexes from the bound conformation (blue) to the open conformation (red).
+    Citrate bound and free coordinates have been taken from PDB structures \PDB{2J80} and \PDB{2R50} respectively.
+    The major loop (green) is only present in the bound structure as it was indicated to be unstructured in the ligand free form, at least under crystallization conditions.}
     \label{fig:CitA_opening}
 \end{figure}     
 
@@ -272,7 +279,7 @@ The open conformation is a snapshot from a 100 ns molecular dynamics simulation 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/citrate_interactions/citrate_interactions.pdf}
-    \caption{Interactions of CitA with its bound ligand citrate as determined by visual inspection of a 1ns molecular dynamics trajectory. The minor loop is the domain with the largest RMSD during active site opening.}
+    \caption{Interactions of CitAP with its bound ligand citrate as determined by visual inspection of a 1ns molecular dynamics trajectory. The minor loop is the domain with the largest RMSD during active site opening.}
     \label{fig:citrate_interactions}
 \end{figure}      
 
@@ -281,15 +288,15 @@ The open conformation is a snapshot from a 100 ns molecular dynamics simulation 
 
 \subsection{Fusion Complex}
 
-The two proteins described earlier have been fused in the laboratory.
-The motivation to do so is the desire to regulate the lipolytic activity of BSLA.
-A controlled upregulation by a simple and harmless molecule such as citrate could be utilized as a switchable detergents, among other usages.
+The two proteins described earlier have been fused in the laboratory, motivated by the desire to regulate the lipolytic activity of BSLA.
+A controlled upregulation by a cheap and non-toxic molecule such as citrate could be utilized to switch on the desired katalysis at specified times.
 It was assumed that the conformational change of CitAP triggered by citrate binding could have a regulatory effect on lipase activity.
+Experiments have been performed by Jaeger et al. to test this hypothesis (Figure \ref{fig:BSLAactivity}).
 
 The sequence of the fused construct as used in the experiments performed in the group of Karl-Erich Jaeger is shown in Figure \ref{fig:complex_sequence}.
-CitA was connected to BSLA by means of a linker helix that was taken from YtvA, the blue light sensor of \textit{Bacillus Subtilis} (PDB accession code: \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=2PR5}{2PR5}).
-A polyhistidine-tag (His-tag) was attached to allow easy purification.
-An Xa protease site was included in the complexed protein because it was found experimentally that it increased the effect of citrate on BSLA activity.
+CitAP was connected to BSLA by means of a linker helix that was taken from YtvA, the blue light sensor of \textit{Bacillus Subtilis} (PDB accession code: \PDB{2PR5}).
+A polyhistidine-tag (His-tag) was attached to allow easy purification and
+an Xa protease site was included in the complexed protein as it was found experimentally that this increased the effect of citrate on BSLA activity.
 
 Although it was attempted to up-regulate the lipase activity by citrate binding, experiments indicated the opposite effect (Figure \ref{fig:BSLAactivity}).
 While increasing citrate concentrations had no effect on uncomplexed BSLA activity, lipolysis was significantly reduced at higher citrate concentrations in the CitAP-BSLA complex protein to about 40\% of the initial activity of the complex.
@@ -378,8 +385,8 @@ The basin hopping algorithm is implemented in the program GMIN \cite{GMIN}.
 
 \section{Simulation Setups}
 
-All citrate bound CitA structures in the PDB contain a specific sodium ion attached to the first $\alpha$-helix as well as 3 water molecules in similar orientations in the vicinity of citrate.
-This regularity makes it probable that these molecules might fulfill an active roll in CitA's dynamics.
+All citrate bound CitAP structures in the PDB contain a specific sodium ion attached to the first $\alpha$-helix as well as 3 water molecules in similar orientations in the vicinity of citrate.
+This regularity makes it probable that these molecules might fulfill an active roll in CitAP's dynamics.
 They have therefore been included in the simulation setups.
 
 \subsection{Equilibration}
