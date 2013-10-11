@@ -465,8 +465,20 @@ This resulted in reduced set of only 3 coordinates, of which the distance of the
 
 \subsection{k-Means Clustering}
 
-Two common strategies to analyse large amounts of high dimensional data are the reduction of the number of datapoints to get insight into the most important features of a dataset and the reduction of the number of dimensions of the feature space for easier representations and classification.
-If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space it
+Apart from the dimensionality reduction approach to simplify complex data it is also possible to attempt to reduce the number of datapoints by carefully choosing a set of representative points.
+If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
+Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only ocassionaly crossing basin boundaries, therefore giving rise to well seperated clusters of points.
+In the reported research, clustering was only used for find a small number of representative structures for those generated in the GMIN basin hopping calculations.
+A variety of clustering algorithms exist, each with its specific strengths and weaknesses.
+The algorithm in used in the data analysis of this research is the k-means clustering algorithm (citation).
+It is especially suited for clustering proteins conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
+
+The k-means clustering algorithm moves each point in the direction in which the density increases fastest, therefore effectively moving it to the center of the cluster it belongs to.
+To determine the density gradient at a point, the gradient of a sum of gaussians centered on all other points with width $h$ is computed (Formula *).
+The window width $h$ determines the smoothness of the density function, where a large width corresponds to a very smooth energy function.
+
+To be continued...
+
 
 
 % ============================================================================ %
