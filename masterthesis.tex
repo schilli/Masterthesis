@@ -454,26 +454,26 @@ If the system under study is well known or the problem at hand allows an \emph{a
 For the determination of local energy minima of the CitAP--BSLA complex for example, most parts of the fusion protein was kept rigid and only the backbone dihedral angles of the linker domain were sampled by basin hopping.
 The main quantities of interest were the orientation of the two globular protein parts to each other in the energy basins.
 In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shiftet to the origin of the coordiante system.
-Next, the protein was rotatet to align a specified atom () with the positive x-axis.
+To superimpose the CitAP domains of all structures, the protein was rotatet to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive x-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the xy-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
 The orientation of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass, the polar angle and the azimuthal angle.
-Finally, the orientation of BSLA with respect to the original coordinate system shiftet to the BSLA center of mass was defined again with the spherical polar and azimuthal angles.
+Finally, the orientation of BSLA with respect to the original coordinate system shiftet to the BSLA center of mass was defined again with the spherical polar and azimuthal angles, this time using the \ce{C_{$\alpha$}} of Threonine 199 as a reference point.
 This resulted in reduced set of only 3 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structured determined by basin hopping where all at similar distances.
 
 
 
 % ==================================== %
 
-\subsection{k-Means Clustering}
+\subsection{Means-Shift Clustering}
 
-Apart from the dimensionality reduction approach to simplify complex data it is also possible to attempt to reduce the number of datapoints by carefully choosing a set of representative points.
+Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of datapoints by carefully choosing a set of representative points.
 If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
 Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only ocassionaly crossing basin boundaries, therefore giving rise to well seperated clusters of points.
 In the reported research, clustering was only used for find a small number of representative structures for those generated in the GMIN basin hopping calculations.
 A variety of clustering algorithms exist, each with its specific strengths and weaknesses.
-The algorithm in used in the data analysis of this research is the k-means clustering algorithm (citation).
+The algorithm used in the data analysis of this research is the mean-shift clustering algorithm \cite{meanShift}.
 It is especially suited for clustering proteins conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
 
-The k-means clustering algorithm moves each point in the direction in which the density increases fastest, therefore effectively moving it to the center of the cluster it belongs to.
+The mean-shift clustering algorithm moves each point in the direction in which the density increases fastest, therefore effectively moving it to the center of the cluster it belongs to.
 To determine the density gradient at a point, the gradient of a sum of gaussians centered on all other points with width $h$ is computed (Formula *).
 The window width $h$ determines the smoothness of the density function, where a large width corresponds to a very smooth energy function.
 
@@ -519,7 +519,16 @@ The results should be combined with experimental data from small angle X-ray sca
 
 % ============================================================================ %
 
+\pagebreak
+
 \section{Acknowledgments}
+
+I would like to thank Birgit Strodel for her supervision and support.
+She gave me alle the freedom I could ask for but was always available for discussion and advice.
+Many thanks go also to the Multiscale Modelling Group at the Institute for Complex Systems 6 at Forschungszentrum J\"ulich for a warm and friendly atmosphere and fruitful discussion.
+I would also like to thank Elisabet Altenberger from the German Research School for Simulation Sciences for her support and help with administrative issues.
+Professor Christel Marian from the Theoretical Chemistry Department at Heinrich Heine University D\"usseldorf kindly provided a workplace during the work on my thesis.
+
 
 % ============================================================================ %
 
@@ -559,6 +568,8 @@ The results should be combined with experimental data from small angle X-ray sca
 
 
 % ============================================================================ %
+
+\pagebreak
 
 \singlespacing
 \small
