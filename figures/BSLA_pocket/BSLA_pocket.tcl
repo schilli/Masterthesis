@@ -16,7 +16,10 @@ color Display Background white
 
 axes location off
 display cuemode linear
+display height 3.0
+display nearclip set 0.01
 
+color change rgb gray 0.80 0.80 0.80
 
 # define new materials, but only once
 if {![info exists materialsDefined]} {
@@ -121,10 +124,10 @@ translate by 0.0 -0.1 0.0
 # protein
 mol addrep $BSLAmol
 set chainA [expr [molinfo $BSLAmol get numreps] - 1] 
-mol modselect   $chainA $BSLAmol "protein and chain A and not hydrogen and not resid 77 133 134 135 136 137 156 and not (resid 12 78 and name N H)"
+mol modselect   $chainA $BSLAmol "protein and chain A and not resid 134 135 136 137 138"
 mol modcolor    $chainA $BSLAmol ColorID 2
-mol modstyle    $chainA $BSLAmol VDW 1.0 12.0
-mol modmaterial $chainA $BSLAmol AOChalky
+mol modstyle    $chainA $BSLAmol NewCartoon
+mol modmaterial $chainA $BSLAmol Edgy
 
 # catalytic triad representation
 mol addrep $BSLAmol

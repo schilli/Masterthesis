@@ -15,6 +15,7 @@ axes location off
 display cuemode linear
 
 color change rgb green 0.24 0.39 0.15
+color change rgb gray 0.80 0.80 0.80
 
 # define new materials, but only once
 if {![info exists materialsDefined]} {
