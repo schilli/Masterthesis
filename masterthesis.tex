@@ -45,8 +45,13 @@
 \newcommand{\PDB}[1]{
     \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}
 }
-\newcommand{\vect}[1]{\mathbf{#1}}
 
+% Formular typesetting commands
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\fun}[2]{#1\left(#2\right)} 
+\newcommand{\vfun}[2]{\vect{#1}\left(#2\right)} 
+\newcommand{\vfunv}[2]{\vect{#1}\left(\vect{#2}\right)} 
 
 % Figure template
 %\begin{figure}
@@ -346,7 +351,106 @@ The main method that was used in the presented research is Molecular Dynamics si
 In Molecular Mechanics, molecules are modelled as systems of chemically inert atoms that interact through Newtonian mechanics.
 The interaction energy between atoms is described by preferably simple mathematical equations, mainly harmonic and trigonometric functions, as well as the well known electrostatic and Lennard-Jones potentials.
 A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces (see also section \ref{sec:forcefields}).
-These forces are then numerically integrated to obtain a trajectory in phase-space.
+
+Newtons equations of motion are numerically integrated to obtain a trajectory in phase-space.
+A naive approach would be to use a simple euler integration scheme of a Taylor expansion of the particle position truncated after the second order term:
+
+\begin{equation}
+    \vfun{r}{t+\Delta t} = \vfun{r}{t} + \vfun{v}{t}\Delta t + \frac{\vfun{f}{t}}{2m} \Delta t^2 + \mathcal{O}(\Delta t^3),
+    \label{eq:Euler}
+\end{equation} 
+
+ where $\vect{v}$ and $\vect{f}$ represent the particle velocities and forces respectively and $m$ is the particle mass. 
+Although this algorithm might seem reasonably fast at first, it turns out to be a particularly bad choice as it is irreversible and suffers from an inherent energy shift \cite{FrenkelSmit}.
+Several different integration schemes have been introduced over the years.
+It is easiest to start the discussion with the Verlet algorithm.
+This algorithm is based on Taylor expansions of the particle position as a function of time around points shifted $+\Delta t$  and $-\Delta t$ in time:
+
+\begin{equation}
+    \vfun{r}{t+\Delta t} = \vfun{r}{t} + \vfun{v}{t}\Delta t + \frac{\vfun{f}{t}}{2m} \Delta t^2 + \frac{\Delta t^3}{3!} \vfun{\dddot r}{t} + \fun{\mathcal{O}}{\Delta t^4}
+    \label{eq:Verlet1}
+\end{equation}
+
+and
+
+\begin{equation}
+    \vfun{r}{t-\Delta t} = \vfun{r}{t} - \vfun{v}{t}\Delta t + \frac{\vfun{f}{t}}{2m} \Delta t^2 - \frac{\Delta t^3}{3!} \vfun{\dddot r}{t} + \fun{\mathcal{O}}{\Delta t^4}.
+    \label{eq:Verlet2}
+\end{equation} 
+
+For simplicity all particles are assumed to be of equal mass here.
+Summing equations \ref{eq:Verlet1} and \ref{eq:Verlet2}, solving for $\vfun{r}{t+\Delta t}$ and truncating all terms of order $\mathcal{O}(\Delta t^4)$ or higer yields:
+
+\begin{equation}
+    \vfun{r}{t+\Delta t} \approx 2\vfun{r}{t} - \vfun{r}{t-\Delta t} + \frac{\vfun{f}{t}}{m} \Delta t^2 
+    \label{eq:VerletPos}
+\end{equation}
+
+It is interesting to note, that the Verlet algorithm computes the position update from the positions at the two preceding timesteps, bypassing the computation of the velocities altogether.
+As the velocities are essential for an estimate of the kinetic energy and hence the temperature, they might still be computed as
+
+\begin{equation}
+    \vfun{v}{t} = \frac{\vfun{r}{t-\Delta t} - \vfun{r}{t+\Delta t}}{2\Delta t} + \mathcal{O}(\Delta t^2),
+\end{equation}
+
+but only up to an accuracy of order $\mathcal{O}(\Delta t^2)$.
+The Verlet algorithm also suffers from the fact that it needs two susbequent initial timesteps to start the integration procedure and define the velocities.
+Integration schemes exist that are equivalent to the Verlet integration in the sense that they give rise to the same (analytical) trajectories, but yield a higher accuracy for the velocity computation and the corresponding evaluations of kinetic energy and temperature.
+The Leap Frog integration algorithm starts out by subtracting the Taylor expansions of equations \ref{eq:Verlet1} and \ref{eq:Verlet2}, rather than summing them up, and truncating after the third order term, therefore initially losing an order of accuracy right from the start:
+
+\begin{equation}
+    \vfun{v}{t} = \frac{\vfun{r}{t+\Delta t} - \vfun{r}{t-\Delta t}}{2 \Delta t} + \mathcal{O}(\Delta t^3)
+    \label{eq:LeapFrog1}
+\end{equation}
+
+Shifting the result by $+\Delta t$ and dividing the timestep by $2$ gives:
+
+\begin{equation}
+    \vfun{v}{t + \Delta t/2} = \frac{\vfun{r}{t+\Delta t} - \vfun{r}{t}}{\Delta t} + \mathcal{O}(\Delta t^3)
+    \label{eq:LeapFrogShift1}
+\end{equation}
+
+Shifting equation \ref{eq:LeapFrog1} instead in opposite direction results in:
+
+\begin{equation}
+    \vfun{v}{t - \Delta t/2} = \frac{\vfun{r}{t} - \vfun{r}{t-\Delta t}}{\Delta t} + \mathcal{O}(\Delta t^3)
+    \label{eq:LeapFrogShift2}
+\end{equation} 
+
+The last equation gives a direct way of updating the positions:
+
+\begin{equation}
+    \vfun{r}{t+\Delta t} = \vfun{r}{t} + \Delta t \vfun{v}{t+\Delta t/2} + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+To get a relation for the velocity update, equations \ref{eq:LeapFrogShift1} and \ref{eq:LeapFrogShift2} need to be subtracted and combined with equation \ref{eq:VerletPos}:
+
+\begin{equation}
+    \vfun{v}{t+\Delta t/2} = \vfun{v}{t-\Delta t/2} + \Delta t \frac{\vfun{f}{t}}{m} + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+Now one order of accuracy for the velocity computation has been gained at the cost of one order of accuracy for the position update compared to the Verlet integration.
+An additional disadvantage of this method is the fact that position and velocities are not computed at the same, but rather at alternating half-integer timesteps.
+This complicates the evaluation of potential, kinetic and total energy, as these are as well not defined at the same time.
+It is however possible to get rid of this additional problem by casting the Verlet algorithm in a different form, the velocity Verlet algorithm.
+The equation for the position update is the same as in the Euler integrator.
+To arrive at the velocity update relation of the velocity Verlet algorithm we start out by adding both sides of the relation for the Verlet position update (equation \ref{eq:VerletPos}) shifted by $+\Delta t$ to the naive Euler position update relation (equation \ref{eq:Euler}).
+Rearranging and collecting like terms gives:
+
+\begin{equation}
+    \vfun{r}{t+2\Delta t} - \vfun{r}{t+\Delta t} = \Delta t \vfun{v}{t} + \frac{\Delta t^2}{2m} \left[ 2\vfun{f}{t+\Delta t} + \vfun{f}{t} \right] + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+Insertion of the $\Delta t$-shifted Euler position update relation into the last equation and solving vor $\vfun{v}{t+\Delta t}$ results in:
+
+\begin{equation}
+    \vfun{v}{t+\Delta t} = \vfun{v}{t} + \frac{\Delta t}{2m} \left[ \vfun{f}{t+\Delta t} + \vfun{f}{t}\right]  + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+The velocity Verlet algorithm is therefore able to compute the velocity and the positions at the same integer timesteps, while maintaining the same order of accuracy as the Leap Frog algorithm.
+In case this accuracy is high enough, the velocity Verlet algorithm is the best choice among the presented algorithms, the only problem being that it its implementation in the latest version of the molecular dynamics package GROMACS does not support all temperature and pressure control mechanisms.
+
+
 This trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
 Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
 
@@ -471,33 +575,54 @@ This resulted in reduced set of only 5 coordinates, of which the distance of the
 
 % ==================================== %
 
-\subsection{Means-Shift Clustering}
+\subsection{Mean-Shift Clustering}
 
-Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of datapoints by carefully choosing a set of representative points.
+Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of datapoints.
+This can be achieved by carefully choosing a set of representative points.
 If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
 Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only ocassionaly crossing basin boundaries, therefore giving rise to well seperated clusters of points.
-In the reported research, clustering was only used for find a small number of representative structures for those generated in the GMIN basin hopping calculations.
+In the reported research, clustering was used to find a small number of representative structures for those generated in the GMIN basin hopping calculations.
 A variety of clustering algorithms exist, each with its specific strengths and weaknesses.
 The algorithm used in the data analysis of this research is the mean-shift clustering algorithm \cite{meanShift}.
-It is especially suited for clustering proteins conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
+It is especially suited for clustering protein conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
 
 The mean-shift clustering algorithm moves each point in the direction in which the density increases fastest, therefore effectively moving it to the center of the cluster it belongs to.
-To determine the density gradient at a point, the gradient of a sum of gaussians centered on all other points with width $h$ is computed (Formula *).
-The window width $h$ determines the smoothness of the density function, where a large width corresponds to a very smooth energy function.
+The mean shift vector points in the direction of the gradient of a sum of gaussians centered on all $n$ points:
 
-To be continued...
+\newcommand{\g}{\fun{g}{\norm{\frac{\vect{x} - \vect{x}_i}{h}}^2}}
+\newcommand{\sumi}{\sum_{i=1}^{n}}
 
+\begin{equation}
+    \vect{m}_h(\vect{x}) = \frac{\sumi \vect{x}_i \g}{\sumi \g} - \vect{x}
+\end{equation}
+
+The window width $h$ determines the smoothness of the gaussian density function $g()$, a large width corresponding to a smooth density function and a small width to a bumpy density function.
+Each point is iteratively updated until it converges to the cluster center:
+
+\begin{equation}
+    \vect{x}^{t+1} = \vect{x}^t + \vect{m}_h(\vect{x}^t)
+\end{equation}
+
+After convergence has been achieved for every point, those points that converged to the same centers can be assigned to the same cluster.
+As it is likely that no point started out exactly at the center, the point closest to the cluster center is chosen as a representative point.
+Alternatively another criterium might be chosen to select the representative point.
+In the case of the CitAP--BSLA fusion protein, the processed data consisted of spherical coordinates as described in the previous section, as well as of the internal energy of the complex as computed by GMIN.
+As the points closest to the cluster centers are likely not the structures with minimal energy, and as a low energy is the most important quality criterium, the point with the lowest energy from each cluster has been chosen as the representative point.
 
 
 % ============================================================================ %
 
 \section{Simulation Setups}
 
-All citrate bound CitAP structures in the PDB contain a specific sodium ion attached to the first $\alpha$-helix as well as 3 water molecules in similar orientations in the vicinity of citrate.
+All citrate bound CitAP structures in the PDB (which?) contained corresponding sodium ions attached to the first $\alpha$-helix and a core $\beta$-sheet, as well as 3 water molecules in similar orientations in the vicinity of the bound citrate.
 This regularity makes it probable that these molecules might fulfill an active roll in CitAP's dynamics.
 They have therefore been included in the simulation setups.
 
 \subsection{Equilibration}
+
+
+
+
 \subsection{Production Runs}
 
 
