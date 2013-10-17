@@ -353,7 +353,7 @@ The interaction energy between atoms is described by preferably simple mathemati
 A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces (see also section \ref{sec:forcefields}).
 
 Newtons equations of motion are numerically integrated to obtain a trajectory in phase-space.
-A naive approach would be to use a simple euler integration scheme of a Taylor expansion of the particle position truncated after the second order term:
+A naive approach would be to use a simple Euler integration scheme \cite{Euler} using the Taylor expansion of the particle positions truncated after the second order term:
 
 \begin{equation}
     \vfun{r}{t+\Delta t} = \vfun{r}{t} + \vfun{v}{t}\Delta t + \frac{\vfun{f}{t}}{2m} \Delta t^2 + \mathcal{O}(\Delta t^3),
@@ -361,10 +361,17 @@ A naive approach would be to use a simple euler integration scheme of a Taylor e
 \end{equation} 
 
  where $\vect{v}$ and $\vect{f}$ represent the particle velocities and forces respectively and $m$ is the particle mass. 
-Although this algorithm might seem reasonably fast at first, it turns out to be a particularly bad choice as it is irreversible and suffers from an inherent energy shift \cite{FrenkelSmit}.
+For simplicity all particles are assumed to be of equal mass here.
+The velocity update in the Euler method is computed as:
+
+\begin{equation}
+    \vfun{v}{t+\Delta t} = \vfun{v}{t} + \frac{\vfun{f}{t}}{2m} \Delta t+ + \mathcal{O}(\Delta t^2)
+\end{equation}
+
+Although this algorithm might seem reasonably simplet first, it turns out to be a particularly bad choice as it is irreversible and suffers from an inherent energy shift \cite{FrenkelSmit}.
 Several different integration schemes have been introduced over the years.
-It is easiest to start the discussion with the Verlet algorithm.
-This algorithm is based on Taylor expansions of the particle position as a function of time around points shifted $+\Delta t$  and $-\Delta t$ in time:
+It is easiest to start the discussion with the Verlet algorithm \cite{Verlet}.
+This algorithm is based on two Taylor expansions of the particle position, forward and backward in time:
 
 \begin{equation}
     \vfun{r}{t+\Delta t} = \vfun{r}{t} + \vfun{v}{t}\Delta t + \frac{\vfun{f}{t}}{2m} \Delta t^2 + \frac{\Delta t^3}{3!} \vfun{\dddot r}{t} + \fun{\mathcal{O}}{\Delta t^4}
@@ -378,11 +385,10 @@ and
     \label{eq:Verlet2}
 \end{equation} 
 
-For simplicity all particles are assumed to be of equal mass here.
-Summing equations \ref{eq:Verlet1} and \ref{eq:Verlet2}, solving for $\vfun{r}{t+\Delta t}$ and truncating all terms of order $\mathcal{O}(\Delta t^4)$ or higer yields:
+Summing equations \ref{eq:Verlet1} and \ref{eq:Verlet2} and solving for $\vfun{r}{t+\Delta t}$ yields the position update relation of the Verlet integrator:
 
 \begin{equation}
-    \vfun{r}{t+\Delta t} \approx 2\vfun{r}{t} - \vfun{r}{t-\Delta t} + \frac{\vfun{f}{t}}{m} \Delta t^2 
+    \vfun{r}{t+\Delta t} = 2\vfun{r}{t} - \vfun{r}{t-\Delta t} + \frac{\vfun{f}{t}}{m} \Delta t^2 + \mathcal{O}(\Delta t^4)
     \label{eq:VerletPos}
 \end{equation}
 
@@ -395,7 +401,8 @@ As the velocities are essential for an estimate of the kinetic energy and hence 
 
 but only up to an accuracy of order $\mathcal{O}(\Delta t^2)$.
 The Verlet algorithm also suffers from the fact that it needs two susbequent initial timesteps to start the integration procedure and define the velocities.
-Integration schemes exist that are equivalent to the Verlet integration in the sense that they give rise to the same (analytical) trajectories, but yield a higher accuracy for the velocity computation and the corresponding evaluations of kinetic energy and temperature.
+
+Integration schemes exist, that are equivalent to the Verlet integration in the sense that they give rise to the same (analytical) trajectories, but yield a higher accuracy for the velocity computation and the corresponding evaluations of kinetic energy and temperature.
 The Leap Frog integration algorithm starts out by subtracting the Taylor expansions of equations \ref{eq:Verlet1} and \ref{eq:Verlet2}, rather than summing them up, and truncating after the third order term, therefore initially losing an order of accuracy right from the start:
 
 \begin{equation}
@@ -429,11 +436,11 @@ To get a relation for the velocity update, equations \ref{eq:LeapFrogShift1} and
     \vfun{v}{t+\Delta t/2} = \vfun{v}{t-\Delta t/2} + \Delta t \frac{\vfun{f}{t}}{m} + \mathcal{O}(\Delta t^3)
 \end{equation}
 
-Now one order of accuracy for the velocity computation has been gained at the cost of one order of accuracy for the position update compared to the Verlet integration.
+One order of accuracy for the velocity computation has been gained at the cost of one order of accuracy for the position update compared to the Verlet integration.
 An additional disadvantage of this method is the fact that position and velocities are not computed at the same, but rather at alternating half-integer timesteps.
 This complicates the evaluation of potential, kinetic and total energy, as these are as well not defined at the same time.
-It is however possible to get rid of this additional problem by casting the Verlet algorithm in a different form, the velocity Verlet algorithm.
-The equation for the position update is the same as in the Euler integrator.
+It is however possible to get rid of this additional problem by casting the Verlet algorithm in a different form, known as the velocity Verlet algorithm.
+Its equation for the position update is the same as in the Euler integrator.
 To arrive at the velocity update relation of the velocity Verlet algorithm we start out by adding both sides of the relation for the Verlet position update (equation \ref{eq:VerletPos}) shifted by $+\Delta t$ to the naive Euler position update relation (equation \ref{eq:Euler}).
 Rearranging and collecting like terms gives:
 
@@ -448,10 +455,11 @@ Insertion of the $\Delta t$-shifted Euler position update relation into the last
 \end{equation}
 
 The velocity Verlet algorithm is therefore able to compute the velocity and the positions at the same integer timesteps, while maintaining the same order of accuracy as the Leap Frog algorithm.
-In case this accuracy is high enough, the velocity Verlet algorithm is the best choice among the presented algorithms, the only problem being that it its implementation in the latest version of the molecular dynamics package GROMACS does not support all temperature and pressure control mechanisms.
+In case this accuracy is high enough, the velocity Verlet algorithm is the best choice among the presented algorithms, the only problem being that its implementation in the latest version of the molecular dynamics package GROMACS does not support all temperature and pressure control mechanisms.
 
+\vspace{1cm}
 
-This trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
+The obtained trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
 Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
 
 
