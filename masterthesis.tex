@@ -351,6 +351,10 @@ The main method that was used in the presented research is Molecular Dynamics si
 In Molecular Mechanics, molecules are modelled as systems of chemically inert atoms that interact through Newtonian mechanics.
 The interaction energy between atoms is described by preferably simple mathematical equations, mainly harmonic and trigonometric functions, as well as the well known electrostatic and Lennard-Jones potentials.
 A given set of potential energy formulas, together with its parameters, is called a force field, as it is used to compute the interatomic forces (see also section \ref{sec:forcefields}).
+This chapter describes the theory of the various sub-algorithms that are relevant for molecular dynamics simulations.
+
+
+\subsubsection{Integrators}
 
 Newtons equations of motion are numerically integrated to obtain a trajectory in phase-space.
 A naive approach would be to use a simple Euler integration scheme \cite{Euler} using the Taylor expansion of the particle positions truncated after the second order term:
@@ -457,25 +461,39 @@ Insertion of the $\Delta t$-shifted Euler position update relation into the last
 The velocity Verlet algorithm is therefore able to compute the velocity and the positions at the same integer timesteps, while maintaining the same order of accuracy as the Leap Frog algorithm.
 In case this accuracy is high enough, the velocity Verlet algorithm is the best choice among the presented algorithms, the only problem being that its implementation in the latest version of the molecular dynamics package GROMACS does not support all temperature and pressure control mechanisms.
 
-\vspace{1cm}
-
-The obtained trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
-Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
-
-
-To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
- 
 % ==================================== %
- 
+
 \subsubsection{Force Fields}
 \label{sec:forcefields}
 
 A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
 Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
- 
+
 % ==================================== %
 
-%\subsubsection{Water Model}
+\subsubsection{Long--Range Electrostatics}
+
+% ==================================== %
+
+\subsubsection{Temperature \& Pressure Control}
+
+% ==================================== %
+
+\subsubsection{Water Model}
+
+% ==================================== %
+
+\subsubsection{Analysis Methods}
+
+% ==================================== %
+
+\vspace{1cm}
+
+The obtained trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
+Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
+
+To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
+ 
 
 % ==================================== %
 
@@ -622,23 +640,51 @@ As the points closest to the cluster centers are likely not the structures with 
 
 \section{Simulation Setups}
 
+\subsection{System Preparation}
+
+\subsubsection{CitAP solo}
+
 All citrate bound CitAP structures in the PDB (which?) contained corresponding sodium ions attached to the first $\alpha$-helix and a core $\beta$-sheet, as well as 3 water molecules in similar orientations in the vicinity of the bound citrate.
 This regularity makes it probable that these molecules might fulfill an active roll in CitAP's dynamics.
 They have therefore been included in the simulation setups.
+
+\subsubsection{BSLA solo}
+
+\subsubsection{Complex}
+
+The sequence of the fusion protein as used in the experiments performed by Jaeger et al. (Figure \ref{fig:BSLAactivity}) setthe basis for the simulations performed.
+The coordinates of the two uncomplexed proteins were connected by the extended linker sequence including the YtvA helix and the Xa-protease site.
+The resulting construct, with its two globular parts and the connecting extended domain seems rather artificial (Figure \ref{fig:ComplexConstruct}).
+To arrive at more realistic starting structures, Basin Hopping simulations have been performed using GMIN.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/Complex_folding/complex_folding.pdf}
+    \caption{\emph{In silico} construct of the fusion protein. GMIN runs were performed to arrive at energy minimized conformations.}
+    \label{fig:ComplexConstruct}
+\end{figure}      
+ 
+
+% ==================================== %
 
 \subsection{Equilibration}
 
 
 
-
 \subsection{Production Runs}
 
+\subsection{GMIN}
 
 % ============================================================================ %
 
 \section{Results}
 
 \subsection{Unkomplexed CitAP MD}
+
+The 
+
+
 \subsection{Unkomplexed BSLA MD}
 \subsection{Complex Basin Hopping}
 \subsection{CitAP--BSLA fusion protein MD}
