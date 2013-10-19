@@ -42,9 +42,7 @@
     urlcolor=cyan                          % color of external links
 }
 
-\newcommand{\PDB}[1]{
-    \href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}
-}
+\newcommand{\PDB}[1]{\href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}}
 
 % Formular typesetting commands
 \newcommand{\vect}[1]{\mathbf{#1}}
@@ -640,19 +638,59 @@ As the points closest to the cluster centers are likely not the structures with 
 
 \section{Simulation Setups}
 
-\subsection{System Preparation}
+\subsection{Molecular Dynamics System Preparation}
+
+The simulation systems have been set up in a consistent way for all MD simulations.
+The coordinates from the PDB have been processed with GROMACS's \texttt{pdb2gmx} tool.
+Protonation states have been assigned to the relevant amino acids automatically corresponding to a neutral pH.
+This results in unprotonated, negatively charged states for acicic side chains in Aspartic and Glutamics Acid and in protonated, positively charged side chains in Ariginine and Lysine.
+The special case of Histidine protonation states is treated on a heuristical basis by \texttt{pdb2gmx}.
+The protonation states of the Imidazole ring is chosen to result in the most favourable hydrogen bonding pattern.
+The simulation box was chosen to be dodecahedral to resemble a sphere as much as possible.
+The protein was centered in the simulation box and the box size set individually for each system to keep a minimum distance of 12 \r{A}ngstrom between the protein and the box walls.
+The remaining vacuum in the box was then randomly filled with tip4p water molecules.
+Positive and negative ions (\ce{Na^+} and \ce{Cl^-}) were added to neutralize the system, but no additional iions were added to meet a specified salt concentration.
+All systems have then been energy minimized by conjugate gradient energy minimization until the maximum force on any atom dropped below 100 kJ/mol/nm.
+After 10 ns of position restrained minimization as described in section \ref{sec:eq}, production runs were performed.
+More specific details on the preparation of each system is given next.
+
 
 \subsubsection{CitAP solo}
 
-All citrate bound CitAP structures in the PDB (which?) contained corresponding sodium ions attached to the first $\alpha$-helix and a core $\beta$-sheet, as well as 3 water molecules in similar orientations in the vicinity of the bound citrate.
+The Protein Data Bank (PDB) contains two entries of citrate bound CitAP (\PDB{2J80}, 2 CitAP molecules and \PDB{1P0Z}, 10 CitAP molecules) and one entry of citrate free CitAP (\PDB{2V9A}, 2 CitAP molecules), all solved by X-ray crystallography to a resolution of 1.6 \r{A}ngstrom.
+All citrate bound CitAP structures contained corresponding sodium ions attached to Serine 24 of the first $\alpha$-helix and Serine 110 at a core $\beta$-sheet, as well as 3 water molecules in similar orientations in the vicinity of the bound citrate (Figure \ref{fig:CitAP_waterNA}).
 This regularity makes it probable that these molecules might fulfill an active roll in CitAP's dynamics.
 They have therefore been included in the simulation setups.
+Two of the waters present in the active site are important mediators of hydrogen bond bridges that help stabilizing the closed conformation of the binding pocket (Figure \ref{fig:citrate_interactions}).
+Sodium has been reported to be essential for the citrate metabolism of \emph{Bacillus Subtilis} \cite{CitA_NA}, indicating the significant role of the Sodium ion found in the CitAP crystal structures.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/CitAP_PDB_structures/CitAP_PDB_structures.pdf}
+    \caption{Front and back view of superpositions of all CitAP molecules in the PDB. The citrate ligand and the three water molecules present in the binding pockets of all structures are collored, as well as the sodium ion attached to CitAP.}
+    \label{fig:CitAP_waterNA}
+\end{figure}       
+
+Protein chain A from PDB entry \PDB{2J80} has been used in all simulations reported in this work.
+As its root mean square deviation (RMSD) over all \ce{C_{$\alpha$}}-atoms compared to all chain B of the same entry and to all chains in PDB entry \PDB{1P0Z}, it is a representative CitAP structure.
+The structures present in PDB entry \PDB{1P0Z} have been ruled out as starting structures, as these have all been crystalized together with Molybdenum assemblies that significantly distort parts of the protein.
+The glycerol and \ce{SO4} molecules present in the \PDB{2J80} crystal structure are most likely of smaller influence to the protein and therefore the obtained crystal structures resemble the CitAP conformation in its native environment best.
+
+All three carboxyl groups of the citrate anion are deprotonated at neutral pH.
+Therefore, this is the protonation state that was chosen for the reported investigations.
+
+
+Homology modelling
+docking
+(citrate parameterization fehlt)
+
+
 
 \subsubsection{BSLA solo}
 
 \subsubsection{Complex}
 
-The sequence of the fusion protein as used in the experiments performed by Jaeger et al. (Figure \ref{fig:BSLAactivity}) setthe basis for the simulations performed.
+The sequence of the fusion protein as used in the experiments performed by Jaeger et al. (Figure \ref{fig:BSLAactivity}) set the basis for the simulations performed.
 The coordinates of the two uncomplexed proteins were connected by the extended linker sequence including the YtvA helix and the Xa-protease site.
 The resulting construct, with its two globular parts and the connecting extended domain seems rather artificial (Figure \ref{fig:ComplexConstruct}).
 To arrive at more realistic starting structures, Basin Hopping simulations have been performed using GMIN.
@@ -669,6 +707,7 @@ To arrive at more realistic starting structures, Basin Hopping simulations have 
 % ==================================== %
 
 \subsection{Equilibration}
+\label{sec:eq}
 
 
 
@@ -682,7 +721,21 @@ To arrive at more realistic starting structures, Basin Hopping simulations have 
 
 \subsection{Unkomplexed CitAP MD}
 
-The 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/CitA_pocket2.pdf}
+    \caption{}
+    \label{fig:CitA_pocket}
+\end{figure}        
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_free.pdf}
+    \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_bound.pdf}
+    \caption{}
+    \label{fig:CitA_opening_distances}
+\end{figure}       
+
 
 
 \subsection{Unkomplexed BSLA MD}
