@@ -467,6 +467,8 @@ In case this accuracy is high enough, the velocity Verlet algorithm is the best 
 A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
 Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
 
+\paragraph{Citrate Parameterization}
+
 % ==================================== %
 
 \subsubsection{Long--Range Electrostatics}
@@ -677,16 +679,23 @@ The structures present in PDB entry \PDB{1P0Z} have been ruled out as starting s
 The glycerol and \ce{SO4} molecules present in the \PDB{2J80} crystal structure are most likely of smaller influence to the protein and therefore the obtained crystal structures resemble the CitAP conformation in its native environment best.
 
 All three carboxyl groups of the citrate anion are deprotonated at neutral pH.
-Therefore, this is the protonation state that was chosen for the reported investigations.
+Therefore, this protonation state was chosen for the reported investigations.
 
+Unfortunately, the \PDB{2J80} structure contains some missing heavy atoms and also selenomethonine residues instead of normal methonines.
+To obtain a realistic structure and remove these flaws, a homology model was built using the \href{http://swift.cmbi.ru.nl/servers/html/index.html}{WHAT IF homology modelling server} \cite{WHATIFhomologyModel}.
+The RMSD over all matching heavy atoms of the model and the \PDB{2J80} template is 0.26 \r{A}ngstrom.
+An RMSD this small indicates, that the two structures are essentially identical with sulfur atoms substituted for the Selenium atoms and the missing heavy atoms added.
 
-Homology modelling
-docking
-(citrate parameterization fehlt)
-
-
+Citrate, the three water molcecules and the sodium ion to be included in the starting structure have been modelled into the homology model structure.
+This was basically done by superimposing the model and the template and then copying the coordinates over.
 
 \subsubsection{BSLA solo}
+
+Chain B of the crystal structure of PDB entry \PDB{1I6W} has been used as the initial structure for all simulations involving BSLA.
+The reason is that \PDB{1I6W} is the only BSLA structure in the PDB without a covalently bound ligand.
+One of the key objectives was to study BSLA flexibility and dynamics of the binding pocket and a covalently bound ligand would have hindered this investigation.
+Chain B was chosen above chain A, as the protein is known to be monomeric in solution and because chain B hadthe smaller RMSD when compared to the BSLA entries in the PDB with covalently bound ligands (\PDB{1ISP}, \PDB{1R4Z} and \PDB{1R50}).
+
 
 \subsubsection{Complex}
 
