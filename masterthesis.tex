@@ -44,7 +44,7 @@
 
 \newcommand{\PDB}[1]{\href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}}
 
-% Formular typesetting commands
+% Formula typesetting commands
 \newcommand{\vect}[1]{\mathbf{#1}}
 \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
 \newcommand{\fun}[2]{#1\left(#2\right)} 
@@ -112,8 +112,8 @@ RWTH Aachen
 A fusion protein of the periplasmic domain of sensor histidine kinase CitA from \textit{Klebsiella Pneumoniae} and the lipase LipA from \textit{Bacillus Subtilis} is investigated by means of molecular dynamics simulation.
 The research was motivated by experiments indicating that CitA's natural ligand citrate down-regulates lipase activity upon binding.
 Both proteins were first studied independently.
-It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100ns molecular dynamics simulation after carefull equilibration.
-The unfused lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their relative conformations.
+It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100ns molecular dynamics simulation after careful equilibration.
+The unfused, solo lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their relative conformations.
 As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by basin hopping.
 The fusion protein showed dynamics that differ significantly from those of the isolated proteins.
 The presence of citrate in the receptor binding pocket did not stabilize the structure to the same extend compared to the isolated CitA.
@@ -141,7 +141,7 @@ and the lipase LipA of \textit{Bacillus Subtilis} (BSLA, PDB accession code \PDB
 CitAP is a periplasmic citrate receptor that, upon activation by citrate binding, triggers a cytoplasmic reaction cascade starting with the autophosphorylation of the endoplasmic domain of CitA and finally leading to the transcription of citrate fermentation genes.
 %BSLA's efficient lipid hydrolysis capability is industrially utilized for many applications, including its use as an additive in laundry detergents.
 What is not understood is the structure and kinetics of a fusion protein of these two peptides.
-It was hypothesized that citrate binding could influcence lipase activity, thus creating a switchable detergent.
+It was hypothesized that citrate binding could influence lipase activity, thus creating a switchable detergent.
 Activity measurements indicate that citrate binding to the sensor kinase domain indeed down-regulates lipase activity (Figure \ref{fig:BSLAactivity}).
 This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
 As chemical applications would benefit from the opposite effect, a controlled up-regulation of lipase activity triggered by citrate addition, this research focused on the structure elucidation of the fused protein, as well as on the mechanism by which lipase activity is regulated.
@@ -171,30 +171,30 @@ The main methods used for structure elucidation are global optimization using th
 \textit{Bacillus Subtilis} is of major industrial interest because of its highly efficient protein secretion system \cite{BSsecretion}, enabling the production of proteases and amylases in bulk quantities \cite{BSworkhorse}.
 Of special interest are its excreted lipases, as these catalyze the hydrolysis and synthesis of long chain triacylglycerols \cite{BSLA_1I6W}.
 These lipases possess a wide substrate specificity.
-They find applications in transesterification reactions, the synthesis of esthers, the resolution of racemic mixtures and are used as additives in laundry detergents \cite{BSdetergents}.
+They find applications in transesterification reactions, the synthesis of esters, the resolution of racemic mixtures and are used as additives in laundry detergents \cite{BSdetergents}.
 
 The reported experiments where performed using lipase LipA from \textit{Bacillus Subtilis} (BSLA).
-Compared to lipases from other organisms BSLA is relatively small, consisting of 181 amino acids and weighng 19.36 kDA.
+Compared to lipases from other organisms BSLA is relatively small, consisting of 181 amino acids and weighing 19.36 kDA.
 BSLA belongs to the $\alpha$-$\beta$ hydrolase fold enzymes.
 Members of this protein family are constituted by a twisted $\beta$-strand core flanked by alpha helices on both sides \cite{alphaBetaHydrolases}.
 Because of its small size and because other known $\alpha$-$\beta$ hydrolase fold enzymes extend on this core structure, it can be considered a minimal $\alpha$-$\beta$ hydrolase.
-BSLA hydrolyses sn-1 and sn-3 glycerol esthers with long fatty acid chains, while its highest activity is exhibited on medium sized fatty acids \cite{BSLA_1I6W}.
+BSLA hydrolyses sn-1 and sn-3 glycerol esters with long fatty acid chains, while its highest activity is exhibited on medium sized fatty acids \cite{BSLA_1I6W}.
 The optimum environment is reported to be found at pH 10 \cite{BSLA_1I6W}.
 
 Most known lipases possess an $\alpha$-helical segment that covers the active site.
 The encounter of lipid-aggregates triggers the opening of this lid, exposing the active site and triggering catalytic activity.
 This behaviour is known as interfacial activation \cite{alphaBetaHydrolases}.
-BSLA lacks this lid, resulting in an active site that is solvent exposed and thus activlely hydrolising fatty acids even in the absence of lipid-aggregates.
+BSLA lacks this lid, resulting in an active site that is solvent exposed and thus actively hydrolysing fatty acids even in the absence of lipid-aggregates.
 
 The active site is located at the bottom of a shallow cleft formed by four turns (Figure \ref{fig:BSLAactiveSite}).
-Its structure is in accordance with the secondary structure topology of the canonical $\alpha$/$\beta$-hydrolase fold, in which the acitve site is formed by a nucleophile, an acid and a histidine, together called the catalytic triad \cite{BSLA_1I6W}.
-In BSLA this catalytic triad is constituted of Ser77 (nucleophile), Asp133 (acid) and His156.
+Its structure is in accordance with the secondary structure topology of the canonical $\alpha$/$\beta$-hydrolase fold, in which the active site is formed by a nucleophile, an acid and a histidine, together called the catalytic triad \cite{BSLA_1I6W}.
+In BSLA this catalytic triad is constituted of Serine 77 (nucleophile), Aspartate 133 (acid) and Histidine 156.
 Serine 77 is located at the so called nucleophilic elbow \cite{nucleophileElbow}, a sharp turn at the bottom of the binding pocket connecting a central $beta$-sheet to a peripheral $\alpha$-helix.
 The ester hydrolysis catalyzed by BSLA is depicted in Figure \ref{fig:BSLAreaction}.
-The ligand binds covalently with its phosphoryl group to Ser77.
+The ligand binds covalently with its phosphoryl group to Serine 77.
 A tetrahedral intermediate structure is formed.
-The phosphoryl oxygen of the substrate is hydrogen bound to the \ce{NH} atoms of Met78 and Ile12, forming the oxyanion hole that is common to most lipases \cite{BSLA_1I6W}.
-The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance from the Ser77 \ce{O^{$\gamma$}} atom and the substrate esther oxygen.
+The phosphoryl oxygen of the substrate is hydrogen bound to the \ce{NH} atoms of Methionine 78 and Isoleucine 12, forming the oxyanion hole that is common to most lipases \cite{BSLA_1I6W}.
+The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance from the Ser77 \ce{O^{$\gamma$}} atom and the substrate ester oxygen.
 
 
 
@@ -226,12 +226,12 @@ The \ce{N^{$\epsilon$}} atom of His156 is located at hydrogen bonding distance f
 \subsection{Periplasmic Domain of Sensor Histidine Kinase CitA}
 
 CitA is the sensor histidine kinase of a two component regulatory (TCR) system of \textit{Klebsiella Pneumoniae} \cite{CitA_original}.
-TCR systems generaly consist of a sensor histidine kinase and a response regulator (CitB in the present case).
-Sensor histidine kinases respond to environmental conditions by autophosphorilation of a conserved histidine residue.
+TCR systems generally consist of a sensor histidine kinase and a response regulator (CitB in the present case).
+Sensor histidine kinases respond to environmental conditions by autophosphorylation of a conserved histidine residue.
 The phosphoryl group is subsequently transferred to a conserved Aspartate residue on the response regulator.
 The phosphorylated response regulator in turn triggers a change in gene expression or cell behaviour \cite{CitA_original}.
-The CitA/CitB regulatory system controls the expression of citrate frementation genes.
-Citrate metabolism requires careful regulation, as an uncontrolled transcription of citrate fermentation genes in the absence of citrate would break the citric acid cycle with servere consequences for the organism \cite{CitA_original}.
+The CitA/CitB regulatory system controls the expression of citrate fermentation genes.
+Citrate metabolism requires careful regulation, as an uncontrolled transcription of citrate fermentation genes in the absence of citrate would break the citric acid cycle with severe consequences for the organism \cite{CitA_original}.
 
 Like most known sensor histidine kinases, CitA is a membrane protein, the domain composition of which is shown in Figure \ref{fig:CitA_organization}.
 Its extracellular N-terminal sensor domain is flanked by two transmembrane helices, one of which links to the intracellular autokinase domain.
@@ -257,7 +257,7 @@ It has been hypothesized that this mediation happens by a piston-like mechanism 
 The resulting conformational change in the kinase domain allows the interaction of the ATP-binding subdomain with the cytoplasmic phosphorylation subdomain.
 After autophosphorylation the subdomains dissociate.
 The phosphorylation subdomain can now bind to the receiver domain of the response regulator CitB.
-A final phosphotransfer in the phosphorylation domain from histidine to an aspartate completes the CitA cycle and a new response can be triggered.
+A final phosphotransfer in the phosphorylation domain from histidine to an Aspartate completes the CitA cycle and a new response can be triggered.
 
 
 \begin{figure}
@@ -275,7 +275,7 @@ While the \textit{in vivo} conformation of the termini remains uncertain due to 
 The major loop is unresolved in the unbound CitAP structures, indicating that it is highly mobile without the stabilizing effect of the ligand.
 The core structure of the protein is highly similar for the bound and unbound structures with similar backbone positions and sidechain orientations of the binding residues not located in the minor or major loop \cite{CitA_2J80}.
 
-A sodium ion attached to the first helix and the $\beta$-sheet core has been crystalized in the citrate bound structures.
+A sodium ion attached to the first helix and the $\beta$-sheet core has been crystallized in the citrate bound structures.
 Its physiological significance had already been indicated, as sodium is required for the induction of the CitA/CitB target genes \cite{KlebsiellaMetabolism} and is backed by the by the fact that no sodium has been found in the citrate free crystal structure.
 
 It has been reported that citrate binding to CitAP is highly specific and that virtually all CitAP is in the bound state under physiological citrate concentrations \cite{CitA_2J80}.
@@ -313,7 +313,7 @@ The unstructured major loop in the citrate free crystal structure indicates that
 \subsection{Fusion Complex}
 
 The two proteins described earlier have been fused in the laboratory, motivated by the desire to regulate the lipolytic activity of BSLA.
-A controlled upregulation by a cheap and non-toxic molecule such as citrate could be utilized to switch on the desired katalysis at specified times.
+A controlled up regulation by a cheap and non-toxic molecule such as citrate could be utilized to switch on the desired catalysis at specified times.
 It was assumed that the conformational change of CitAP triggered by citrate binding could have a regulatory effect on lipase activity.
 Experiments have been performed by Jaeger et al. to test this hypothesis (Figure \ref{fig:BSLAactivity}).
 
@@ -370,7 +370,7 @@ The velocity update in the Euler method is computed as:
     \vfun{v}{t+\Delta t} = \vfun{v}{t} + \frac{\vfun{f}{t}}{2m} \Delta t+ + \mathcal{O}(\Delta t^2)
 \end{equation}
 
-Although this algorithm might seem reasonably simplet first, it turns out to be a particularly bad choice as it is irreversible and suffers from an inherent energy shift \cite{FrenkelSmit}.
+Although this algorithm might seem reasonably simple first, it turns out to be a particularly bad choice as it is irreversible and suffers from an inherent energy shift \cite{FrenkelSmit}.
 Several different integration schemes have been introduced over the years.
 It is easiest to start the discussion with the Verlet algorithm \cite{Verlet}.
 This algorithm is based on two Taylor expansions of the particle position, forward and backward in time:
@@ -394,7 +394,7 @@ Summing equations \ref{eq:Verlet1} and \ref{eq:Verlet2} and solving for $\vfun{r
     \label{eq:VerletPos}
 \end{equation}
 
-It is interesting to note, that the Verlet algorithm computes the position update from the positions at the two preceding timesteps, bypassing the computation of the velocities altogether.
+It is interesting to note, that the Verlet algorithm computes the position update from the positions at the two preceding time steps, bypassing the computation of the velocities altogether.
 As the velocities are essential for an estimate of the kinetic energy and hence the temperature, they might still be computed as
 
 \begin{equation}
@@ -402,7 +402,7 @@ As the velocities are essential for an estimate of the kinetic energy and hence 
 \end{equation}
 
 but only up to an accuracy of order $\mathcal{O}(\Delta t^2)$.
-The Verlet algorithm also suffers from the fact that it needs two susbequent initial timesteps to start the integration procedure and define the velocities.
+The Verlet algorithm also suffers from the fact that it needs two subsequent initial time steps to start the integration procedure and define the velocities.
 
 Integration schemes exist, that are equivalent to the Verlet integration in the sense that they give rise to the same (analytical) trajectories, but yield a higher accuracy for the velocity computation and the corresponding evaluations of kinetic energy and temperature.
 The Leap Frog integration algorithm starts out by subtracting the Taylor expansions of equations \ref{eq:Verlet1} and \ref{eq:Verlet2}, rather than summing them up, and truncating after the third order term, therefore initially losing an order of accuracy right from the start:
@@ -412,7 +412,7 @@ The Leap Frog integration algorithm starts out by subtracting the Taylor expansi
     \label{eq:LeapFrog1}
 \end{equation}
 
-Shifting the result by $+\Delta t$ and dividing the timestep by $2$ gives:
+Shifting the result by $+\Delta t$ and dividing the time step by $2$ gives:
 
 \begin{equation}
     \vfun{v}{t + \Delta t/2} = \frac{\vfun{r}{t+\Delta t} - \vfun{r}{t}}{\Delta t} + \mathcal{O}(\Delta t^3)
@@ -439,7 +439,7 @@ To get a relation for the velocity update, equations \ref{eq:LeapFrogShift1} and
 \end{equation}
 
 One order of accuracy for the velocity computation has been gained at the cost of one order of accuracy for the position update compared to the Verlet integration.
-An additional disadvantage of this method is the fact that position and velocities are not computed at the same, but rather at alternating half-integer timesteps.
+An additional disadvantage of this method is the fact that position and velocities are not computed at the same, but rather at alternating half-integer time steps.
 This complicates the evaluation of potential, kinetic and total energy, as these are as well not defined at the same time.
 It is however possible to get rid of this additional problem by casting the Verlet algorithm in a different form, known as the velocity Verlet algorithm.
 Its equation for the position update is the same as in the Euler integrator.
@@ -450,13 +450,13 @@ Rearranging and collecting like terms gives:
     \vfun{r}{t+2\Delta t} - \vfun{r}{t+\Delta t} = \Delta t \vfun{v}{t} + \frac{\Delta t^2}{2m} \left[ 2\vfun{f}{t+\Delta t} + \vfun{f}{t} \right] + \mathcal{O}(\Delta t^3)
 \end{equation}
 
-Insertion of the $\Delta t$-shifted Euler position update relation into the last equation and solving vor $\vfun{v}{t+\Delta t}$ results in:
+Insertion of the $\Delta t$-shifted Euler position update relation into the last equation and solving for $\vfun{v}{t+\Delta t}$ results in:
 
 \begin{equation}
     \vfun{v}{t+\Delta t} = \vfun{v}{t} + \frac{\Delta t}{2m} \left[ \vfun{f}{t+\Delta t} + \vfun{f}{t}\right]  + \mathcal{O}(\Delta t^3)
 \end{equation}
 
-The velocity Verlet algorithm is therefore able to compute the velocity and the positions at the same integer timesteps, while maintaining the same order of accuracy as the Leap Frog algorithm.
+The velocity Verlet algorithm is therefore able to compute the velocity and the positions at the same integer time steps, while maintaining the same order of accuracy as the Leap Frog algorithm.
 In case this accuracy is high enough, the velocity Verlet algorithm is the best choice among the presented algorithms, the only problem being that its implementation in the latest version of the molecular dynamics package GROMACS does not support all temperature and pressure control mechanisms.
 
 % ==================================== %
@@ -467,7 +467,11 @@ In case this accuracy is high enough, the velocity Verlet algorithm is the best 
 A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
 Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
 
-\paragraph{Citrate Parameterization}
+(needs extension)
+
+% ==================================== %
+
+\subsubsection{Citrate Parameterization}
 
 % ==================================== %
 
@@ -476,6 +480,7 @@ Recent benchmarks of protein force fields give insights into the strengths and w
 % ==================================== %
 
 \subsubsection{Temperature \& Pressure Control}
+\label{sec:tempPressControl}
 
 % ==================================== %
 
@@ -483,16 +488,16 @@ Recent benchmarks of protein force fields give insights into the strengths and w
 
 % ==================================== %
 
-\subsubsection{Analysis Methods}
+%\subsubsection{Analysis Methods}
 
 % ==================================== %
 
-\vspace{1cm}
-
-The obtained trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
-Molecuar Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
-
-To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
+%\vspace{1cm}
+%
+%The obtained trajectory can in turn be used to estimate thermodynamic quantities (e.g. free energies), as well as to derive dynamic properties, such as normal modes of protein movement \cite{normalModes}.
+%Molecular Dynamics has been successfully used to study biomolecules for more than 35 years \cite{MDbiomolecules}.
+%
+%To analyze the obtained data a large variety of methods exist ranging from hydrogen bond network and interaction energy analysis to principal component and normal mode analysis, to name just a few.
  
 
 % ==================================== %
@@ -500,7 +505,7 @@ To analyze the obtained data a large variety of methods exist ranging from hydro
 \subsection{Basin Hopping with GMIN}
 
 Global minima of energy landscapes in the conformational space of macromolecules are hard to determine due to the large dimensionality and the overwhelming number of possible conformations.
-A clever approach to nevertheless takle this problem has been invented by David Wales and coworkers.
+A clever approach to nevertheless tackle this problem has been invented by David Wales and coworkers.
 Their basin hopping algorithm attempts to find the global minimum of the energy landscape by generating conformations randomly, that are subsequently minimized in energy to get to the bottom of a local energy minimum \cite{basinHopping}, as depicted in Figure \ref{fig:GMIN}.
 
 At each step the basin hopping algorithm minimizes the given structure to find the closest local energy minimum, the energy basin.
@@ -508,7 +513,7 @@ This can be done by a steepest decent or a conjugate gradient approach, among ot
 Subsequently new conformations are generated by a Monte Carlo procedure. 
 In general, molecular Monte Carlo simulations randomly generate new conformations by translating or rotating atoms or groups of atoms.
 The generated Monte Carlo move is accepted with a probability that decreases exponentially with the energy difference of the new and old conformations.
-Plain Monte Carlo simulations theoretically sample the complete energy landscape, but unforutnately this is a very slow process.
+Plain Monte Carlo simulations theoretically sample the complete energy landscape, but unfortunately this is a very slow process.
 Basin hopping provides a much faster alternative if one is only interested in local energy minima, instead of the detailed structure of the energy surface.
 This is the case if the structure of interest is the global minimum of a system, or if the goal is to find out about relative differences between energy minima.
 Monte Carlo is particularly efficient as newly generated structures have a significant chance of being located distantly enough from the previous structure on the energy landscape, such that a new energy minimization finds a distinct energy basin.
@@ -535,17 +540,17 @@ The basin hopping algorithm is implemented in the program GMIN \cite{GMIN} and d
 
 The data obtained in molecular simulations is high dimensional (ignoring velocities and forces), as every atom position is specified by 3 coordinates.
 Often, the important features of a system can be described by a reduced set of coordinates to make analysis less complicated.
-Knowledge of the system can guide the definition of these reduced, or collective coordinates, but techniques exist to automatically reduce the dimensionality wihtout prior assumptions.
+Knowledge of the system can guide the definition of these reduced, or collective coordinates, but techniques exist to automatically reduce the dimensionality without prior assumptions.
 Techniques of both kinds have been used in the reported research and are described here as applied to the fused CitAP--BSLA complex.
 
 A well established technique used for dimensionality reduction in all kinds of applications is Principal Component Analysis (PCA) \cite{PCAoriginal} \cite{PCA}.
-PCA is an orthogonal linear transform that transforms the dataset into a space whose orhogonal basis is spanned by the principal component vectors.
+PCA is an orthogonal linear transform that transforms the dataset into a space whose orthogonal basis is spanned by the principal component vectors.
 The key feature of these principal component vectors is that the dataset has its largest variance (i.e. highest information content) along the first principal component vector and the variances decrease along the following principal components.
-This ordering allows the removal of principal components from the dataset with low variance, therefore reducing the original complexity and at the same time maintainting the largest possible information content for the reduced dataset.
+This ordering allows the removal of principal components from the dataset with low variance, therefore reducing the original complexity and at the same time maintaining the largest possible information content for the reduced dataset.
 
 Mathematically, PCA works as follows.
-Let the matrix $\vect{X}$ represent a dataset and its row vectors represent datapoints with zero empirical mean.
-The mean can always be added back to the datapoints at the end of the transformation.
+Let the matrix $\vect{X}$ represent a dataset and its row vectors represent data points with zero empirical mean.
+The mean can always be added back to the data points at the end of the transformation.
 The covariance matrix of this dataset is defined as
 \begin{equation}
     \vect{\Sigma} = \vect{X}^{T} \vect{X},
@@ -563,12 +568,12 @@ The dataset $\vect{X}$ can be mapped into the space spanned by the eigenvectors 
 \end{equation}
 Removing dimensions from the end of the transformed dataset $\vect{T}$ reduces the dimensionality of the data but retains a maximum of the variances and therefore maximizes the information content in the data for the given number of remaining dimensions.
 
-If for example two dimensional datapoints are distributed along a straight line, but subject to noise, PCA will approximate the dimension along which the data is correlated with the first principal component (Figure \ref{fig:PCA}).
+If for example two dimensional data points are distributed along a straight line, but subject to noise, PCA will approximate the dimension along which the data is correlated with the first principal component (Figure \ref{fig:PCA}).
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/GaussianScatterPCA.png}
-    \caption{Principal components of gaussian data. Figure taken from Wikipedia.org \url{http://en.wikipedia.org/wiki/File:GaussianScatterPCA.png}}
+    \caption{Principal components of Gaussian data. Figure taken from Wikipedia.org \url{http://en.wikipedia.org/wiki/File:GaussianScatterPCA.png}}
     \label{fig:PCA}
 \end{figure}         
 
@@ -576,7 +581,7 @@ If for example two dimensional datapoints are distributed along a straight line,
 
 The GROMACS molecular dynamics package \cite{GROMACS4} contains an implementation of PCA that is particularly well suited to study the motions of proteins.
 The analysis tool \texttt{g\_covar} computes the covariance matrix of the trajectory data.
-Each time frame in the trajectory is treated as a datapoint.
+Each time frame in the trajectory is treated as a data point.
 The definition of the mean is chosen by the user and the frames of the trajectory are usually fit using least squares to a meaningful set of coordinates that describes the molecular conformation well (e.g. backbone or \ce{C_{$\alpha$}} atoms in the case of proteins).
 The covariance matrix is then constructed using the same or a different set of coordinates, e.g. including side chain atoms as well.
 The covariance matrix is diagonalized and the eigenvectors and eigenvalues are stored for use with the GROMACS tool \texttt{g\_anaeig}.
@@ -591,8 +596,8 @@ This could be overcome by the usage of non-linear dimensionality reduction techn
 If the system under study is well understood or the problem at hand allows an \emph{a priori} definition of collective coordinates, the usage of principal component analysis can be circumvented.
 For the determination of local energy minima of the CitAP--BSLA complex for example, most parts of the fusion protein were kept rigid and only the backbone dihedral angles of the linker domain were sampled by basin hopping.
 The main quantities of interest were the orientation of the two globular protein parts relative to each other at the energy basins.
-In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shiftet to the origin of the coordiante system.
-To superimpose the CitAP domains of all structures, the protein was rotatet to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive x-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the xy-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
+In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shifted to the origin of the coordinate system.
+To superimpose the CitAP domains of all structures, the protein was rotated to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive x-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the xy-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
 The orientation of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass $r$, the polar angle $\phi_{Complex}$ and the azimuthal angle $\theta_{Complex}$.
 Finally, the orientation of BSLA with respect to a coordinate system located at the BSLA center of mass was defined again with the spherical polar and azimuthal angles ($\phi_{BSLA}$,$\theta_{BSLA}$), this time using the \ce{C_{$\alpha$}} of Threonine 199 as a reference point.
 This resulted in reduced set of only 5 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structures determined by basin hopping all had similar distances.
@@ -603,17 +608,17 @@ This resulted in reduced set of only 5 coordinates, of which the distance of the
 
 \subsection{Mean-Shift Clustering}
 
-Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of datapoints.
+Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of data points.
 This can be achieved by carefully choosing a set of representative points.
-If there is reason to assume that the datapoints at hand can be categorized in spatially seperated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
-Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only ocassionaly crossing basin boundaries, therefore giving rise to well seperated clusters of points.
+If there is reason to assume that the data points at hand can be categorized in spatially separated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
+Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only occasionally crossing basin boundaries, therefore giving rise to well separated clusters of points.
 In the reported research, clustering was used to find a small number of representative structures for those generated in the GMIN basin hopping calculations.
 A variety of clustering algorithms exist, each with its specific strengths and weaknesses.
 The algorithm used in the data analysis of this research is the mean-shift clustering algorithm \cite{meanShift}.
 It is especially suited for clustering protein conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
 
 The mean-shift clustering algorithm moves each point in the direction in which the density increases fastest, therefore effectively moving it to the center of the cluster it belongs to.
-The mean shift vector points in the direction of the gradient of a sum of gaussians centered on all $n$ points:
+The mean shift vector points in the direction of the gradient of a sum of Gaussians centered on all $n$ points:
 
 \newcommand{\g}{\fun{g}{\norm{\frac{\vect{x} - \vect{x}_i}{h}}^2}}
 \newcommand{\sumi}{\sum_{i=1}^{n}}
@@ -622,7 +627,7 @@ The mean shift vector points in the direction of the gradient of a sum of gaussi
     \vect{m}_h(\vect{x}) = \frac{\sumi \vect{x}_i \g}{\sumi \g} - \vect{x}
 \end{equation}
 
-The window width $h$ determines the smoothness of the gaussian density function $g()$, a large width corresponding to a smooth density function and a small width to a bumpy density function.
+The window width $h$ determines the smoothness of the Gaussian density function $g()$, a large width corresponding to a smooth density function and a small width to a bumpy density function.
 Each point is iteratively updated until it converges to the cluster center:
 
 \begin{equation}
@@ -631,9 +636,9 @@ Each point is iteratively updated until it converges to the cluster center:
 
 After convergence has been achieved for every point, those points that converged to the same centers can be assigned to the same cluster.
 As it is likely that no point started out exactly at the center, the point closest to the cluster center is chosen as a representative point.
-Alternatively another criterium might be chosen to select the representative point.
+Alternatively another criterion might be chosen to select the representative point.
 In the case of the CitAP--BSLA fusion protein, the processed data consisted of spherical coordinates as described in the previous section, as well as of the internal energy of the complex as computed by GMIN.
-As the points closest to the cluster centers are likely not the structures with minimal energy, and as a low energy is the most important quality criterium, the point with the lowest energy from each cluster has been chosen as the representative point.
+As the points closest to the cluster centers are likely not the structures with minimal energy, and as a low energy is the most important quality criterion, the point with the lowest energy from each cluster has been chosen as the representative point.
 
 
 % ============================================================================ %
@@ -643,25 +648,25 @@ As the points closest to the cluster centers are likely not the structures with 
 \subsection{Molecular Dynamics System Preparation}
 
 The simulation systems have been set up in a consistent way for all MD simulations.
-The coordinates from the PDB have been processed with GROMACS's \texttt{pdb2gmx} tool.
-Protonation states have been assigned to the relevant amino acids automatically corresponding to a neutral pH.
-This results in unprotonated, negatively charged states for acicic side chains in Aspartic and Glutamics Acid and in protonated, positively charged side chains in Ariginine and Lysine.
-The special case of Histidine protonation states is treated on a heuristical basis by \texttt{pdb2gmx}.
-The protonation states of the Imidazole ring is chosen to result in the most favourable hydrogen bonding pattern.
-The simulation box was chosen to be dodecahedral to resemble a sphere as much as possible.
+The coordinates obtained from the Protein Data Bank (PDB) have been processed with GROMACS's \texttt{pdb2gmx} tool to generate input files for the MD simulations.
+Protonation states have been assigned to the relevant amino acids automatically, corresponding to a neutral pH.
+This results in unprotonated, negatively charged states for acidic side chains in Aspartic and Glutamic Acid and in protonated, positively charged side chains in Arginine and Lysine.
+The special case of Histidine protonation states is treated on a heuristic basis by \texttt{pdb2gmx}.
+The protonation states of the Imidazole ring is chosen such that it results in the most favourable hydrogen bonding network.
+The simulation box was chosen to be dodecahedral to resemble a sphere as closely as possible.
 The protein was centered in the simulation box and the box size set individually for each system to keep a minimum distance of 12 \r{A}ngstrom between the protein and the box walls.
 The remaining vacuum in the box was then randomly filled with tip4p water molecules.
-Positive and negative ions (\ce{Na^+} and \ce{Cl^-}) were added to neutralize the system, but no additional iions were added to meet a specified salt concentration.
+Positive and negative ions (\ce{Na^+} and \ce{Cl^-}) were added to neutralize the system, but no additional ions were added to meet a specified salt concentration.
 All systems have then been energy minimized by conjugate gradient energy minimization until the maximum force on any atom dropped below 100 kJ/mol/nm.
 After 10 ns of position restrained minimization as described in section \ref{sec:eq}, production runs were performed.
-More specific details on the preparation of each system is given next.
+More specific details on the preparation of each individual system is given next.
 
 
 \subsubsection{CitAP solo}
 
-The Protein Data Bank (PDB) contains two entries of citrate bound CitAP (\PDB{2J80}, 2 CitAP molecules and \PDB{1P0Z}, 10 CitAP molecules) and one entry of citrate free CitAP (\PDB{2V9A}, 2 CitAP molecules), all solved by X-ray crystallography to a resolution of 1.6 \r{A}ngstrom.
+The PDB contains two entries of citrate bound CitAP (\PDB{2J80}, 2 CitAP molecules and \PDB{1P0Z}, 10 CitAP molecules) and one entry of citrate free CitAP (\PDB{2V9A}, 2 CitAP molecules), all solved by X-ray crystallography to a resolution of 1.6 \r{A}ngstrom.
 All citrate bound CitAP structures contained corresponding sodium ions attached to Serine 24 of the first $\alpha$-helix and Serine 110 at a core $\beta$-sheet, as well as 3 water molecules in similar orientations in the vicinity of the bound citrate (Figure \ref{fig:CitAP_waterNA}).
-This regularity makes it probable that these molecules might fulfill an active roll in CitAP's dynamics.
+This regularity makes it probable that these molecules fulfill an active roll in CitAP's dynamics.
 They have therefore been included in the simulation setups.
 Two of the waters present in the active site are important mediators of hydrogen bond bridges that help stabilizing the closed conformation of the binding pocket (Figure \ref{fig:citrate_interactions}).
 Sodium has been reported to be essential for the citrate metabolism of \emph{Bacillus Subtilis} \cite{CitA_NA}, indicating the significant role of the Sodium ion found in the CitAP crystal structures.
@@ -669,32 +674,35 @@ Sodium has been reported to be essential for the citrate metabolism of \emph{Bac
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figures/CitAP_PDB_structures/CitAP_PDB_structures.pdf}
-    \caption{Front and back view of superpositions of all CitAP molecules in the PDB. The citrate ligand and the three water molecules present in the binding pockets of all structures are collored, as well as the sodium ion attached to CitAP.}
+    \caption{Front and back view of superpositions of all CitAP molecules in the PDB. The citrate ligand and the three water molecules present in the binding pockets of all structures are colored, as well as the sodium ion attached to CitAP.}
     \label{fig:CitAP_waterNA}
 \end{figure}       
 
 Protein chain A from PDB entry \PDB{2J80} has been used in all simulations reported in this work.
-As its root mean square deviation (RMSD) over all \ce{C_{$\alpha$}}-atoms compared to all chain B of the same entry and to all chains in PDB entry \PDB{1P0Z}, it is a representative CitAP structure.
-The structures present in PDB entry \PDB{1P0Z} have been ruled out as starting structures, as these have all been crystalized together with Molybdenum assemblies that significantly distort parts of the protein.
+As its root mean square deviation (RMSD) over all \ce{C_{$\alpha$}} atoms compared to chain B of the same entry and to all chains in PDB entry \PDB{1P0Z} is smaller than 2 \r{A}ngstrom, it is a representative CitAP structure.
+The structures present in PDB entry \PDB{1P0Z} have been ruled out as starting structures, as these have all been crystallized together with Molybdenum assemblies that significantly distort parts of the protein.
 The glycerol and \ce{SO4} molecules present in the \PDB{2J80} crystal structure are most likely of smaller influence to the protein and therefore the obtained crystal structures resemble the CitAP conformation in its native environment best.
 
 All three carboxyl groups of the citrate anion are deprotonated at neutral pH.
 Therefore, this protonation state was chosen for the reported investigations.
 
-Unfortunately, the \PDB{2J80} structure contains some missing heavy atoms and also selenomethonine residues instead of normal methonines.
+Unfortunately, the \PDB{2J80} structure contains some missing heavy atoms and also Selenomethonine residues instead of normal Methonines.
 To obtain a realistic structure and remove these flaws, a homology model was built using the \href{http://swift.cmbi.ru.nl/servers/html/index.html}{WHAT IF homology modelling server} \cite{WHATIFhomologyModel}.
 The RMSD over all matching heavy atoms of the model and the \PDB{2J80} template is 0.26 \r{A}ngstrom.
 An RMSD this small indicates, that the two structures are essentially identical with sulfur atoms substituted for the Selenium atoms and the missing heavy atoms added.
 
-Citrate, the three water molcecules and the sodium ion to be included in the starting structure have been modelled into the homology model structure.
-This was basically done by superimposing the model and the template and then copying the coordinates over.
+Citrate, the three water molecules and the sodium ion to be included in the starting structure have been modelled into the homology model structure.
+This was done by superimposing the model and the template and then copying the coordinates over.
+
+For the citrate free simulations the citrate bound structure from which citrate had been removed was used, as the citrate free structure misses the major loop and is therefore incomplete.
 
 \subsubsection{BSLA solo}
 
 Chain B of the crystal structure of PDB entry \PDB{1I6W} has been used as the initial structure for all simulations involving BSLA.
 The reason is that \PDB{1I6W} is the only BSLA structure in the PDB without a covalently bound ligand.
 One of the key objectives was to study BSLA flexibility and dynamics of the binding pocket and a covalently bound ligand would have hindered this investigation.
-Chain B was chosen above chain A, as the protein is known to be monomeric in solution and because chain B hadthe smaller RMSD when compared to the BSLA entries in the PDB with covalently bound ligands (\PDB{1ISP}, \PDB{1R4Z} and \PDB{1R50}).
+Chain B was chosen in favor of chain A, as the protein is known to be monomeric in solution and because chain B had a smaller RMSD when compared to the BSLA entries in the PDB with covalently bound ligands (\PDB{1ISP}, \PDB{1R4Z} and \PDB{1R50}).
+The coordinates obtained from the PDB could directly be fed into \texttt{pdb2gmx} as explained above.
 
 
 \subsubsection{Complex}
@@ -703,12 +711,14 @@ The sequence of the fusion protein as used in the experiments performed by Jaege
 The coordinates of the two uncomplexed proteins were connected by the extended linker sequence including the YtvA helix and the Xa-protease site.
 The resulting construct, with its two globular parts and the connecting extended domain seems rather artificial (Figure \ref{fig:ComplexConstruct}).
 To arrive at more realistic starting structures, Basin Hopping simulations have been performed using GMIN.
+The obtained structures have been clustered using mean shift clustering and the representative structures of each cluster were ranked by internal energy.
+The best ranking four structures were used for subsequent MD simulations.
 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/Complex_folding/complex_folding.pdf}
-    \caption{\emph{In silico} construct of the fusion protein. GMIN runs were performed to arrive at energy minimized conformations.}
+    \includegraphics[width=0.8\textwidth]{figures/Complex_folding/complex_folding.pdf}
+    \caption{\emph{In silico} construct of the fusion protein. GMIN runs were performed to arrive at energy minimized conformations that have a more realistic, globular shape.}
     \label{fig:ComplexConstruct}
 \end{figure}      
  
@@ -718,9 +728,71 @@ To arrive at more realistic starting structures, Basin Hopping simulations have 
 \subsection{Equilibration}
 \label{sec:eq}
 
+After energy minimization, all systems were subjected to the same equilibration protocol.
+It was found that a naive equilibration procedure of a short, unconstrained MD run gave unsatisfying results for the citrate bound CitAP pocket.
+It appeared that, even after careful equilibration, the tension in the minor loop covering the ligand was too large.
+As a result, the minor loop opened up as the important hydrogen bonds were broken immediately after simulation startup.
+To tackle this problem, an equilibration protocol was developed.
+Harmonic position restraints were applied to all backbone atoms, the sodium ion attached to the protein and to all non-hydrogen citrate atoms, in order to keep the backbone conformation close to the crystal structure and therefore the CitAP binding pocket closed.
+The position restraints were then removed stepwise to allow the system to slowly adapt a conformation without too much internal tension, so the interactions (mainly hydrogen bonds) responsible for binding pocket stability stayed intact.
+The force constant for the harmonic position restraints in all three directions was initially set to 1000 kJ/mol/nm and then stepwise reduced to 800, 600, 400, 200, 150, 100, 70, 30 and 10 kJ/mol/nm.
+At each step the system was integrated for 1 ns.
+No new velocities have been generated between steps, so each simulation was an exact continuation of the preceding one.
+All other MD parameter settings are reported in Table \ref{tab:MDparams}.
 
+
+% ==================================== %
 
 \subsection{Production Runs}
+
+The GROMACS molecular dynamics package \cite{GROMACS4} has been used for all MD simulations.
+All production runs were started as continuations from the final state of the equilibration runs, i.e. both, positions and velocities have been taken from the last equilibration.
+The simulations were integrated for 100 ns each with the Leap-Frog integrator.
+Leap-Frog was used, because the velocity Verlet implementation of GROMACS 4.6 appeared to give rise to a vastly expanding system for the same time step size (2 fs).
+This is likely to be a bug, as the velocity Verlet integrator should have the same accuracy as the Leap-Frog algorithm.
+Due to time constraints this was not thoroughly checked.
+
+In order to yield a proper thermodynamical NPT-ensemble (constant number of particles, pressure and temperature), the pressure and temperature coupling algorithms should be chosen carefully (Section \ref{sec:tempPressControl}).
+The velocity rescaling thermostat was used, as its stochastic term ensures generation of a proper canonical ensemble.
+For pressure coupling, the Berendsen coupling was chosen.
+This pressure control algorithm does not yield precise thermodynamic ensembles, but it is very efficient.
+For future simulations it would be definitely a good choice to switch to Parinello-Rahmann pressure coupling for the production runs.
+A detailed listing of the parameters used for the production runs is given in Table \ref{tab:MDparams}.
+
+
+\begin{table}
+\centering
+\begin{tabular}{l c r}
+    \hline \hline
+    Integrator                      & - & Leap-Frog \\
+    Time step                        & - & 2 fs \\
+    Neighbor search cutoff scheme   & - & Verlet \\
+    Neighbor list update frequency  & - & 10 steps \\
+    Neighbor list cutoff distance   & - & 10 \r{A} \\
+    Boundary conditions             & - & periodic \\
+    Long range electrostatic method & - & PME \\
+    PME-order                       & - & 4 \\
+    PME Fourier grid spacing        & - & 0.16 \\
+    Coulomb cutoff                  & - & 10 \r{A} \\
+    Van-der-Waals cutoff            & - & 10 \r{A} \\
+    Temperature coupling method     & - & V-rescale \\
+    Temperature coupling groups     & - & Protein, Non-Protein \\
+    Temperature coupling constants  & - & 0.1, 0.1 \\
+    Temperature coupling frequency  & - & 10 steps \\
+    Reference temperature           & - & 293 K \\
+    Pressure coupling method        & - & Berendsen \\
+    Pressure coupling frequency     & - & 10 steps \\
+    Pressure coupling constant      & - & 1.0 \\
+    Reference pressure              & - & 1 bar \\
+    Constraint algorithm            & - & LINCS \\
+    Constraint quantities           & - & bonds \& angles \\
+    LINCS-order                     & - & 4 \\
+    LINCS-iter                      & - & 1 \\
+    \hline \hline
+\end{tabular}
+\caption{MD parameters used for the production and equilibration runs.}
+\label{tab:MDparams}
+\end{table}
 
 \subsection{GMIN}
 
@@ -733,7 +805,7 @@ To arrive at more realistic starting structures, Basin Hopping simulations have 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/CitA_pocket2.pdf}
-    \caption{}
+    \caption{To measure the geometry of the CitAP binding pocket, two distances were introduced: The distance between the backbone nitrogen of Leucine 102 and the \ce{C_{$alpha$}} atoms of Glutamic acid 74 (blue) and Tyrosine 56 (red).}
     \label{fig:CitA_pocket}
 \end{figure}        
 
@@ -741,13 +813,13 @@ To arrive at more realistic starting structures, Basin Hopping simulations have 
     \centering
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_free.pdf}
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_bound.pdf}
-    \caption{}
+    \caption{The plot shows the distances defined in Figure \ref{fig:CitA_pocket} during 100ns MD trajectories. The respective distances in the crystal structures are drawn with a dashed line. The top panel corresponds to the citrate free, the bottom panel to the citrate bound case.}
     \label{fig:CitA_opening_distances}
 \end{figure}       
 
 
 
-\subsection{Unkomplexed BSLA MD}
+\subsection{Uncomplexed BSLA MD}
 \subsection{Complex Basin Hopping}
 \subsection{CitAP--BSLA fusion protein MD}
 
@@ -773,7 +845,7 @@ The results should be combined with experimental data from small angle X-ray sca
 \section{Acknowledgments}
 
 I would like to thank Birgit Strodel for her supervision and support.
-She gave me alle the freedom I could ask for but was always available for discussion and advice.
+She gave me all the freedom I could ask for but was always available for discussion and advice.
 Many thanks go also to the Multiscale Modelling Group at the Institute for Complex Systems 6 at Forschungszentrum J\"ulich for a warm and friendly atmosphere and fruitful discussion.
 I would also like to thank Elisabet Altenberger from the German Research School for Simulation Sciences for her support and help with administrative issues.
 Professor Christel Marian from the Theoretical Chemistry Department at Heinrich Heine University D\"usseldorf kindly provided a workplace during the work on my thesis.
