@@ -18,6 +18,32 @@
 \usepackage{mathtools}
 \usepackage[latin1]{inputenc}
 
+\definecolor{fzjblue50}{cmyk}{1,0.2,0.05,0.50}
+\definecolor{fzjblue35}{cmyk}{1,0.2,0.05,0.35}
+\definecolor{fzjblue30}{cmyk}{1,0.2,0.05,0.30}
+\definecolor{fzjblue20}{cmyk}{1,0.2,0.05,0.20}
+\definecolor{fzjblue10}{cmyk}{1,0.2,0.05,0.10}
+\definecolor{fzjgray80}{cmyk}{0,0,0,0.8}
+\definecolor{fzjgray50}{cmyk}{0,0,0,0.5}
+\definecolor{fzjgray30}{cmyk}{0,0,0,0.3}
+
+\usepackage{framed}
+\definecolor{shadecolor}{cmyk}{1,0.2,0.05,0.10}
+
+\usepackage{mdframed}
+\mdfsetup{
+    framemethod=tikz,
+%    innerlinewidth=10pt,
+    middlelinewidth=10pt,
+%    outerlinewidth=10pt,
+%    innerlinecolor=red,
+%    middlelinecolor=green,
+    outerlinecolor=blue,
+    backgroundcolor=fzjgray30,
+    roundcorner=15pt}
+%\newmdenv[linecolor=black,backgroundcolor=fzjblue10,roundcorner=10pt,linewidth=5pt]{titlebox}
+%\newmdenv[linecolor=red]{titlebox}
+
 \usepackage{setspace}
 \usepackage[version=3]{mhchem}
 
@@ -71,10 +97,23 @@
 \begin{center}
 {\huge \textbf{Masterthesis}}\\
 \vspace{2cm}
+
+{\textbf{Registered Title:} \\
+Elucidating the structure of a fusion protein of a lipase and a citrate binding domain by Molecular Dynamics simulation
+}
+
+\vspace{2cm}
+%\begin{shaded*}
+%\begin{titlebox}
+\begin{mdframed}
+    \centering
 {\large \textbf{Protein Structure and Dynamics} \\
 \vspace{1cm}
 of \textit{Bacillus Subtilis} Lipase LipA Fused to the Ligand-Binding Domain of Sensor Histidine Kinase CitA
 }
+\end{mdframed}
+%\end{titlebox}
+%\end{shaded*}
 
 \vspace{2cm}
 
@@ -464,18 +503,110 @@ In case this accuracy is high enough, the velocity Verlet algorithm is the best 
 \subsubsection{Force Fields}
 \label{sec:forcefields}
 
-A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
-Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
+An exact calculation of the behaviour of a molecular system involves solving the Schr\"oedinger equation for all electrons and nuclei.
+As the computaional complexity for this problem grows extremely fast with increasing system size, the direct solution of all but the smallest molecular system is infeasible.
+Parameterized, analytical descriptions have been developed for a simplified description of interatomic interactions in and between molecules that enable simulations of large molecular systems.
+The mathematical form of these equations is inspired by knowledge of the physics and chemistry that govern molecular interactions.
+The parameters are chosen to reproduce energy functions of quantum mechanical descriptions of model systems.
+As the larger number of parameters, the choice of the model systems and the quantum chemical methods used for reference computations are all degrees of freedom in the paremterization, several sets of parameters exist.
+A set of equations with its corresponding parameters is called a force field.
+This section first discusses the mathematical form of relatively simple, non polarizable force fields and then gives reasons for the choice of a particular implementation.
 
-(needs extension)
+\paragraph{Lennard-Jones Potential}
+Atoms can be thought of as nuclei surrounded by a diffuse electon cloud.
+Some elements possess a permanent dipole moment due to the shape and occupation of their electronic orbitals.
+Three kind of interactions between electron clouds give rise to the Van-der-Waals interaction.
+First, two permanent dipoles interact with each other and will attract or repell each other depending on their alignment.
+The second contribution to the Van-der-Waals interaction comes from dipoles induced in the electron cloud by permanent dipoles of neighbouring atoms.
+This interaction is attractive, as the induced dipole will have the same polarization as the inducing dipole due to repelling electron clouds.
+Finally, the electron clouds of two unpolarized atoms repell each other, therefore inducing dipoles that in turn give rise to a dipole--dipole interaction.
+The sum of these 3 effects is the source of the Van-der-Waals interaction and gives rise to an attractive force that decays with the sixth square root of the interatomic distance.
+
+Two atoms that approach each other will be affected by the Pauli exclusion principle that prohibits electrons to occupy the same state.
+This prevents two atoms to occupy the same space and will result in a repelling force at close distances.
+These interactions togeter are cast in the Lennard Jones potential that contains a term for short range repulsion and and one for long range attraction (Figure \ref{fig:LJ} and equation \ref{eq:LJ}).
+For each pair of elements a force field needs to specify two parameters to define their equilibrium distance and the depth of the interaction well.
+Many force fields list only one set of parameters per element and give a relation for the computation of parameters for the Lennard-Jones interaction of two different elements.
+The Lennard-Jones interaction converges fast to a constant value, and with it the resulting force goes to zero.
+This fast convergence makes a truncation at a specified cutoff distance possible.
+However, for an accurate computation of the potential energy, the constant term at this cutoff distance needs to be accounted for.
+
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        \vfill
+        \begin{equation}
+            V_{LJ}(r_{ij}) = \frac{C^{(12)}_{ij}}{r^{12}_{ij}} - \frac{C^{(6)}_{ij}}{r^{6}_{ij}}
+            \label{eq:LJ}
+        \end{equation} 
+        \vfill 
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Argon_dimer_potential.png} 
+    \end{minipage}
+    \caption{Left: Lennard-Jones potential formula ($C^{*}_{ij}$ are the coffecients to be parameterized and $r_{ij}$ is the interatomic distance). Right: Argon dimer potential. Source: \url{http://en.wikipedia.org/wiki/File:Argon_dimer_potential.png}}
+\label{fig:LJ}
+\end{figure}
+
+
+\paragraph{Coulomb potential}
+The computation of the coulomb interaction (equation \ref{eq:CoulombPot}, $q_i$ is the charge on atom $i$ and $\epsilon_0$ is the dielectric constant of vacuum) is particularly tricky as the electrostatic force decays slowly with increasing distance and suffers from ill convergence.
+This problem is treated with sophisticated methods for long range electrostatic interactions as described in section \ref{sec:PME}.
+The partial charges on each atom that are neede for the evaluation of the coulomb potential are also part of the force field parameter set and are usually derived from quantum chemical calculations.
+
+\begin{equation}
+    V_C(r_{ij}) = \frac{1}{4\pi \epsilon_0} \frac{q_i q_j}{r_{ij}}
+    \label{eq:CoulombPot}
+\end{equation}
+
+\paragraph{Bonded Forces}
+Apart from the nonbonded interatomic forces there also exist interaction potentials due to bonds between the atoms of a molecule.
+Bond stretchings (equation \ref{eq:bonded}), bond angle bendings (equation \ref{eq:angle}), proper and improper dihedrals (equations \ref{eq:dihedral} and \ref{eq:improper} respectively) can all be modelled by harmonic potentials, but more sophisticated mathematical forms exist as well.
+Bond stretchings are defined by an equilibrium distance between two atom types $r^0_{ij}$ and an interaction constant $k^b_{ij}$.
+Bond angles are parameterized by an equilibrium angle between three atom types and a constant ($\theta^0_{ijk}$, $k^a_{ijk}$).
+Dihedrals and improper dihedral angles depend on interaction constants and equilibrium angles between planes spanned by three atoms $ijk$ and $jkl$ ($\phi^0_{ijkl}$, $\xi^0_{ijkl}$, $k^d_{ijkl}$ and $k^{id}_{ijkl}$).
+
+
+\begin{eqnarray}
+    V_b(r_{ij})        & = & \frac{1}{2} k^b_{ij}(r_{ij}-r^0_{ij})^2 \label{eq:bonded} \\
+    V_a(\theta_{ijk})  & = & \frac{1}{2} k^a_{ijk}(\theta_{ijk}-\theta^0_{ijk})^2 \label{eq:angle} \\
+    V_d(\phi_{ijkl})   & = & k^d_{ijkl}(1+cos(n\phi_{ijkl}-\phi^0_{ijkl})) \label{eq:dihedral}\\
+    V_{id}(\xi_{ijkl}) & = & \frac{1}{2} k^{id}_{ijkl}(\xi_{ijkl}-\xi^0_{ijkl})^2 \label{eq:improper}
+\end{eqnarray}
+
+
+
+
+The described potentials are only the most commonly used in molecular force fields ant a variety of others exist.
+A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
+Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field (\texttt{amber99sb-ildn-nmr}) \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
+The cited benchmark performed a statistical evaluation of the performance of various force fields compared to real experiments.
+A number of di- and tripeptides served as model systems for chemical shift measurements in NMR experiments.
+The deviations of the measurements from chemical shifts computed on the basis of molecular dynamics trajectories performed with each investigated force fields are reported.
+In general, older force field parameterization sets performed worse than newer corrections for all force fields studied.
+The chosen correction to the amber99 force field performed best in simulations of ubiquitin, the only full length protein studied in the benchmark.
+This led to the decision ot use this force field for the reported experiments.
 
 % ==================================== %
 
 \subsubsection{Citrate Parameterization}
 
+The \texttt{amber99sb-ildn-nmr} force field parameterizes only amino and nucleic acids, ions, water and a very limited set of other molecules.
+It does not contain parameters for citrate.
+To obtain these parameters
+
+\cite{am1bcc_method}
+\cite{am1bcc_validation}
+\cite{ACPYPE}
+\cite{GAFF}
+\cite{antechamber}
+
 % ==================================== %
 
 \subsubsection{Long--Range Electrostatics}
+\label{sec:PME}
 
 % ==================================== %
 
