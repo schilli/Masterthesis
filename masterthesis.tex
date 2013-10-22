@@ -33,12 +33,14 @@
 \usepackage{mdframed}
 \mdfsetup{
     framemethod=tikz,
+    linewidth=10pt,
+    linecolor=fzjblue50,
 %    innerlinewidth=10pt,
-    middlelinewidth=10pt,
+%    middlelinewidth=10pt,
 %    outerlinewidth=10pt,
 %    innerlinecolor=red,
 %    middlelinecolor=green,
-    outerlinecolor=blue,
+%    outerlinecolor=blue,
     backgroundcolor=fzjgray30,
     roundcorner=15pt}
 %\newmdenv[linecolor=black,backgroundcolor=fzjblue10,roundcorner=10pt,linewidth=5pt]{titlebox}
@@ -164,11 +166,14 @@ This is most likely the reason for the experimentally found activity degradation
 
 % ============================================================================ %
 
+\pagenumbering{roman}
 \tableofcontents
 
 \pagebreak
 
 \onehalfspacing
+
+\pagenumbering{arabic}
 
 % ============================================================================ %
 
@@ -594,28 +599,135 @@ This led to the decision ot use this force field for the reported experiments.
 \subsubsection{Citrate Parameterization}
 
 The \texttt{amber99sb-ildn-nmr} force field parameterizes only amino and nucleic acids, ions, water and a very limited set of other molecules.
-It does not contain parameters for citrate.
-To obtain these parameters
+It does not include parameters for citrate.
+Force field parameters for use with the amber force fields were generated with the tool ACPYPE \cite{ACPYPE}.
+ACPYPE acts as an interface to the Antechamber programs from the Ambertools package \cite{antechamber}.
+In particular, it uses the general amber force field (GAFF) \cite{GAFF} to generate a topologies for small organic molecules that can directly be used with GROMACS in combination with one of the amber force fields.
+GAFF is an empirical approach to force field parameterization for arbitraty molcecules.
+It inherits the Van-der-Waals paramters from the \texttt{amber99} force fields directly.
+Paramters for the bonded interactions are fittet to \textit{ab initio} calculations and equilibrium bond length and angles have also been estimated by real experiments.
+A crucial point in topology generation with GAFF is the assignment of partical charges.
+Ideally, this should be done based on elaborous quantum chemical calculations.
+There exist however other means of empirical partial charge assignments.
+The charges assigned to citrate for this research have been estimated with the AM1-BCC model \cite{am1bcc_method} \cite{am1bcc_validation}.
+This model tries to generate chartges that emulate the electrostatic potential of \textit{ab initio} Hartree Fock calculations with the HF/6-31G* basis set.
 
-\cite{am1bcc_method}
-\cite{am1bcc_validation}
-\cite{ACPYPE}
-\cite{GAFF}
-\cite{antechamber}
 
 % ==================================== %
 
 \subsubsection{Long--Range Electrostatics}
 \label{sec:PME}
 
+The electrostatic potential decays relaively slowly with increasing distance (equation \ref{eq:CoulombPot}).
+As a result, the computation of electrostatic interactions converges slowly and cannot simply be cut off at a specified distance without introducing significatn artifacts \cite{FrenkelSmit}.
+Efficient techniques have been developed to arrive at and accurate and, at the same time, fast computation of the electrostatic energy in periodic systems.
+The problem to be solved is the estimation of a solution to Poisson's equation:
+
+\begin{equation}
+    -\nabla^2 \phi(\vect{r}) = 4 \pi \rho(\vect{r}),
+\end{equation}
+
+where $\phi$ is the electrostatic potential and $\rho$ is the charge density function.
+Gaussian units are used.
+
+All approaches to tackle long range electorstatics efficently rely either on multipole expansions of or on summations in reciprocal space that converge much faster than the corresponding sums in direct space.
+The starting point is to split the electrostatic interaction into an easily computable short range and a harder to estimate long range part:
+
+\begin{equation}
+    \phi(\vect{r}) = \phi_{sr}(\vect{r}) + \phi_{lr}(\vect{r})
+\end{equation}
+
+The short range part is evaluated directly.
+The long range part is then computed in reciprocal space by Fourier transforming the charge distribution, performing the evaluation of the fast converging reciprocal electrostatic interaction function and backtransforming the result to direct space.
+The straight forward implementation of this is known as Ewald summation, invented by P.P. Ewald in 1921 \cite{Ewald}.
+The Ewald method has a complexity of $\mathcal{O}(n^{3/2})$ and scales therefore only to limited system sizes.
+
+A method that scales a lot better, at the order of $\mathcal{O}(n log(n))$, is the Particle-Mesh-Ewald method (PME) \cite{PME}.
+Instead of fourier transforming the long range part of the electrostatic interaction directly, the charges are assigned to the nodes of a grid covering the direct space.
+The grid can then be transformed to reciprocal space utilizing the fast Fourier transform algorithm (FFT), which scales itself as $\mathcal{O}(n log(n))$.
+After evaluation of the interaction in reciprocal space has happened, the inverse FFT transforms the result back to direct space.
+This techniques enables efficient treatment of long range interactions that scales well to large system sizes.
+In the GROMACS MD package, the FFT is done in parallel on a designated number of processors to limit communication to a minimum.
+
+
+
 % ==================================== %
 
 \subsubsection{Temperature \& Pressure Control}
 \label{sec:tempPressControl}
 
+According to the ergodic hypothesis, a histogram of states visited by a thermodynamical system during an infinite time span equals a histogram of an infinite number of copies of the same system in thermodynamical equilibrium at one instant of time.
+In other words, averages of system properties over time will equal averages over states in phase space.
+These imaginary distributions of states at thermodynamic equilibrium are summarized in the concept of ensembles \cite{Atkins}. 
+Each of a number of possible ensembles (i.e. distributions of states) is associated with system properties that are constant for all states of that ensemble.
+The thermodynamic ensemble that is produced by a molecular dynamics simulation is controled by the macroscopic properties that are kept constant during the simulation
+The ensemble directly affects the behaviour of the system and therefore the measured quantities.
+A naive approach to molecular simulation would keep the number of particles ($N$), the system volume ($V$) and the total energy of the system ($E$) constant, as this does not require any control of extensive, and thus hard to influence quantities.
+This would yield distributions from the microcanonical, or $NVE$ ensemble, which does not correspond to any situation that is easy to create in a laboratory.
+Two other ensembles result in distributions that are much more directly comparable to real world experiment.
+The canonical, or $NVT$ ensemble, requires a proper control of temperature and the and reflects experimental conditions of constant volume and constant temperature.
+The grand canonical ensemble, or $NPT$ ensemple, needs an additional mechanism to control the pressure.
+$NPT$ is the desired ensemble for most biomolecular simulations, as it corresponds directly to \textit{in vivo} situations, where the pressure and temperature are controlled by the sourroundings and in general thought to remain constant on chemically relevant time scales.
+
+Several algorithms exist for controlling the pressure durin MD simulations.
+The Berendsen algorithm (\cite{BerendsenTempControl}) rescales the velocities in order to match the differential equation
+
+\begin{equation}
+    \frac{dT}{dt} = \frac{T_0 - T}{\tau},
+\end{equation}
+
+that couples the system exponentially with a time constant $\tau$ to a heat bath of temperature $T_0$.
+The Berendsen thermostat suppresses fluctuations of kinetic energy and therefore does not generate a proper thermodynamic ensemble. It might still be used for equilibration purposes.
+
+The Nose-Hoover thermostat (\cite{Nose}, \cite{Hoover}) extends the system Hamiltonian by coupling it to a thermal reservoir with a friction term $\xi$.
+The reservoir has its own momentum $p_{\xi}$, a mass-like parameter $Q$ and follows its own dynamic equations of motion:
+
+\begin{equation}
+    \frac{dp_{\xi}}{dt} = (T-T_0),
+\end{equation}
+
+coupling the reservoir momentum to a reference temperature $T_0$.
+The new equation of motion for the particles is:
+
+\begin{equation}
+    \frac{d^2\vect{r}_i}{dt^2} = \frac{\vect{F}_i}{m_i} - \frac{p_{\xi}}{Q} \frac{d\vect{r}_i}{dt}
+\end{equation}
+
+The Nose-Hoover thermostat can be extended to couple the heat reservoir to another bath and so on to generate a chain of baths.
+This Nose-Hoover chain is guaranteed to be ergodic in the limit of infinite chain length.
+The system temperature under control of a Nose-Hoover chain will oscillate around a reference value and it is therefore not suited for equilibration if the system starts out at a totally different temperatrure.
+
+A third temperature control algorithm is the velocity rescaling thermostat, which, as the name suggests, rescales the velocities similar to the Berendsen thermostat with the improvement of an additional stochastic term that ensures the generation of a proper thermodynamic ensemble distribution.
+
+Pressure control happens along the same lines of the algorithms outlined for temperature control.
+A Berendsen analog for pressure coupling exists and the Parinello-Rahman (\cite{ParrinelloRahman}) and Martyna-Tuckerman-Tobias-Klein (MTTK, \cite{MTTK}) algorithms are similar in spirit to the Nose-Hoover thermostat, coupling the pressure to a pressure bath.
+One additional complication of pressure control is the definition and computation of the pressure in a bulk system.
+It is defined with the virial equation:
+
+\begin{equation}
+    PV = Nk_BT + \frac{1}{D} \left< \sum^N_{i=1}\vect{r}_i \vect{F}_i \right>
+\end{equation}
+
+The virial equation relates the pressure to the average over the forces acting on all particles.
+The pressure computed in this way is a highly fluctuating quantity and only its average can be meaningfully interpreted.
+
 % ==================================== %
 
 \subsubsection{Water Model}
+
+Despite being a small and at first sight simple molecule, the properties of water are particularly hard to model properly.
+This is mainly due to the complex interactions between watermolecules that form complicated networks, even in the liquid phase.
+A wide range of models have been invented, some of which get close to reality in the predcition of water properties like density, dipole moment, dielectic constant and the self diffusion, but none of them can be regarded as perfect as each has its own shortcomings.
+A detailed overview of water models is given at \url{http://www.lsbu.ac.uk/water/models.html}.
+Water models can be distinguished by the geometry that they adapt to model real water.
+Planar models exist that either place all partial charges on the atoms themselves (e.g. SPC and tip3p water models), or introduce a virtual interaction site on which a partial charge is deposited (e.g. tip4p water model).
+This latter was introduced to improve on the dipole moment of real water.
+More elaborate models are of tetrahedral shape with partial charges pointing in the direction of the oxygen lone pairs (e.g. tip5p water model).
+Despite their larger complexity, these models do not necessarily perform better in molecular dynamics simulations.
+Also, for the computational treatment of different systems, different water models might be optimal.
+Based on the force field benchmark reported in \cite{proteinFF}, the force field used in this study (\texttt{amber99sb-ildn-nmr}) performs best in combination with the tip4p-ew water model.
+Therefore this combination was used for the reported simulations.
+
 
 % ==================================== %
 
@@ -848,7 +960,7 @@ The best ranking four structures were used for subsequent MD simulations.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/Complex_folding/complex_folding.pdf}
+    \includegraphics[width=1.0\textwidth]{figures/Complex_folding/complex_folding.pdf}
     \caption{\emph{In silico} construct of the fusion protein. GMIN runs were performed to arrive at energy minimized conformations that have a more realistic, globular shape.}
     \label{fig:ComplexConstruct}
 \end{figure}      
@@ -925,18 +1037,60 @@ A detailed listing of the parameters used for the production runs is given in Ta
 \label{tab:MDparams}
 \end{table}
 
+
+
+
+
 \subsection{GMIN}
+
+Several basin hopping runs have been performed with GMIN to find energy minima of the fusion protein.
+Long runs were set up for higher accuracy and short runs for fast result availability.
+Most parameters were common to all runs.
+Chirality checks were switched off, so were checks for the cis/trans isomerisation of the peptide bond.
+The temperature for the Monte Carlo moves was set to 298 K.
+The sloppy and tight conversion criteria for the root mean square (RMS) force during the energy minimizations were set to 0.01 and 0.02 kcal/mol/nm respectively.
+The acceptance ratio of Monte Carlo moves was specified to be 0.3.
+Energy minima had to have at least an energy difference of 1.0 kcal/mol to be considered as different energy basins.
+All runs were performed with the CHARMM22 all-atom protein force field \cite{CHARMM22} was used together with the implicit solvent model FACTS \cite{FACTS}.
+For FACTS, the solute dielectric constant was set to $\epsilon = 1.0$ and the nonpolar surface tension coefficient to $\gamma = 0.015 kcal/(mol A^2)$.
+Only dihedral angle Monte Carlo moves have been performed for specified $\phi$ and $\psi$ backbone dihedral angles in the linker part between the two proteins.
+During the energy minimization, all atoms were allowed to move, resulting in different side chain conformations for the output structures.
+
+Several simulations have been run with increasing number of Basin Hopping steps in the sequence 100, 500, 1000, 5000 and 10000.
+Apart from that, three runs with 1000 Basin Hopping steps and different vlaues for the sloppy convergence criterium during energy minimization were performed: 0.05, 0.1 and 0.5 kcal/mol rms force.
+In addition 40 energy basin structure from previous research have been acquired.
+Of each Basin Hopping run the 10 structures with minimal energies were kepts for subsequent analysis.
+A total of 120 Structures were obtained in this way.
+
+
 
 % ============================================================================ %
 
 \section{Results}
 
-\subsection{Unkomplexed CitAP MD}
+\subsection{Uncomplexed CitAP MD}
+
+To arrive at a quantitative description of the CitAP binding pocket gemoetry, two distances have been defined (Figure \ref{fig:CitA_pocket}).
+Leucine 102 occupies the outermost point of the minor loop.
+Its backbone nitrogen atom forms a hydrogen bond with the citrate molecule when the pocket is in its closed conformation.
+Glutamic acid 74 is located opposite to Leucine 102 in the binding pocket and Tyrosine 56 sits at the bottom of the acitve site.
+From a visual inspection of the open and closed conformations it is apparent that the distances between the backbone nitrogen of Leucine 102 and the \ce{C_{$\alpha$}} atoms of Glutamic acid 74 and Tyrosine 56 give a good geometrical description, as they are minimal in the closed and maximal in the open conformation.
+The crystal structure distances of the LEU102:N to TYR56:Ca and LEU102:N to GLU74:Ca are 9.3 and 9.9 \r{A}ngstrom respectively.
+
+The results of 100 ns molecular dynamics simulations of CitA with and without a bound citrate molecule are shown in Figure \ref{fig:CitA_opening_distances}.
+The starting structure was for both simulations the citrate bound crystal structure except for the citrate molecule.
+While the citrate free pocket opens up within nanoseconds and stays in the open conformation for the entire course of the simulation, the citrate interactions keep the minor loop tightly closed, covering citrate in the binding pocket.
+For the first half of the simulation, the LEU102:N to GLU74:Ca distance gets even smaller than the crystal structure reference distance.
+This is likely due to intense hydrogen bonding with the citrate ligand and the absence of crystal packing artifacts in solution.
+After approximately 50 ns, the two distances cross in Figure \ref{fig:CitA_opening_distances} meaning that the LEU102:N to TYR56:Ca distance now gets slightly longer than before and the LEU102:N to GLU74:Ca slightly shorter.
+These two situation in the first and in the second half of the 100 ns trajectory likely correspond to two local minima of the closed state of CitAP.
+
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/CitA_pocket2.pdf}
-    \caption{To measure the geometry of the CitAP binding pocket, two distances were introduced: The distance between the backbone nitrogen of Leucine 102 and the \ce{C_{$alpha$}} atoms of Glutamic acid 74 (blue) and Tyrosine 56 (red).}
+    \caption{To measure the geometry of the CitAP binding pocket, two distances were introduced: The distance between the backbone nitrogen of Leucine 102 and the \ce{C_{$\alpha$}} atoms of Glutamic acid 74 (blue) and Tyrosine 56 (red).
+    The purple loop shows the minor loop in the fully extended open conformation.}
     \label{fig:CitA_pocket}
 \end{figure}        
 
@@ -944,7 +1098,7 @@ A detailed listing of the parameters used for the production runs is given in Ta
     \centering
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_free.pdf}
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_bound.pdf}
-    \caption{The plot shows the distances defined in Figure \ref{fig:CitA_pocket} during 100ns MD trajectories. The respective distances in the crystal structures are drawn with a dashed line. The top panel corresponds to the citrate free, the bottom panel to the citrate bound case.}
+    \caption{The plot shows the distances defined in Figure \ref{fig:CitA_pocket} (same color coding) during 100ns MD trajectories. The respective distances in the crystal structures are drawn with a dashed line. The top panel corresponds to the citrate free, the bottom panel to the citrate bound case.}
     \label{fig:CitA_opening_distances}
 \end{figure}       
 
