@@ -15,6 +15,7 @@
 \usepackage{geometry}
 \usepackage[british]{babel}
 \usepackage{graphicx,hyperref,url,color,cite}
+\usepackage[table]{xcolor}
 \usepackage{mathtools}
 \usepackage[latin1]{inputenc}
 
@@ -155,7 +156,7 @@ The research was motivated by experiments indicating that CitA's natural ligand 
 Both proteins were first studied independently.
 It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100ns molecular dynamics simulation after careful equilibration.
 The unfused, solo lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their relative conformations.
-As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by basin hopping.
+As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by Basin Hopping.
 The fusion protein showed dynamics that differ significantly from those of the isolated proteins.
 The presence of citrate in the receptor binding pocket did not stabilize the structure to the same extend compared to the isolated CitA.
 The presence of a covalently bound citrate binding domain to the lipase destabilized the LipA binding pocket significantly.
@@ -190,7 +191,7 @@ Activity measurements indicate that citrate binding to the sensor kinase domain 
 This effect is of major interest to the chemical industry as lipases exhibit a wide diversity in substrate specificity and have found applications in the resolution of racemic mixtures, the synthesis of esters, transesterification reactions and as additives in laundry detergents.
 As chemical applications would benefit from the opposite effect, a controlled up-regulation of lipase activity triggered by citrate addition, this research focused on the structure elucidation of the fused protein, as well as on the mechanism by which lipase activity is regulated.
 A thorough understanding of this mechanism might in the future enable us to engineer the protein to invert the regulatory effect of citrate binding.
-The main methods used for structure elucidation are global optimization using the combined Monte Carlo -- energy minimization approach basin hopping, followed by high-throughput molecular dynamics simulations. 
+The main methods used for structure elucidation are global optimization using the combined Monte Carlo -- energy minimization approach Basin Hopping, followed by high-throughput molecular dynamics simulations. 
  
 
 \begin{figure}
@@ -508,32 +509,32 @@ In case this accuracy is high enough, the velocity Verlet algorithm is the best 
 \subsubsection{Force Fields}
 \label{sec:forcefields}
 
-An exact calculation of the behaviour of a molecular system involves solving the Schr\"oedinger equation for all electrons and nuclei.
+An exact calculation of the behaviour of a molecular system involves solving the Schr\"odinger equation for all electrons and nuclei.
 As the computaional complexity for this problem grows extremely fast with increasing system size, the direct solution of all but the smallest molecular system is infeasible.
 Parameterized, analytical descriptions have been developed for a simplified description of interatomic interactions in and between molecules that enable simulations of large molecular systems.
 The mathematical form of these equations is inspired by knowledge of the physics and chemistry that govern molecular interactions.
 The parameters are chosen to reproduce energy functions of quantum mechanical descriptions of model systems.
-As the larger number of parameters, the choice of the model systems and the quantum chemical methods used for reference computations are all degrees of freedom in the paremterization, several sets of parameters exist.
+As the large number of parameters, the choice of the model systems and the quantum chemical methods used for reference computations are all degrees of freedom in the paremterization, several different sets of parameters exist.
 A set of equations with its corresponding parameters is called a force field.
 This section first discusses the mathematical form of relatively simple, non polarizable force fields and then gives reasons for the choice of a particular implementation.
 
 \paragraph{Lennard-Jones Potential}
-Atoms can be thought of as nuclei surrounded by a diffuse electon cloud.
+A simple but often reasonable model of atomic structure treats atoms as nuclei surrounded by a diffuse electron cloud.
 Some elements possess a permanent dipole moment due to the shape and occupation of their electronic orbitals.
-Three kind of interactions between electron clouds give rise to the Van-der-Waals interaction.
-First, two permanent dipoles interact with each other and will attract or repell each other depending on their alignment.
+Three kind of interactions between electron clouds give rise to the Van-der-Waals interaction, which is one contribution to the Lennard-Jones potential.
+First, two permanent dipoles interact and will attract or repel each other depending on their mutual alignment.
 The second contribution to the Van-der-Waals interaction comes from dipoles induced in the electron cloud by permanent dipoles of neighbouring atoms.
 This interaction is attractive, as the induced dipole will have the same polarization as the inducing dipole due to repelling electron clouds.
-Finally, the electron clouds of two unpolarized atoms repell each other, therefore inducing dipoles that in turn give rise to a dipole--dipole interaction.
-The sum of these 3 effects is the source of the Van-der-Waals interaction and gives rise to an attractive force that decays with the sixth square root of the interatomic distance.
+Finally, the electron clouds of two unpolarized atoms repel each other, therefore inducing dipoles that in turn give rise to a dipole--dipole interaction.
+The sum of these 3 effects is the source of the Van-der-Waals interaction and gives rise to an overall attractive force that decays with the sixth square root of the inter atomic distance.
 
-Two atoms that approach each other will be affected by the Pauli exclusion principle that prohibits electrons to occupy the same state.
+Two atoms that approach each other will be affected by the Pauli exclusion principle that prohibits electrons from having the same state.
 This prevents two atoms to occupy the same space and will result in a repelling force at close distances.
-These interactions togeter are cast in the Lennard Jones potential that contains a term for short range repulsion and and one for long range attraction (Figure \ref{fig:LJ} and equation \ref{eq:LJ}).
+This and the dipole interactions of the electron clouds together are cast in the Lennard Jones potential that contains a term for short range repulsion and one for long range attraction (Figure \ref{fig:LJ} and equation \ref{eq:LJ}).
 For each pair of elements a force field needs to specify two parameters to define their equilibrium distance and the depth of the interaction well.
 Many force fields list only one set of parameters per element and give a relation for the computation of parameters for the Lennard-Jones interaction of two different elements.
 The Lennard-Jones interaction converges fast to a constant value, and with it the resulting force goes to zero.
-This fast convergence makes a truncation at a specified cutoff distance possible.
+This fast convergence makes a truncation at a suitable cutoff distance possible.
 However, for an accurate computation of the potential energy, the constant term at this cutoff distance needs to be accounted for.
 
 \begin{figure}
@@ -551,7 +552,7 @@ However, for an accurate computation of the potential energy, the constant term 
         \centering
         \includegraphics[width=\textwidth]{figures/Argon_dimer_potential.png} 
     \end{minipage}
-    \caption{Left: Lennard-Jones potential formula ($C^{*}_{ij}$ are the coffecients to be parameterized and $r_{ij}$ is the interatomic distance). Right: Argon dimer potential. Source: \url{http://en.wikipedia.org/wiki/File:Argon_dimer_potential.png}}
+    \caption{Left: Lennard-Jones potential formula ($C^{*}_{ij}$ are the coefficients to be parameterized and $r_{ij}$ is the inter atomic distance). Right: Argon dimer potential. Source: \url{http://en.wikipedia.org/wiki/File:Argon_dimer_potential.png}}
 \label{fig:LJ}
 \end{figure}
 
@@ -559,7 +560,7 @@ However, for an accurate computation of the potential energy, the constant term 
 \paragraph{Coulomb potential}
 The computation of the coulomb interaction (equation \ref{eq:CoulombPot}, $q_i$ is the charge on atom $i$ and $\epsilon_0$ is the dielectric constant of vacuum) is particularly tricky as the electrostatic force decays slowly with increasing distance and suffers from ill convergence.
 This problem is treated with sophisticated methods for long range electrostatic interactions as described in section \ref{sec:PME}.
-The partial charges on each atom that are neede for the evaluation of the coulomb potential are also part of the force field parameter set and are usually derived from quantum chemical calculations.
+The partial charges on each atom that are needed for the evaluation of the coulomb potential are also part of the force field parameter set and are usually derived from quantum chemical calculations.
 
 \begin{equation}
     V_C(r_{ij}) = \frac{1}{4\pi \epsilon_0} \frac{q_i q_j}{r_{ij}}
@@ -567,11 +568,11 @@ The partial charges on each atom that are neede for the evaluation of the coulom
 \end{equation}
 
 \paragraph{Bonded Forces}
-Apart from the nonbonded interatomic forces there also exist interaction potentials due to bonds between the atoms of a molecule.
-Bond stretchings (equation \ref{eq:bonded}), bond angle bendings (equation \ref{eq:angle}), proper and improper dihedrals (equations \ref{eq:dihedral} and \ref{eq:improper} respectively) can all be modelled by harmonic potentials, but more sophisticated mathematical forms exist as well.
-Bond stretchings are defined by an equilibrium distance between two atom types $r^0_{ij}$ and an interaction constant $k^b_{ij}$.
+Apart from the non-bonded inter atomic forces there also exist interaction potentials due to bonds between the atoms of a molecule.
+Bond stretching (equation \ref{eq:bonded}), bond angle bending (equation \ref{eq:angle}), proper and improper dihedral angles (equations \ref{eq:dihedral} and \ref{eq:improper} respectively) can all be modelled by harmonic potentials, but more sophisticated mathematical forms exist as well.
+Bond stretching is defined by an equilibrium distance between two atom types $r^0_{ij}$ and an interaction constant $k^b_{ij}$.
 Bond angles are parameterized by an equilibrium angle between three atom types and a constant ($\theta^0_{ijk}$, $k^a_{ijk}$).
-Dihedrals and improper dihedral angles depend on interaction constants and equilibrium angles between planes spanned by three atoms $ijk$ and $jkl$ ($\phi^0_{ijkl}$, $\xi^0_{ijkl}$, $k^d_{ijkl}$ and $k^{id}_{ijkl}$).
+Dihedral and improper dihedral angles depend on interaction constants and equilibrium angles between planes spanned by three atoms $ijk$ and $jkl$ ($\phi^0_{ijkl}$, $\xi^0_{ijkl}$, $k^d_{ijkl}$ and $k^{id}_{ijkl}$).
 
 
 \begin{eqnarray}
@@ -584,33 +585,33 @@ Dihedrals and improper dihedral angles depend on interaction constants and equil
 
 
 
-The described potentials are only the most commonly used in molecular force fields ant a variety of others exist.
+The described potentials are only the simplest to use in molecular force fields ant a variety of others exist that result in more accurate representations, especially for the dihedral angles.
 A great variety of force fields exists and a careful and well informed choice about the set of equations and parameters that can model the system under investigation best has to be made.
-Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field (\texttt{amber99sb-ildn-nmr}) \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins.
-The cited benchmark performed a statistical evaluation of the performance of various force fields compared to real experiments.
+Recent benchmarks of protein force fields give insights into the strengths and weaknesses of the available options \cite{proteinFF}, indicating that one of the most up to date corrections to the widely used amber force field (\texttt{amber99sb-ildn-nmr}) \cite{amber99sb-ildn-nmr} is the best choice for simulations of proteins in explicit solvent.
+For the cited benchmark a statistical evaluation of the performance of various force fields compared to real experiments was performed.
 A number of di- and tripeptides served as model systems for chemical shift measurements in NMR experiments.
-The deviations of the measurements from chemical shifts computed on the basis of molecular dynamics trajectories performed with each investigated force fields are reported.
+The deviations of the measurements from chemical shifts, computed on the basis of molecular dynamics trajectories performed with the investigated force fields, are reported.
 In general, older force field parameterization sets performed worse than newer corrections for all force fields studied.
-The chosen correction to the amber99 force field performed best in simulations of ubiquitin, the only full length protein studied in the benchmark.
-This led to the decision ot use this force field for the reported experiments.
+The chosen correction to the \texttt{amber99} force field performed best in simulations of ubiquitin, the only full length protein studied in the benchmark.
+This led to the decision to use this force field for the reported experiments.
 
 % ==================================== %
 
 \subsubsection{Citrate Parameterization}
 
-The \texttt{amber99sb-ildn-nmr} force field parameterizes only amino and nucleic acids, ions, water and a very limited set of other molecules.
+The \texttt{amber99sb-ildn-nmr} force field parameterizes only amino and nucleic acids, biologically relevant ions, water and a very limited set of other molecules.
 It does not include parameters for citrate.
 Force field parameters for use with the amber force fields were generated with the tool ACPYPE \cite{ACPYPE}.
 ACPYPE acts as an interface to the Antechamber programs from the Ambertools package \cite{antechamber}.
-In particular, it uses the general amber force field (GAFF) \cite{GAFF} to generate a topologies for small organic molecules that can directly be used with GROMACS in combination with one of the amber force fields.
-GAFF is an empirical approach to force field parameterization for arbitraty molcecules.
-It inherits the Van-der-Waals paramters from the \texttt{amber99} force fields directly.
-Paramters for the bonded interactions are fittet to \textit{ab initio} calculations and equilibrium bond length and angles have also been estimated by real experiments.
-A crucial point in topology generation with GAFF is the assignment of partical charges.
-Ideally, this should be done based on elaborous quantum chemical calculations.
+In particular, it uses the general amber force field (GAFF) \cite{GAFF} to generate topologies for small organic molecules that can directly be used with GROMACS in combination with one of the amber force fields.
+GAFF is an empirical approach to force field parameterization for arbitrary molecules.
+It inherits the Van-der-Waals parameters from the \texttt{amber99} force fields directly.
+Parameters for the bonded interactions have been fitted to \textit{ab initio} calculations and equilibrium bond length and angles have also been estimated by real experiments.
+A crucial point in topology generation with GAFF is the assignment of partial charges.
+Ideally, this should be done based on elaborate quantum chemical calculations.
 There exist however other means of empirical partial charge assignments.
 The charges assigned to citrate for this research have been estimated with the AM1-BCC model \cite{am1bcc_method} \cite{am1bcc_validation}.
-This model tries to generate chartges that emulate the electrostatic potential of \textit{ab initio} Hartree Fock calculations with the HF/6-31G* basis set.
+This model tries to generate charges that emulate the electrostatic potential of \textit{ab initio} Hartree Fock calculations with the HF/6-31G* basis set.
 
 
 % ==================================== %
@@ -618,8 +619,8 @@ This model tries to generate chartges that emulate the electrostatic potential o
 \subsubsection{Long--Range Electrostatics}
 \label{sec:PME}
 
-The electrostatic potential decays relaively slowly with increasing distance (equation \ref{eq:CoulombPot}).
-As a result, the computation of electrostatic interactions converges slowly and cannot simply be cut off at a specified distance without introducing significatn artifacts \cite{FrenkelSmit}.
+The electrostatic potential decays relatively slowly with increasing distance (equation \ref{eq:CoulombPot}).
+As a result, the computation of electrostatic interactions converges slowly and cannot simply be cut off at a specified distance without introducing significant artifacts \cite{FrenkelSmit}.
 Efficient techniques have been developed to arrive at and accurate and, at the same time, fast computation of the electrostatic energy in periodic systems.
 The problem to be solved is the estimation of a solution to Poisson's equation:
 
@@ -630,22 +631,22 @@ The problem to be solved is the estimation of a solution to Poisson's equation:
 where $\phi$ is the electrostatic potential and $\rho$ is the charge density function.
 Gaussian units are used.
 
-All approaches to tackle long range electorstatics efficently rely either on multipole expansions of or on summations in reciprocal space that converge much faster than the corresponding sums in direct space.
+All approaches to tackle long range electrostatics efficiently rely either on multipole expansions or on summations in reciprocal space that converge much faster than the corresponding sums in direct space.
 The starting point is to split the electrostatic interaction into an easily computable short range and a harder to estimate long range part:
 
 \begin{equation}
     \phi(\vect{r}) = \phi_{sr}(\vect{r}) + \phi_{lr}(\vect{r})
 \end{equation}
 
-The short range part is evaluated directly.
-The long range part is then computed in reciprocal space by Fourier transforming the charge distribution, performing the evaluation of the fast converging reciprocal electrostatic interaction function and backtransforming the result to direct space.
+The short range part is evaluated directly by a sum over all atoms up to the short range cutoff distance.
+The long range part is then computed in reciprocal space by Fourier transforming the charge distribution, performing the evaluation of the fast converging reciprocal electrostatic interaction function and back transforming the result to direct space.
 The straight forward implementation of this is known as Ewald summation, invented by P.P. Ewald in 1921 \cite{Ewald}.
 The Ewald method has a complexity of $\mathcal{O}(n^{3/2})$ and scales therefore only to limited system sizes.
 
-A method that scales a lot better, at the order of $\mathcal{O}(n log(n))$, is the Particle-Mesh-Ewald method (PME) \cite{PME}.
-Instead of fourier transforming the long range part of the electrostatic interaction directly, the charges are assigned to the nodes of a grid covering the direct space.
-The grid can then be transformed to reciprocal space utilizing the fast Fourier transform algorithm (FFT), which scales itself as $\mathcal{O}(n log(n))$.
-After evaluation of the interaction in reciprocal space has happened, the inverse FFT transforms the result back to direct space.
+A method that scales a lot better, at the order of $\mathcal{O}(n \cdot log(n))$, is the Particle-Mesh-Ewald method (PME) \cite{PME}.
+Instead of Fourier transforming the long range part of the electrostatic interaction directly, the charges are assigned to the nodes of a grid covering the direct space.
+The grid can then be transformed to reciprocal space utilizing the fast Fourier transform algorithm (FFT), which itself scales as $\mathcal{O}(n \cdot log(n))$.
+After evaluation of the interaction in reciprocal space, the inverse FFT transforms the result back to direct space.
 This techniques enables efficient treatment of long range interactions that scales well to large system sizes.
 In the GROMACS MD package, the FFT is done in parallel on a designated number of processors to limit communication to a minimum.
 
@@ -658,18 +659,18 @@ In the GROMACS MD package, the FFT is done in parallel on a designated number of
 
 According to the ergodic hypothesis, a histogram of states visited by a thermodynamical system during an infinite time span equals a histogram of an infinite number of copies of the same system in thermodynamical equilibrium at one instant of time.
 In other words, averages of system properties over time will equal averages over states in phase space.
-These imaginary distributions of states at thermodynamic equilibrium are summarized in the concept of ensembles \cite{Atkins}. 
+These distributions of states at thermodynamic equilibrium are summarized in the concept of ensembles \cite{Atkins}. 
 Each of a number of possible ensembles (i.e. distributions of states) is associated with system properties that are constant for all states of that ensemble.
-The thermodynamic ensemble that is produced by a molecular dynamics simulation is controled by the macroscopic properties that are kept constant during the simulation
+The thermodynamic ensemble that is produced by a molecular dynamics simulation is controlled by the macroscopic properties that are kept constant during the simulation
 The ensemble directly affects the behaviour of the system and therefore the measured quantities.
 A naive approach to molecular simulation would keep the number of particles ($N$), the system volume ($V$) and the total energy of the system ($E$) constant, as this does not require any control of extensive, and thus hard to influence quantities.
-This would yield distributions from the microcanonical, or $NVE$ ensemble, which does not correspond to any situation that is easy to create in a laboratory.
+This will yield distributions from the microcanonical, or $NVE$ ensemble, which does not correspond to any situation that is easy to create in a laboratory.
 Two other ensembles result in distributions that are much more directly comparable to real world experiment.
-The canonical, or $NVT$ ensemble, requires a proper control of temperature and the and reflects experimental conditions of constant volume and constant temperature.
-The grand canonical ensemble, or $NPT$ ensemple, needs an additional mechanism to control the pressure.
-$NPT$ is the desired ensemble for most biomolecular simulations, as it corresponds directly to \textit{in vivo} situations, where the pressure and temperature are controlled by the sourroundings and in general thought to remain constant on chemically relevant time scales.
+The canonical, or $NVT$ ensemble, requires a proper control of temperature (T) and reflects experimental conditions of constant volume and constant temperature.
+The grand canonical ensemble, or $NPT$ ensemble, needs an additional mechanism to control the pressure (P).
+$NPT$ is the desired ensemble for most biomolecular simulations, as it corresponds directly to \textit{in vivo} situations, where the pressure and temperature are controlled by the environment and in general thought to remain constant on chemically relevant time scales.
 
-Several algorithms exist for controlling the pressure durin MD simulations.
+Several algorithms exist for pressure control during MD simulations.
 The Berendsen algorithm (\cite{BerendsenTempControl}) rescales the velocities in order to match the differential equation
 
 \begin{equation}
@@ -679,7 +680,7 @@ The Berendsen algorithm (\cite{BerendsenTempControl}) rescales the velocities in
 that couples the system exponentially with a time constant $\tau$ to a heat bath of temperature $T_0$.
 The Berendsen thermostat suppresses fluctuations of kinetic energy and therefore does not generate a proper thermodynamic ensemble. It might still be used for equilibration purposes.
 
-The Nose-Hoover thermostat (\cite{Nose}, \cite{Hoover}) extends the system Hamiltonian by coupling it to a thermal reservoir with a friction term $\xi$.
+The Nose-Hoover thermostat (\cite{Nose}, \cite{Hoover}) extends the system Hamiltonian by coupling to a thermal reservoir with a friction term $\xi$.
 The reservoir has its own momentum $p_{\xi}$, a mass-like parameter $Q$ and follows its own dynamic equations of motion:
 
 \begin{equation}
@@ -693,9 +694,9 @@ The new equation of motion for the particles is:
     \frac{d^2\vect{r}_i}{dt^2} = \frac{\vect{F}_i}{m_i} - \frac{p_{\xi}}{Q} \frac{d\vect{r}_i}{dt}
 \end{equation}
 
-The Nose-Hoover thermostat can be extended to couple the heat reservoir to another bath and so on to generate a chain of baths.
+The Nose-Hoover thermostat can be extended to couple the heat reservoir to another bath, which in turn couples to a further bath and so forth to generate a chain of baths.
 This Nose-Hoover chain is guaranteed to be ergodic in the limit of infinite chain length.
-The system temperature under control of a Nose-Hoover chain will oscillate around a reference value and it is therefore not suited for equilibration if the system starts out at a totally different temperatrure.
+The system temperature under control of a Nose-Hoover chain will oscillate around a reference value and it is therefore not suited for equilibration if the system starts out at a totally different temperature.
 
 A third temperature control algorithm is the velocity rescaling thermostat, which, as the name suggests, rescales the velocities similar to the Berendsen thermostat with the improvement of an additional stochastic term that ensures the generation of a proper thermodynamic ensemble distribution.
 
@@ -716,12 +717,12 @@ The pressure computed in this way is a highly fluctuating quantity and only its 
 \subsubsection{Water Model}
 
 Despite being a small and at first sight simple molecule, the properties of water are particularly hard to model properly.
-This is mainly due to the complex interactions between watermolecules that form complicated networks, even in the liquid phase.
-A wide range of models have been invented, some of which get close to reality in the predcition of water properties like density, dipole moment, dielectic constant and the self diffusion, but none of them can be regarded as perfect as each has its own shortcomings.
+This is mainly due to the complex interactions between water molecules that form complicated networks, especially in the liquid phase.
+A wide range of models have been invented, some of which get close to reality in the prediction of water properties like density, dipole moment, dielectric constant and the self diffusion, but none of them can be regarded as perfect as each has its own shortcomings.
 A detailed overview of water models is given at \url{http://www.lsbu.ac.uk/water/models.html}.
 Water models can be distinguished by the geometry that they adapt to model real water.
 Planar models exist that either place all partial charges on the atoms themselves (e.g. SPC and tip3p water models), or introduce a virtual interaction site on which a partial charge is deposited (e.g. tip4p water model).
-This latter was introduced to improve on the dipole moment of real water.
+This latter was introduced to improve the prediction of the dipole moment.
 More elaborate models are of tetrahedral shape with partial charges pointing in the direction of the oxygen lone pairs (e.g. tip5p water model).
 Despite their larger complexity, these models do not necessarily perform better in molecular dynamics simulations.
 Also, for the computational treatment of different systems, different water models might be optimal.
@@ -749,9 +750,9 @@ Therefore this combination was used for the reported simulations.
 
 Global minima of energy landscapes in the conformational space of macromolecules are hard to determine due to the large dimensionality and the overwhelming number of possible conformations.
 A clever approach to nevertheless tackle this problem has been invented by David Wales and coworkers.
-Their basin hopping algorithm attempts to find the global minimum of the energy landscape by generating conformations randomly, that are subsequently minimized in energy to get to the bottom of a local energy minimum \cite{basinHopping}, as depicted in Figure \ref{fig:GMIN}.
+Their Basin Hopping algorithm attempts to find the global minimum of the energy landscape by generating conformations randomly, that are subsequently minimized in energy to get to the bottom of a local energy minimum \cite{basinHopping}, as depicted in Figure \ref{fig:GMIN}.
 
-At each step the basin hopping algorithm minimizes the given structure to find the closest local energy minimum, the energy basin.
+At each step the Basin Hopping algorithm minimizes the given structure to find the closest local energy minimum, the energy basin.
 This can be done by a steepest decent or a conjugate gradient approach, among other methods.
 Subsequently new conformations are generated by a Monte Carlo procedure. 
 In general, molecular Monte Carlo simulations randomly generate new conformations by translating or rotating atoms or groups of atoms.
@@ -764,11 +765,11 @@ Monte Carlo is particularly efficient as newly generated structures have a signi
 In repeating these steps, the landscape of local energy minima can be sampled as depicted by the rectangular curve that describes the energy basins in Figure \ref{fig:GMIN}.
 If the energy minima are the property of interest, this reveals all important information contained in the full energy surface (curved line in Figure \ref{fig:GMIN}) at a much smaller computational cost.
 
-The basin hopping algorithm is implemented in the program GMIN \cite{GMIN} and distributed open source and free of charge.
+The Basin Hopping algorithm is implemented in the program GMIN \cite{GMIN} and distributed open source and free of charge.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/GMIN.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/GMIN/GMIN.pdf}
     \caption{The energy landscape as it is explored during a GMIN run. Energy minimization steps take the system to the closest local energy minimum, while Monte Carlo moves have the potential of catapulting the system to a new basin.}
     \label{fig:GMIN}
 \end{figure}        
@@ -837,13 +838,13 @@ This could be overcome by the usage of non-linear dimensionality reduction techn
 
 
 If the system under study is well understood or the problem at hand allows an \emph{a priori} definition of collective coordinates, the usage of principal component analysis can be circumvented.
-For the determination of local energy minima of the CitAP--BSLA complex for example, most parts of the fusion protein were kept rigid and only the backbone dihedral angles of the linker domain were sampled by basin hopping.
+For the determination of local energy minima of the CitAP--BSLA complex for example, most parts of the fusion protein were kept rigid and only the backbone dihedral angles of the linker domain were sampled by Basin Hopping.
 The main quantities of interest were the orientation of the two globular protein parts relative to each other at the energy basins.
 In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shifted to the origin of the coordinate system.
 To superimpose the CitAP domains of all structures, the protein was rotated to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive x-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the xy-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
 The orientation of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass $r$, the polar angle $\phi_{Complex}$ and the azimuthal angle $\theta_{Complex}$.
 Finally, the orientation of BSLA with respect to a coordinate system located at the BSLA center of mass was defined again with the spherical polar and azimuthal angles ($\phi_{BSLA}$,$\theta_{BSLA}$), this time using the \ce{C_{$\alpha$}} of Threonine 199 as a reference point.
-This resulted in reduced set of only 5 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structures determined by basin hopping all had similar distances.
+This resulted in reduced set of only 5 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structures determined by Basin Hopping all had similar distances.
 
 
 
@@ -855,7 +856,7 @@ Apart from the dimensionality reduction approach to simplify complex data, it is
 This can be achieved by carefully choosing a set of representative points.
 If there is reason to assume that the data points at hand can be categorized in spatially separated groups in feature space, algorithms exist to assign points close in space to the same cluster and keeping only one representative point per cluster.
 Molecular dynamics simulations of proteins are especially suited for clustering, as the simulated systems will spend most of their time in energy basins and only occasionally crossing basin boundaries, therefore giving rise to well separated clusters of points.
-In the reported research, clustering was used to find a small number of representative structures for those generated in the GMIN basin hopping calculations.
+In the reported research, clustering was used to find a small number of representative structures for those generated in the GMIN Basin Hopping calculations.
 A variety of clustering algorithms exist, each with its specific strengths and weaknesses.
 The algorithm used in the data analysis of this research is the mean-shift clustering algorithm \cite{meanShift}.
 It is especially suited for clustering protein conformations, as the final number of clusters is determined automatically as part of the algorithm and the only parameter is a window width, as explained below, that affects the distance between points up to which they are recognized as belonging to the same cluster.
@@ -1043,7 +1044,7 @@ A detailed listing of the parameters used for the production runs is given in Ta
 
 \subsection{GMIN}
 
-Several basin hopping runs have been performed with GMIN to find energy minima of the fusion protein.
+Several Basin Hopping runs have been performed with GMIN to find energy minima of the fusion protein.
 Long runs were set up for higher accuracy and short runs for fast result availability.
 Most parameters were common to all runs.
 Chirality checks were switched off, so were checks for the cis/trans isomerisation of the peptide bond.
@@ -1051,16 +1052,16 @@ The temperature for the Monte Carlo moves was set to 298 K.
 The sloppy and tight conversion criteria for the root mean square (RMS) force during the energy minimizations were set to 0.01 and 0.02 kcal/mol/nm respectively.
 The acceptance ratio of Monte Carlo moves was specified to be 0.3.
 Energy minima had to have at least an energy difference of 1.0 kcal/mol to be considered as different energy basins.
-All runs were performed with the CHARMM22 all-atom protein force field \cite{CHARMM22} was used together with the implicit solvent model FACTS \cite{FACTS}.
-For FACTS, the solute dielectric constant was set to $\epsilon = 1.0$ and the nonpolar surface tension coefficient to $\gamma = 0.015 kcal/(mol A^2)$.
-Only dihedral angle Monte Carlo moves have been performed for specified $\phi$ and $\psi$ backbone dihedral angles in the linker part between the two proteins.
+All runs were performed with the CHARMM22 all-atom protein force field \cite{CHARMM22} together with the implicit solvent model FACTS \cite{FACTS}.
+For FACTS, the solute dielectric constant was set to $\epsilon = 1.0$ and the nonpolar surface tension coefficient to $\gamma$ = 0.015 kcal/(mol $\cdot$ A$^2$).
+Only dihedral angle Monte Carlo moves have been performed for the $\phi$ and $\psi$ backbone dihedral angles in the linker domain between the two proteins.
 During the energy minimization, all atoms were allowed to move, resulting in different side chain conformations for the output structures.
 
 Several simulations have been run with increasing number of Basin Hopping steps in the sequence 100, 500, 1000, 5000 and 10000.
-Apart from that, three runs with 1000 Basin Hopping steps and different vlaues for the sloppy convergence criterium during energy minimization were performed: 0.05, 0.1 and 0.5 kcal/mol rms force.
+Apart from that, three runs with 1000 Basin Hopping steps each and different values for the sloppy convergence criterium during energy minimization were performed: 0.05, 0.1 and 0.5 kcal/mol RMS force.
 In addition 40 energy basin structure from previous research have been acquired.
-Of each Basin Hopping run the 10 structures with minimal energies were kepts for subsequent analysis.
-A total of 120 Structures were obtained in this way.
+Of each Basin Hopping run the 10 structures with minimal energies were kept for subsequent analysis.
+The Basin Hopping simulations thus resulted in a total of 120 structures.
 
 
 
@@ -1070,19 +1071,19 @@ A total of 120 Structures were obtained in this way.
 
 \subsection{Uncomplexed CitAP MD}
 
-To arrive at a quantitative description of the CitAP binding pocket gemoetry, two distances have been defined (Figure \ref{fig:CitA_pocket}).
-Leucine 102 occupies the outermost point of the minor loop.
+To arrive at a quantitative description of the CitAP binding pocket geometry, two distances have been defined (Figure \ref{fig:CitA_pocket}).
+Leucine 102 occupies the turning point of the minor loop.
 Its backbone nitrogen atom forms a hydrogen bond with the citrate molecule when the pocket is in its closed conformation.
-Glutamic acid 74 is located opposite to Leucine 102 in the binding pocket and Tyrosine 56 sits at the bottom of the acitve site.
-From a visual inspection of the open and closed conformations it is apparent that the distances between the backbone nitrogen of Leucine 102 and the \ce{C_{$\alpha$}} atoms of Glutamic acid 74 and Tyrosine 56 give a good geometrical description, as they are minimal in the closed and maximal in the open conformation.
-The crystal structure distances of the LEU102:N to TYR56:Ca and LEU102:N to GLU74:Ca are 9.3 and 9.9 \r{A}ngstrom respectively.
+Glutamic acid 74 is located opposite to Leucine 102 in the binding pocket and Tyrosine 56 at the bottom of the acitve site.
+From a visual inspection of the open and closed conformations it is apparent that the distances between the backbone nitrogen of Leucine 102 and the \ce{C_{$\alpha$}} atoms of Glutamic acid 74 and Tyrosine 56 give a good geometrical description, as these are minimal in the closed and maximal in the open conformation.
+The crystal structure distances of the LEU102:N to TYR56:C$_{\alpha}$ and LEU102:N to GLU74:C$_{\alpha}$ are 9.3 and 9.9 \r{A}ngstrom respectively.
 
-The results of 100 ns molecular dynamics simulations of CitA with and without a bound citrate molecule are shown in Figure \ref{fig:CitA_opening_distances}.
-The starting structure was for both simulations the citrate bound crystal structure except for the citrate molecule.
-While the citrate free pocket opens up within nanoseconds and stays in the open conformation for the entire course of the simulation, the citrate interactions keep the minor loop tightly closed, covering citrate in the binding pocket.
-For the first half of the simulation, the LEU102:N to GLU74:Ca distance gets even smaller than the crystal structure reference distance.
+The results of 100 ns molecular dynamics simulations of CitAP with and without a bound citrate molecule are shown in Figure \ref{fig:CitA_opening_distances}.
+The starting structure for both simulations was the citrate bound crystal structure except for the citrate molecule.
+While the citrate free pocket opens up within nanoseconds and stays in the open conformation for the entire course of the simulation, the citrate interactions in the bound form keep the minor loop tightly closed, covering citrate in the binding pocket.
+For the first half of the simulation, the LEU102:N to GLU74:C$_{\alpha}$ distance gets even smaller than the crystal structure reference distance.
 This is likely due to intense hydrogen bonding with the citrate ligand and the absence of crystal packing artifacts in solution.
-After approximately 50 ns, the two distances cross in Figure \ref{fig:CitA_opening_distances} meaning that the LEU102:N to TYR56:Ca distance now gets slightly longer than before and the LEU102:N to GLU74:Ca slightly shorter.
+After approximately 50 ns, the two distances cross in Figure \ref{fig:CitA_opening_distances}, meaning that the LEU102:N to TYR56:C$_{\alpha}$ distance now gets slightly longer than before and the LEU102:N to GLU74:C$_{\alpha}$ slightly shorter.
 These two situation in the first and in the second half of the 100 ns trajectory likely correspond to two local minima of the closed state of CitAP.
 
 
@@ -1105,7 +1106,82 @@ These two situation in the first and in the second half of the 100 ns trajectory
 
 
 \subsection{Uncomplexed BSLA MD}
+
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_dist_ASP133_HIS156.pdf} 
+        b)
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_distribution_ASP133_HIS156.pdf} 
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        c)
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_rmsf.pdf} 
+    \end{minipage}
+    \caption{\textbf{a)} Shortest distance between side chain atoms of BSLA active site residues ASP133 and HIS156 during a 100 ns MD trajectory.
+    \textbf{b)} Distribution of the distance from a).
+    \textbf{c)} Root mean square fluctuation (RMSF) of C$_\alpha$ atoms around the average structure of the 100 ns MD trajectory.}
+\label{fig:BSLA_solo}
+\end{figure} 
+
+
+
+
+
+
 \subsection{Complex Basin Hopping}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/GMIN/CitA_phi_theta_3D.pdf}
+    \caption{Cluster centers of the GMIN output structures. The green cross indicates the center of mass position of the superimposed CitAP domains. The points correspond to the centers of mass of the BSLA domains of each GMIN output structure. Color codes the energy of the structures as indicated by the colorbar and the alpha value is used as a depth cue. The four structures used in subsequent experiments are labeled.}
+    \label{fig:GMIN_results}
+\end{figure}       
+
+ 
+
+\begin{table}
+\centering
+\begin{tabular}{c c c c c}
+    \hline \hline
+    Engery     & BH steps & Max. angular step & Convergence Crit. & GMIN run \\ 
+    (kcal/mol) &          & size (degree)     & (kcal/mol)        & rank     \\
+    \hline
+    \rowcolor{lightgray}
+    -8395.14   & 10000    &  90               & 0.02              & 1        \\ 
+    \rowcolor{lightgray}
+    -8381.87   &   500    &  60               & 0.02              & 1        \\
+    -8372.59   &   500    &  60               & 0.02              & 2        \\
+    \rowcolor{lightgray}
+    -8340.34   &   500    &  60               & 0.02              & 6        \\
+    -8282.96   &  1000    &  90               & 0.02              & 1        \\
+    \rowcolor{lightgray}
+    -8275.37   &   500    & 120               & 0.02              & 1        \\
+    -8274.22   &   500    & 120               & 0.02              & 2        \\
+    -8273.80   &   500    &  30               & 0.02              & 1        \\
+    -8273.46   &   500    &  30               & 0.02              & 2        \\
+    -8267.76   &   500    &  30               & 0.02              & 7        \\
+    -8254.04   &  1000    &  90               & 0.05              & 1        \\
+    -8237.37   &   500    &  90               & 0.02              & 1        \\
+    -8177.33   &   500    &  90               & 0.02              & 1        \\
+    -8156.23   &  1000    &  90               & 0.1               & 1        \\
+    -8044.41   &   100    &  90               & 0.02              & 1        \\
+    -8038.14   &   100    &  90               & 0.02              & 2        \\
+    -8021.09   &   100    &  90               & 0.02              & 9        \\
+    -7996.48   &  1000    &  90               & 0.5               & 1        \\
+    \hline \hline
+\end{tabular}
+\caption{Representative structures for the clusters of GMIN output structures ranked according to the lowest energy.
+The number of Basin Hopping (BH) steps, the maximum angular step size and the convergence criterium for the energy minimization are given, as well as the rank of each structure in the GMIN run in which they have been obtained.
+    The four structures used in subsequent experiemnts are shaded in grey and referenced in the text according to their enumeration as structures 1 to 4.}
+\label{tab:GMIN_structures}
+\end{table} 
+
+
+
 \subsection{CitAP--BSLA fusion protein MD}
 
 
@@ -1131,8 +1207,8 @@ The results should be combined with experimental data from small angle X-ray sca
 
 I would like to thank Birgit Strodel for her supervision and support.
 She gave me all the freedom I could ask for but was always available for discussion and advice.
-Many thanks go also to the Multiscale Modelling Group at the Institute for Complex Systems 6 at Forschungszentrum J\"ulich for a warm and friendly atmosphere and fruitful discussion.
-I would also like to thank Elisabet Altenberger from the German Research School for Simulation Sciences for her support and help with administrative issues.
+Many thanks go also to her Multiscale Modelling Group at the Institute for Complex Systems 6 at Forschungszentrum J\"ulich for a warm and friendly atmosphere and fruitful discussions.
+I would also like to thank Elisabeth Altenberger from the German Research School for Simulation Sciences for her support and help with administrative issues.
 Professor Christel Marian from the Theoretical Chemistry Department at Heinrich Heine University D\"usseldorf kindly provided a workplace during the work on my thesis.
 
 

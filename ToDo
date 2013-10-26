@@ -1,7 +1,5 @@
- * MD (long range electrostatics, temperature and pressure control, constraints algorithms, position restraints)
- * water model
- * Force fields
- * Sim Setups
+ * Korrekturen ab hälfte Lennard Jones
+ * Lennard Jones Reference (Keesom, Debye, London)
  * Results
  * Discussion
  * Conclusion

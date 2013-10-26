@@ -13,6 +13,12 @@ draft: $(DOCUMENT).tex
 	pdflatex "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 	pdflatex "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 
+partial: $(DOCUMENT)_part.tex
+	pdflatex $(DOCUMENT)_part.tex
+	bibtex   $(DOCUMENT)_part.aux
+	pdflatex $(DOCUMENT)_part.tex
+	pdflatex $(DOCUMENT)_part.tex 
+
 clean:
 	rm -f $(DOCUMENT).aux \
 		  $(DOCUMENT).log \
@@ -21,4 +27,12 @@ clean:
 		  $(DOCUMENT).snm \
 		  $(DOCUMENT).toc \
 		  $(DOCUMENT).bbl \
-		  $(DOCUMENT).blg
+		  $(DOCUMENT).blg \
+		  $(DOCUMENT)_part.aux \
+		  $(DOCUMENT)_part.log \
+		  $(DOCUMENT)_part.nav \
+		  $(DOCUMENT)_part.out \
+		  $(DOCUMENT)_part.snm \
+		  $(DOCUMENT)_part.toc \
+		  $(DOCUMENT)_part.bbl \
+		  $(DOCUMENT)_part.blg  
