@@ -154,7 +154,7 @@ RWTH Aachen
 A fusion protein of the periplasmic domain of sensor histidine kinase CitA from \textit{Klebsiella Pneumoniae} and the lipase LipA from \textit{Bacillus Subtilis} is investigated by means of molecular dynamics simulation.
 The research was motivated by experiments indicating that CitA's natural ligand citrate down-regulates lipase activity upon binding.
 Both proteins were first studied independently.
-It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100ns molecular dynamics simulation after careful equilibration.
+It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100 ns molecular dynamics simulation after careful equilibration.
 The unfused, solo lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their relative conformations.
 As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by Basin Hopping.
 The fusion protein showed dynamics that differ significantly from those of the isolated proteins.
@@ -781,6 +781,7 @@ The Basin Hopping algorithm is implemented in the program GMIN \cite{GMIN} and d
 % ==================================== %
 
 \subsection{Dimensionality Reduction}
+\label{sec:DimRed}
 
 The data obtained in molecular simulations is high dimensional (ignoring velocities and forces), as every atom position is specified by 3 coordinates.
 Often, the important features of a system can be described by a reduced set of coordinates to make analysis less complicated.
@@ -851,6 +852,7 @@ This resulted in reduced set of only 5 coordinates, of which the distance of the
 % ==================================== %
 
 \subsection{Mean-Shift Clustering}
+\label{sec:meanShift}
 
 Apart from the dimensionality reduction approach to simplify complex data, it is also possible to attempt to reduce the number of data points.
 This can be achieved by carefully choosing a set of representative points.
@@ -1059,7 +1061,8 @@ During the energy minimization, all atoms were allowed to move, resulting in dif
 
 Several simulations have been run with increasing number of Basin Hopping steps in the sequence 100, 500, 1000, 5000 and 10000.
 Apart from that, three runs with 1000 Basin Hopping steps each and different values for the sloppy convergence criterium during energy minimization were performed: 0.05, 0.1 and 0.5 kcal/mol RMS force.
-In addition 40 energy basin structure from previous research have been acquired.
+In addition, 4 Basin Hopping runs have been performed during which the maximum step size for dihedral angle Monte Carlo moves was varied in the sequence 30, 60, 90, 120 degrees (500 BH steps, sloppy convergence criterium: 0.02 kcal/mol RMS force).
+The maximum step size for the dihedral angle in all other simulations was constant at 90 degree.
 Of each Basin Hopping run the 10 structures with minimal energies were kept for subsequent analysis.
 The Basin Hopping simulations thus resulted in a total of 120 structures.
 
@@ -1099,7 +1102,7 @@ These two situation in the first and in the second half of the 100 ns trajectory
     \centering
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_free.pdf}
     \includegraphics[width=1.0\textwidth]{figures/CitA_opening_citrate_bound.pdf}
-    \caption{The plot shows the distances defined in Figure \ref{fig:CitA_pocket} (same color coding) during 100ns MD trajectories. The respective distances in the crystal structures are drawn with a dashed line. The top panel corresponds to the citrate free, the bottom panel to the citrate bound case.}
+    \caption{The plot shows the distances defined in Figure \ref{fig:CitA_pocket} (same color coding) during 100 ns MD trajectories. The respective distances in the crystal structures are drawn with a dashed line. The top panel corresponds to the citrate free, the bottom panel to the citrate bound case.}
     \label{fig:CitA_opening_distances}
 \end{figure}       
 
@@ -1107,32 +1110,80 @@ These two situation in the first and in the second half of the 100 ns trajectory
 
 \subsection{Uncomplexed BSLA MD}
 
+BSLA is very stable in solution during a 100 ns MD simulation.
+Figure \ref{fig:BSLA_solo} a) shows the root mean square fluctuation (RMSF) of the C$_{\alpha}$ atoms.
+The core structure has an RMSF around 0.5 \r{A}ngstrom and the average RMSF over all C$_{\alpha}$ atoms is 0.55 \r{A}ngstrom.
+All residues with an RMSD larger than 1.0 \r{A}ngstrom are colored red in Figure \ref{fig:BSLA_flexibility}.
+These residues are located at the C and N termini, as well as at solvent exposed turns.
+Turns are generally more likely to be flexible than other secondary structure elements like helices and $\beta$-sheets, therefore this result shows the inherent stability of the uncomplexed BSLA structure.
+Figure \ref{fig:BSLA_solo} b) shows the minimum distance between the side chains of ASP133 and HIS156 at the active site of BSLA.
+Hydrogen bonding between these residues stablilizes the intermediate tetrahedral structure during ester hydrolysis (Figure \ref{fig:BSLAreaction}).
+This distance might therefore be indicative for disruption of the active site geometry of BSLA resulting in a drop in activity.
+The minimum distance of the uncomplexed BSLA is very stable and close to the crystal structure distance during the MD trajectory with a standard deviation of only 0.07 \r{A}ngstrom.
+The histrogram of Figure \ref{fig:BSLA_solo} b) gives an impression of the distribution of the minimum ASP133 - HIS156 distance.
+The variance in the active site distance distribution serves as a baseline for the complexed structure and its disruption is assumed to be indicative for a lipase activity degradation.
+
+
+
 \begin{figure}
     \begin{minipage}[]{0.45\linewidth}
         \centering
         a)
-        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_dist_ASP133_HIS156.pdf} 
-        b)
-        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_distribution_ASP133_HIS156.pdf} 
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_rmsf.pdf}  
     \end{minipage}
 \hspace{0.5cm}
     \begin{minipage}[]{0.45\linewidth}
         \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_dist_ASP133_HIS156.pdf} 
         c)
-        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_solo_rmsf.pdf} 
+        \includegraphics[width=\textwidth]{figures/BSLA_solo/BSLA_distribution_ASP133_HIS156.pdf}  
     \end{minipage}
-    \caption{\textbf{a)} Shortest distance between side chain atoms of BSLA active site residues ASP133 and HIS156 during a 100 ns MD trajectory.
-    \textbf{b)} Distribution of the distance from a).
-    \textbf{c)} Root mean square fluctuation (RMSF) of C$_\alpha$ atoms around the average structure of the 100 ns MD trajectory.}
+    \caption{
+    \textbf{a)} Root mean square fluctuation (RMSF) of C$_\alpha$ atoms around the average structure of the 100 ns MD trajectory.
+    \textbf{b)} Shortest distance between side chain atoms of BSLA active site residues ASP133 and HIS156 during a 100 ns MD trajectory. 
+    \textbf{c)} Distribution of the distance from a).}
 \label{fig:BSLA_solo}
 \end{figure} 
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/BSLA_flexibility.png}
+    \caption{The structure of BSLA is shown in cartoon representation. The flexible parts with an rmsf larger than 1.0 \r{A} are shown in red Van-der-Waals representation. The active site residues are colored.}
+    \label{fig:BSLA_flexibility}
+\end{figure}       
+ 
 
 
 
 
 \subsection{Complex Basin Hopping}
+
+The 12 Basin Hopping runs each resultet in 10 possible structures for the fusion protein.
+To arrive at a small set on which to perform molecular dynamics simulations, these 120 structures were clustered with the mean shift clustering algorithm, as described in section \ref{sec:meanShift}.
+Before clustering, the spatial coordinates have been transformed into a reduced coordinate space of two sets of spherical coordinates as described in section \ref{sec:DimRed}.
+These spherical coordinates, together with the energy where the input space in which clustering was performed.
+Figure \ref{fig:GMIN_CitA_phi} gives an impression of the reduction of the dataset due to clustering.
+The grey points represent the original dataset and the colored points the reduced dataset, which consistet of only 18 points.
+When adapting the mean shift window parameter to further reduce the number of clusters, too many features of the dataset got lost due to assignment to the same cluster.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/CitA_phi.png}
+    \caption{GMIN output structures before (grey) and after clustering (colored).}
+    \label{fig:GMIN_CitA_phi}
+\end{figure}        
+
+It should be noted that the grey points in Figure \ref{fig:GMIN_CitA_phi} coincide for the largest part with the colored points.
+This is due to the fact that GMIN runs with different parameters often arrived at very similar energy minima.
+Figure \ref{fig:GMIN_results} shows a three dimensional plot of the BSLA centers of mass around superpositions of CitAP domains in order to give an impression of the distribution of the structures after clustering.
+Each BSLA structure in addition has a unique orientation with respect to the position of CitAP.
+Four structures have been selected for further investigation.
+Table \ref{tab:GMIN_structures} lists all GMIN output structures with their corresponding energies and Basin Hopping parameters.
+The structures shaded in grey are the four selected output structures.
+Structure 3 and 5 have been skipped as they were found to be too similar to already selected structures.
 
 \begin{figure}
     \centering
@@ -1140,6 +1191,7 @@ These two situation in the first and in the second half of the 100 ns trajectory
     \caption{Cluster centers of the GMIN output structures. The green cross indicates the center of mass position of the superimposed CitAP domains. The points correspond to the centers of mass of the BSLA domains of each GMIN output structure. Color codes the energy of the structures as indicated by the colorbar and the alpha value is used as a depth cue. The four structures used in subsequent experiments are labeled.}
     \label{fig:GMIN_results}
 \end{figure}       
+
 
  
 
@@ -1184,14 +1236,44 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 
 \subsection{CitAP--BSLA fusion protein MD}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/TyrTrp/TyrTrp_experiment.pdf}
+    \caption{}
+    \label{fig:TyrTrp_fluorescence}
+\end{figure}        
+
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure0.png}  
+        c)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure2.png}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure1.png} 
+        d)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure3.png}  
+    \end{minipage}
+    \caption{}
+\label{fig:TyrTrp_distance}
+\end{figure}  
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.png}
+    \caption{}
+    \label{fig:TyrTrp_average}
+\end{figure}         
+
 
 % ============================================================================ %
 
-\section{Discussion}
-
-% ============================================================================ %
-
-\section{Conclusion}
+\section{Discussion \& Conclusion}
 
 % ============================================================================ %
 
