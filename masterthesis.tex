@@ -1184,6 +1184,7 @@ Four structures have been selected for further investigation.
 Table \ref{tab:GMIN_structures} lists all GMIN output structures with their corresponding energies and Basin Hopping parameters.
 The structures shaded in grey are the four selected output structures.
 Structure 3 and 5 have been skipped as they were found to be too similar to already selected structures.
+The mean shift clustering algorithm assigned those two structures to seperate clusters because the energy was used as a seperate coordinate during clustering and their energy differs from structures that would be in the same cluster base solely on the reduced spherical coordinates.
 
 \begin{figure}
     \centering
@@ -1236,39 +1237,232 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 
 \subsection{CitAP--BSLA fusion protein MD}
 
+
+
+
+% bound DSSP
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/TyrTrp/TyrTrp_experiment.pdf}
-    \caption{}
-    \label{fig:TyrTrp_fluorescence}
-\end{figure}        
+    \includegraphics[width=1.0\textwidth]{figures/DSSP/dssp_bound.pdf}
+    \caption{Secondary structure of the citrate bound complexes.}
+    \label{fig:DSSP_bound}
+\end{figure}          
 
+
+
+% free DSSP
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/DSSP/dssp_free.pdf}
+    \caption{Secondary structure of the citrate free complexes.}
+    \label{fig:DSSP_free}
+\end{figure}
+
+
+
+
+% favourable contacts
 \begin{figure}
     \begin{minipage}[]{0.45\linewidth}
         \centering
         a)
-        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure0.png}  
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure1.pdf}  
         c)
-        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure2.png}  
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure3.pdf}  
     \end{minipage}
 \hspace{0.5cm}
     \begin{minipage}[]{0.45\linewidth}
         \centering
         b)
-        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure1.png} 
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure2.pdf}  
         d)
-        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure3.png}  
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure4.pdf}  
     \end{minipage}
-    \caption{}
+    \caption{Fraction of favourable contacts (i.e. hydrophobic to hydrohopic and hydrophilic to hydrophilic) of the total number of contacts between the CitAP and BSLA domains.
+        The data has been smoothed by a gaussian window function for better visualizability.}
+\label{fig:favourable_contacts}
+\end{figure}   
+
+
+
+
+% hydrophobic contacts
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure1.pdf}  
+        c)
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure3.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure2.pdf}  
+        d)
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure4.pdf}  
+    \end{minipage}
+    \caption{Fraction of hydrophobic contacts of the total number of contacts between the CitAP and BSLA domains.
+        The data has been smoothed by a gaussian window function for better visualizability.}
+\label{fig:hydrophobic_contacts}
+\end{figure}    
+
+
+
+
+% Trajectories in reduced coordinates
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/Complex_trajectory/collecitve_coords_structure1.pdf}  
+        c)
+        \includegraphics[width=\textwidth]{figures/Complex_trajectory/collecitve_coords_structure3.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/Complex_trajectory/collecitve_coords_structure2.pdf}  
+        d)
+        \includegraphics[width=\textwidth]{figures/Complex_trajectory/collecitve_coords_structure4.pdf}  
+    \end{minipage}
+    \caption{The MD trajectories are represented in a reduced coordinate space consisting only of the spherical angles $\phi_{Complex}$ and $\theta_{Complex}$ as defined in section \ref{sec:DimRed}.
+        The starting points of the trajectories are indicated by triangles.}
+\label{fig:traj_reduced_coords}
+\end{figure}     
+
+
+ 
+
+ 
+
+% Tyr/Trp fluorescence experiment
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/TyrTrp/TyrTrp_experiment.pdf}
+    \caption{Change of Tryptophane and Tyrosine fluorescence changes due to citrate and succinate in solo BSLA and fused CitAP--BSLA (CB).
+        Excitation happened at 278 nm.
+        It was unfortunately not documented by the groupd of K.E. Jaeger which of the lines corresponds to the presence or absence of citrate/succinate.}
+    \label{fig:TyrTrp_fluorescence}
+\end{figure}        
+
+
+
+% Tyr/Trp minimum distances
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure0.pdf}  
+        c)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure2.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure1.pdf} 
+        d)
+        \includegraphics[width=\textwidth]{figures/TyrTrp/mindist_TyrTrp_structure3.pdf}  
+    \end{minipage}
+    \caption{Minimum distance between Tyrosine and Tryptophane residues during the MD trajectories of each structure.
+        A difference between citrate bound and citrate free structures would be in accordance with the experimental results of the Jaeger group (Figure \ref{fig:TyrTrp_fluorescence}).
+        The data has been smoothed by a gaussian window function for better visualizability.}
 \label{fig:TyrTrp_distance}
 \end{figure}  
 
+
+
+% Tyr/Trp average minimal distance
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.png}
-    \caption{}
+    \includegraphics[width=0.6\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.pdf}
+    \caption{Averages of the minimal distances between Tyrosine and Tryptophane as displayed in Figure \ref{fig:TyrTrp_distance}.}
     \label{fig:TyrTrp_average}
 \end{figure}         
+
+
+
+          
+ 
+
+
+
+
+
+
+
+
+% CitAP BSLA active site distance
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_analyzed_with_average_of_last_50_ns.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_analyzed_with_standard_deviation.pdf}  
+    \end{minipage}
+    \caption{\textbf{a)} Averages of the last 50 ns of each MD simulation of the active site ASP133 to HIS156 distance in the BSLA domain versus the active site LEU102:N to GLU56:C$_{\alpha}$ distance of the CitAP domain (numbering with respect to the solo structures).
+        The numbers indicate the corresponding structure.
+        \textbf{b)} Standard deviation of the distance from a).}
+\label{fig:active_site_mean_sd}
+\end{figure}     
+ 
+
+
+
+% CitAP BSLA bound active site distance distributions
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure1.pdf}  
+        c)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure3.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure2.pdf}  
+        d)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure4.pdf}  
+    \end{minipage}
+    \caption{Distribution of active site distances for citrate bound structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).}
+\label{fig:active_site_bound_distribution}
+\end{figure}      
+
+
+
+% CitAP BSLA free active site distance distributions
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure1.pdf}  
+        c)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure3.pdf}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure2.pdf}  
+        d)
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure4.pdf}  
+    \end{minipage}
+    \caption{Distribution of active site distances for citrate free structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).}
+\label{fig:active_site_free_distribution}
+\end{figure}       
+
+
+
 
 
 % ============================================================================ %
