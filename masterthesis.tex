@@ -610,7 +610,7 @@ Parameters for the bonded interactions have been fitted to \textit{ab initio} ca
 A crucial point in topology generation with GAFF is the assignment of partial charges.
 Ideally, this should be done based on elaborate quantum chemical calculations.
 There exist however other means of empirical partial charge assignments.
-The charges assigned to citrate for this research have been estimated with the AM1-BCC model \cite{am1bcc_method} \cite{am1bcc_validation}.
+The charges assigned to citrate for this research have been estimated with the AM1-BCC model \cite{am1bcc_method, am1bcc_validation}.
 This model tries to generate charges that emulate the electrostatic potential of \textit{ab initio} Hartree Fock calculations with the HF/6-31G* basis set.
 
 
@@ -680,7 +680,7 @@ The Berendsen algorithm (\cite{BerendsenTempControl}) rescales the velocities in
 that couples the system exponentially with a time constant $\tau$ to a heat bath of temperature $T_0$.
 The Berendsen thermostat suppresses fluctuations of kinetic energy and therefore does not generate a proper thermodynamic ensemble. It might still be used for equilibration purposes.
 
-The Nose-Hoover thermostat (\cite{Nose}, \cite{Hoover}) extends the system Hamiltonian by coupling to a thermal reservoir with a friction term $\xi$.
+The Nose-Hoover thermostat (\cite{Nose, Hoover}) extends the system Hamiltonian by coupling to a thermal reservoir with a friction term $\xi$.
 The reservoir has its own momentum $p_{\xi}$, a mass-like parameter $Q$ and follows its own dynamic equations of motion:
 
 \begin{equation}
@@ -788,7 +788,7 @@ Often, the important features of a system can be described by a reduced set of c
 Knowledge of the system can guide the definition of these reduced, or collective coordinates, but techniques exist to automatically reduce the dimensionality without prior assumptions.
 Techniques of both kinds have been used in the reported research and are described here as applied to the fused CitAP--BSLA complex.
 
-A well established technique used for dimensionality reduction in all kinds of applications is Principal Component Analysis (PCA) \cite{PCAoriginal} \cite{PCA}.
+A well established technique used for dimensionality reduction in all kinds of applications is Principal Component Analysis (PCA) \cite{PCAoriginal, PCA}.
 PCA is an orthogonal linear transform that transforms the dataset into a space whose orthogonal basis is spanned by the principal component vectors.
 The key feature of these principal component vectors is that the dataset has its largest variance (i.e. highest information content) along the first principal component vector and the variances decrease along the following principal components.
 This ordering allows the removal of principal components from the dataset with low variance, therefore reducing the original complexity and at the same time maintaining the largest possible information content for the reduced dataset.
@@ -1237,13 +1237,20 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 
 \subsection{CitAP--BSLA fusion protein MD}
 
-
+The first important property of interest accsessible by molecular dynamics simulation is the general stability of the fusion protein.
+This has been adressed on more than one scale.
+The secondary structure of the complexes has been estimated with the DSSP program \cite{DSSPalgorithm, DSSPwebsite}.
+Figure \ref{fig:DSSP_bound} shows the secondary structure evolution during the course of the 100 ns MD runs for the citrate bound simulations, Figure \ref{fig:DSSP_free} displays the same for the citrate free cases.
+The secondary structure of the fusion protein is remarkably stable during all simulations and hardly any structure gets lost, apart from some minor fluctuations.
+Only during the citrate free simulation of structure 2, the fifth $\alpha$-helix vanishes and forms a turn.
+This helix is very small and surrounded by unstructured coils and therefore one of the least stable secondary structure elements in the fusion protein.
+The linker helix remains stable for all four structures, whether citrate bound or citrate free.
 
 
 % bound DSSP
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\textwidth]{figures/DSSP/dssp_bound.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/DSSP/dssp_bound.pdf}
     \caption{Secondary structure of the citrate bound complexes.}
     \label{fig:DSSP_bound}
 \end{figure}          
@@ -1253,11 +1260,19 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 % free DSSP
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\textwidth]{figures/DSSP/dssp_free.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/DSSP/dssp_free.pdf}
     \caption{Secondary structure of the citrate free complexes.}
     \label{fig:DSSP_free}
 \end{figure}
 
+
+
+To obtain a more detailed view on the way in which the CitAP and BSLA domains interact, the hydrophobic and hydrophilic interactions have been investigated.
+Figure \ref{fig:favourable_contacts} shows the favourable contacts between the two domains as a fraction of all contacts they make.
+Favourbale is in this case defined as contacts between two residues that are either both hydrophobic or both hydrophilic and a contact between a hydrophobic and a hydrophilic group is therefore viewed as unfavourable.
+This is a simplified view that most importantly does not take into account contacts between sidechains with the same charge, which are particularly unfavourable, but as these are very rare, they contribute very little to the final result.
+In all citrate free structures the fraction of favourable contacts increases during the course of the simulation slightly.
+For the citrate bound simulations, this effect is less pronounced and for structure 1 and 3 the number of favourable contacts even decreases.
 
 
 
@@ -1282,6 +1297,16 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
         The data has been smoothed by a gaussian window function for better visualizability.}
 \label{fig:favourable_contacts}
 \end{figure}   
+
+
+
+The general theme of the structure of globular proteins is a mostly hydrophobic core sourrounded by a hydrophilic shell.
+This is also true for the two proteins under study, with the exception of the inside of the CitAP binding pocket, which is in hydrophilic to accomodate the charged citrate.
+Figure \ref{fig:hydrophobic_contacts} shows the fraction of hydrophobic contacts of all inter-domain interactions in the fusion protein during the MD simulations.
+In all four structures the number of hydrophobic contacts in the interface region is relatively low, with the tendency to increase slighly in the course of the simulation.
+As for the favourable contacts, this effect is more pronounced for the citrate free structures.
+It is interesting to note that by design all structures have a conformation with two seperated domains corresponding to the original proteins, each with its own hydrophobic core (Figure \ref{fig:hydrophobic_core}).
+These cores stay mostly isolated during the simulation, even though there are hydrophobic patches at which the two domains could attach to each other.
 
 
 
@@ -1311,6 +1336,41 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 
 
 
+% hydrophobic cores
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.7\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_core.png}
+%    \caption{Initial structure of fusion protein structure 3. The hydrophobic residues of the CitAP and the BSLA domains are shown in blue Van-der-Waals representations. Hydrophobic residues of the linker domain are not shown.}
+%    \label{fig:hydrophobic_core}
+%\end{figure} 
+
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_core_linker.png}
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/protein.png}
+    \end{minipage}
+    \caption{Initial structure of fusion protein structure 3. The left structure shows only hydrophobic residues in blue Van-der-Waals representation, the right structure shows in addition hydrophilic residues in red.}
+    \label{fig:hydrophobic_core}
+\end{figure}     
+
+
+
+Figure \ref{fig:traj_reduced_coords} shows the MD trajectories of the four structures in their citrate bound and free forms in the reduced coordinate space described in section \ref{sec:DimRed}.
+The two angles describing the relative CitAP and BSLA center of mass positions, $\phi_{Complex}$ and $\theta_{Complex}$, span a space in which the conformational evolution of the fucion protein is studied.
+The deviation in the starting positions of the trajectories of corresponding citrate bound and free structures as indicated by the triangles are due to the equilibration procedure in which the backbone atom positions have been less and less restrained.
+In all four structures the CitAP and BSLA domains move relative to each other.
+In structure 2, 3 and 4 the trajectory of the citrate bound and citrate free proteins is highly similar.
+Structure 1 shows different trajectories, depending on whether citrate is bound or not.
+This is in accordance with Figures \ref{fig:favourable_contacts} and \ref{fig:hydrophobic_contacts}, in which the citrate bound and citrate free trajectories are less similar than they are for the other three structures.
+The two domains show condiserably more flexibility for structures 1 and 3 than they do for structures 2 and 4.
+
+
+
 % Trajectories in reduced coordinates
 \begin{figure}
     \begin{minipage}[]{0.45\linewidth}
@@ -1334,7 +1394,23 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 \end{figure}     
 
 
- 
+Only few experimental results exist that the simulatins can be directly compared to. 
+One experiment that has been performed in the group of Karl-Erich Jaeger is a measurement of the Tryptophane and Tyrosine fluorsescence.
+Tryptophane has been excited with radiation at 278 nm.
+The emitted light intensity was measured for a range of wavelengths.
+The intensities at each wavelength are influenced by energy transfer from Tryptophane to Tyrosine residues.
+Therefore the mutual orientations and distance of Tryptophane and Tyrosine residues influences the emitted spectrum.
+Figure \ref{fig:TyrTrp_fluorescence} shows that the fluorescence signal is influenced by the presence or absence of citrate from the fusion protein, while it has no effect on the solo BSLA.
+Neither does succinate as a reference probe show any influence on the fluorescence spectrum of solo BSLA nor on fusion protein.
+This result indicates that citrate binding triggers a conformational change that results in a change in Tryptophane / Tyrosine distances or orientations.
+To compare the MD results to this experimental result, the minimum distance between any two Tryptophane and Tyrosine residues was analyzed.
+This distance is shown in Figure \ref{fig:TyrTrp_distance} for all four fusion protein structures with and without citrate.
+While structures 1 and 2 do not show a significant difference of the minimum Tyrosine to Tryptophane distance, structures 3 and 4 indicate such a conformational change.
+Figure \ref{fig:TyrTrp_average} backs this result, as the average for the citrate bound and citrate free simulations in minimum Tyr/Trp distance are insignificant for structures 1 and 2, while they are more pronounced for structures 3 and 4, although in opposite directions.
+While the minimum Tyr/Trp distance increases durin the simulation of structure 3 from the citrate free to the citrate bound case it decreases for structure 4.
+As it is not documented by the group of Professor Jaeger, for which case (citrate free/bound) the emitted light intensities were higher, it is not possible to discriminate between structure 3 and 4 base on this finding.
+It can only be concluded that both indicate effects that are possibly in accordance with experimental data.
+As the mutual Trp/Tyr orientations have not been taken into account, there is also a possibility left for structures 1 and 2 to be in accordance with the experimentally measured fluorescence change.
 
  
 
@@ -1386,7 +1462,18 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
 
 
           
- 
+
+
+Further experimental data exists on the effect of citrate binding on the activity of BSLA, as displayed in Figure \ref{fig:BSLAactivity}.
+One possible explanation for this effect might be a change in the BSLA binding pocket conformation triggered by citrate binding.
+Visual inspection of the MD trajectories showed that the distance between, the side chains of ASP133 to HIS156 is the strongest varying distance in the BSLA binding pocket (residue numbering according to solo BSLA).
+As hydrogen bonding between these two residues stabilizes the tetrahedral intermediate structure of the substrate, an increase in this distance might be related to a disruption of BSLA activity.
+As it is already known from the study of the solo CitAP binding pocket, that its geometry depends on the presence or absence of citrate, the distance between LEU102:N to GLU56:C$_{\alpha}$ of the CitAP binding pocket has been related to the afore mentioned distance of the BSLA binding pocket.
+Figure \ref{fig:active_site_mean_sd} shows the mean of the last 50 ns of each simulations and the standard deviation of these distances for each structure in their citrate bound and citrate free forms.
+The BSLA binding pocket distance is a measure for the diruption of its active site and therefore a large distance is thought to correspond to a low BSLA activity.
+The standard deviations of the distances are a measure for the pocket flexibility, wich is also probably correlated to the BSLA acitvity, as the standard deviation is very small (0.07 \r{A}ngstrom) for the solo BSLA.
+
+
 
 
 
@@ -1408,7 +1495,7 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
         b)
         \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_analyzed_with_standard_deviation.pdf}  
     \end{minipage}
-    \caption{\textbf{a)} Averages of the last 50 ns of each MD simulation of the active site ASP133 to HIS156 distance in the BSLA domain versus the active site LEU102:N to GLU56:C$_{\alpha}$ distance of the CitAP domain (numbering with respect to the solo structures).
+    \caption{\textbf{a)} Averages of the last 50 ns of each MD simulation of the active site ASP133 to HIS156 distance in the BSLA domain versus the active site LEU102:N to GLU56:C$_{\alpha}$ distance of the CitAP domain (residue numbering with respect to the solo structures).
         The numbers indicate the corresponding structure.
         \textbf{b)} Standard deviation of the distance from a).}
 \label{fig:active_site_mean_sd}
