@@ -156,11 +156,11 @@ The research was motivated by experiments indicating that CitA's natural ligand 
 Both proteins were first studied independently.
 It was found that the citrate binding pocket was stable in the citrate bound crystal structure when studied in a 100 ns molecular dynamics simulation after careful equilibration.
 The unfused, solo lipase was also very stable during a simulation of the same length, especially the binding pocket and the catalytic residues maintained their relative conformations.
-As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by Basin Hopping.
+As no crystal structure of the fusion protein is known, several possible structures have been generated \emph{in silico} by Basin Hopping, the most promising four of which have been investigated in depth by molecular dynamics simulations.
 The fusion protein showed dynamics that differ significantly from those of the isolated proteins.
 The presence of citrate in the receptor binding pocket did not stabilize the structure to the same extend compared to the isolated CitA.
-The presence of a covalently bound citrate binding domain to the lipase destabilized the LipA binding pocket significantly.
-This is most likely the reason for the experimentally found activity degradation in lipase activity.
+The diversity of the obtained results indicate a strong dependence of the fusion protein dynamics on the initial conformation.
+Therefore, experimental data is needed to discriminate between the possible fusion protein conformations on an empirical basis.
 
 \end{abstract}
 
@@ -1185,6 +1185,11 @@ Table \ref{tab:GMIN_structures} lists all GMIN output structures with their corr
 The structures shaded in grey are the four selected output structures.
 Structure 3 and 5 have been skipped as they were found to be too similar to already selected structures.
 The mean shift clustering algorithm assigned those two structures to seperate clusters because the energy was used as a seperate coordinate during clustering and their energy differs from structures that would be in the same cluster base solely on the reduced spherical coordinates.
+The four output structures used for the fusion protein MD simulations are shown in Figure \ref{fig:GMIN_output}.
+In structure 1 the active site of CitAP faces the BSLA domain, effectively restricting its minor loop movement.
+Structures 2 and 3 also make contact with their CitAP active site and the BSLA domain, altough less severe than in structure 1.
+In structure 4 the CitAP active site faces away from the BSLA domain and has therefor the largest conformational freedom.
+The BSLA active site is for all four structures freely accessible.
 
 \begin{figure}
     \centering
@@ -1232,6 +1237,34 @@ The number of Basin Hopping (BH) steps, the maximum angular step size and the co
     The four structures used in subsequent experiemnts are shaded in grey and referenced in the text according to their enumeration as structures 1 to 4.}
 \label{tab:GMIN_structures}
 \end{table} 
+
+
+
+
+% GMIN output structures
+\begin{figure}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        a)
+        \includegraphics[width=\textwidth]{figures/Complex_structures/structure1.png}  
+        c)
+        \includegraphics[width=\textwidth]{figures/Complex_structures/structure3.png}  
+    \end{minipage}
+\hspace{0.5cm}
+    \begin{minipage}[]{0.45\linewidth}
+        \centering
+        b)
+        \includegraphics[width=\textwidth]{figures/Complex_structures/structure2.png}  
+        d)
+        \includegraphics[width=\textwidth]{figures/Complex_structures/structure4.png}  
+    \end{minipage}
+    \caption{The fours selected output structures.
+        The BSLA active site residues are shown in blue and the CitAP active site is shown in red.
+        The BSLA domains have been superimposed to indicate the relative CitAP conformations.
+    The structures are numbered from 1 to 4 (a to d).}
+\label{fig:GMIN_output}
+\end{figure}       
+
 
 
 
@@ -1469,14 +1502,17 @@ One possible explanation for this effect might be a change in the BSLA binding p
 Visual inspection of the MD trajectories showed that the distance between, the side chains of ASP133 to HIS156 is the strongest varying distance in the BSLA binding pocket (residue numbering according to solo BSLA).
 As hydrogen bonding between these two residues stabilizes the tetrahedral intermediate structure of the substrate, an increase in this distance might be related to a disruption of BSLA activity.
 As it is already known from the study of the solo CitAP binding pocket, that its geometry depends on the presence or absence of citrate, the distance between LEU102:N to GLU56:C$_{\alpha}$ of the CitAP binding pocket has been related to the afore mentioned distance of the BSLA binding pocket.
-Figure \ref{fig:active_site_mean_sd} shows the mean of the last 50 ns of each simulations and the standard deviation of these distances for each structure in their citrate bound and citrate free forms.
+Figure \ref{fig:active_site_mean_sd} shows the mean of the last 50 ns of each simulation and the standard deviation of these distances for each structure in their citrate bound and citrate free forms.
 The BSLA binding pocket distance is a measure for the diruption of its active site and therefore a large distance is thought to correspond to a low BSLA activity.
-The standard deviations of the distances are a measure for the pocket flexibility, wich is also probably correlated to the BSLA acitvity, as the standard deviation is very small (0.07 \r{A}ngstrom) for the solo BSLA.
-
-
-
-
-
+The standard deviations of the distances are a measure for the pocket flexibility, wich is assumed to be correlated to the BSLA acitvity.
+The standard deviation of the corresponding distance in ther solo BSLA MD run is very small (0.07 \r{A}ngstrom).
+Structure 1 and 3 exhibit a positive correlation for the two active site distances.
+When their CitAP pockets open up in the absence of citrate and become more flexible, the BSLA pocket also gains flexibility and the ASP133--HIS156 distance increases.
+In structure 2 the CitAP binding pocket opens up even in the presence of citrate and this is even more true for structure 4.
+Interestingly, while the CitAP binding pocket is similarly open on average in the citrate bound and free simulations, the BSLA pocket is on average much wider for the in the citrate bound case.
+The standard deviation of these two cases is moderate.
+Both binding pocket distances of structure 4 have a large standard deviation in both, the citrate free and bound form.
+Citrate binding seems even to destabilize the CitAP pocket further, while it has stabilizing effect on the BSLA active site.
 
 
 
@@ -1500,6 +1536,13 @@ The standard deviations of the distances are a measure for the pocket flexibilit
         \textbf{b)} Standard deviation of the distance from a).}
 \label{fig:active_site_mean_sd}
 \end{figure}     
+
+
+
+Figure \ref{fig:active_site_bound_distribution} shows contour plots of the distributions of CitAP and BSLA active site distances for the citrate bound simulations.
+The BSLA pockets stay closed for all citrate bound simulations, although structure 2 seems to have a second stable state in a slightly more opened conformation.
+The CitAP pocket stays tightly closed as expected for the citrate bound MD runs for structures 2 and 3, while it is slightly more flexible for structure 1.
+Structure 4 is even in the citrate bound case a lot more open than the other structures.
  
 
 
@@ -1509,21 +1552,36 @@ The standard deviations of the distances are a measure for the pocket flexibilit
     \begin{minipage}[]{0.45\linewidth}
         \centering
         a)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure1.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_contour_structure1.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure1.pdf}  
         c)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure3.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_contour_structure3.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure3.pdf}  
     \end{minipage}
 \hspace{0.5cm}
     \begin{minipage}[]{0.45\linewidth}
         \centering
         b)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure2.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_contour_structure2.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure2.pdf}  
         d)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure4.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_contour_structure4.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_bound_structure4.pdf}  
     \end{minipage}
-    \caption{Distribution of active site distances for citrate bound structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).}
+    \caption{Distribution of active site distances for citrate bound structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).
+    The distributions are normalized to integrate to unity.}
 \label{fig:active_site_bound_distribution}
 \end{figure}      
+
+
+
+Figure \ref{fig:active_site_free_distribution} displays analogous distributions for the citrate free simulations.
+Structure 1 and 2 have remarkably stable CitAP binding pockets in the absence of citrate.
+One possible origin is the fact that the minor loop that opens up in the solo CitAP simulations has some interactions with the BSLA domain.
+But as this is also true for structure 3, which even has a very stable open conformation in the absence of citrate, this is unlikely to be the only source of this effect.
+Structure 4 has for both binding pocket distance the larges flexibility among all structures.
+    
+
 
 
 
@@ -1532,19 +1590,24 @@ The standard deviations of the distances are a measure for the pocket flexibilit
     \begin{minipage}[]{0.45\linewidth}
         \centering
         a)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure1.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_contour_structure1.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure1.pdf}  
         c)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure3.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_contour_structure3.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure3.pdf}  
     \end{minipage}
 \hspace{0.5cm}
     \begin{minipage}[]{0.45\linewidth}
         \centering
         b)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure2.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_contour_structure2.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure2.pdf}  
         d)
-        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure4.pdf}  
+        \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_contour_structure4.pdf}  
+        %\includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_distance_free_structure4.pdf}  
     \end{minipage}
-    \caption{Distribution of active site distances for citrate free structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).}
+    \caption{Distribution of active site distances for citrate free structures (ASP133 to HIS156 in BSLA, LEU102:N to GLU56:C$_{\alpha}$ in CitAP, numbering with respect to the solo structures).
+    The distributions are normalized to integrate to unity.}
 \label{fig:active_site_free_distribution}
 \end{figure}       
 
@@ -1555,6 +1618,22 @@ The standard deviations of the distances are a measure for the pocket flexibilit
 % ============================================================================ %
 
 \section{Discussion \& Conclusion}
+
+The MD simulations of the solo CitAP and BSLA domains are very promising.
+BSLA not only stays folded and close to its crystal structure conformation through the whole course of the simulations, it is moreover very stable with a small RMSF for the core structure and only slightly larger fluctuations in loop regions in contact with the solvent.
+This is indicative for simulations at or near equilibrium.
+The active site, especially the conformation of the catalytic triad residues is very stable, with only small fluctuations in the mutual distances and orientations.
+This is an indication that the proposed reaction mechanism for ester hydrolysis, that is based on the crystal structure, is likely to be correct.
+
+The solo CitAP simulations are far more interesting.
+The hypothesized open conformation in the absence of citrate could be confirmed in so far, as the minor loop covering the binding pocket opens up during the 100 ns MD trajectory, while it stays tightly closed in the citrate bound state.
+Unfortunately the long timescale of binding kinetics does not permit a simulation to start at the open conformation withe goal to observe a closing of the pocket in the presence of citrate.
+It is however hard to detect the proposed piston mechanism that is induced by the opening of the minor loop.
+The neighbouring $\beta$-sheet that is hypothesized to bend upon active site opening.
+This motion is small in magnitude, so that no hard theory can yet be based on this conformational change.
+
+The Basin Hopping simulations resultet in four possible output structures.
+It is 
 
 % ============================================================================ %
 
