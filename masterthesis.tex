@@ -564,9 +564,10 @@ This can be done by switch or shift functions that set the Lennard-Jones interac
 \hspace{0.5cm}
     \begin{minipage}[]{0.45\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/Argon_dimer_potential.png} 
+        %\includegraphics[width=\textwidth]{figures/Argon_dimer_potential.png} 
+        \includegraphics[width=\textwidth]{figures/Lennard_Jones/Lennard_Jones.pdf} 
     \end{minipage}
-    \caption{Left: Lennard-Jones potential formula ($C^{6}_{ij}$ and $C^{12}_{ij}$ are the coefficients to be parameterized and $r_{ij}$ is the inter atomic distance). Right: Argon dimer potential. Source: \url{http://en.wikipedia.org/wiki/File:Argon_dimer_potential.png}}
+    \caption{Left: Lennard-Jones potential formula ($C^{6}_{ij}$ and $C^{12}_{ij}$ are the coefficients to be parameterized and $r_{ij}$ is the inter atomic distance). Right: Lennard Jones potentials for carbon--carbon, hydrogen--hydrogen and carbon--hydrogen.}
 \label{fig:LJ}
 \end{figure}
 
@@ -853,8 +854,8 @@ If for example two dimensional data points are distributed along a straight line
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/GaussianScatterPCA.png}
-    \caption{Principal components of Gaussian data. Figure taken from Wikipedia.org \url{http://en.wikipedia.org/wiki/File:GaussianScatterPCA.png}}
+    \includegraphics[width=0.7\textwidth]{figures/PCA_figure/PCA_figure.pdf}
+    \caption{Principal components of dummy data. The first principal component contains the largest variance of the dataset.}
     \label{fig:PCA}
 \end{figure}         
 
@@ -879,11 +880,20 @@ For the determination of local energy minima of the CitAP--BSLA complex for exam
 The main quantities of interest were the orientation of the two globular protein parts relative to each other at the energy basins.
 In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shifted to the origin of the coordinate system.
 To superimpose the CitAP domains of all structures, the protein was rotated to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive $x$-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the $xy$-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
+See Figure \ref{fig:collective_coords} for a graphical description.
 The position of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass $r$, the polar angle $\phi_{Complex}$ and the azimuthal angle $\theta_{Complex}$.
 Finally, the orientation of BSLA with respect to a coordinate system located at the BSLA center of mass was defined again with the spherical polar and azimuthal angles ($\phi_{BSLA}$,$\theta_{BSLA}$), this time using the \ce{C_{$\alpha$}} of Threonine 199 as a reference point.
 This resulted in a reduced set of only 5 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structures determined by basin hopping all had similar distances, due to the fact that the two protein domains have globular structure.
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/Collective_coords/collective_coords.pdf}
+    \caption{Construction of the collective coordinates. The spherical coordinates $\theta_{Complex}$ and $\phi_{Complex}$ are defined as the BSLA center of mass position in the CitAP centered cartesian coordinate system.
+    $\phi_{BSLA}$,$\theta_{BSLA}$ are defined with a reference point (big purple arrow) in the BSLA centered cartesian coordinate system.}
+    \label{fig:collective_coords}
+\end{figure}         
+ 
 
 % ==================================== %
 
