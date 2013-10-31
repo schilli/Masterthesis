@@ -126,10 +126,8 @@
         \column{.6\linewidth}
         \begin{itemize}
             \item 181 amino acids
-            \item 19.3 kDa
             \item Much smaller than lipases from other organisms
             \item Active site not covered by lid but solvent exposed -- \textbf{no interfacial activation} (activation due to lid opening in presence of lipid aggregates)
-            \item Very tolerant to basic pH, \textbf{optimum activity at pH 10}
         \end{itemize} 
 
         \column{.4\linewidth}
@@ -146,12 +144,35 @@
 
 \begin{frame}
     \frametitle{Proteins}
-    \framesubtitle{CitA-PAS}
+    \framesubtitle{BsLA}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/BSLA_pocket/BSLA_pocket_cartoon.pdf}
+        \end{figure}      
+
+        \column{.5\linewidth}
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/BSLA_reaction.png}
+        \end{figure}     
+
+    \end{columns} 
+
+    \centering
+    His156 -- Asp133 distance related to lipase activity
+
+\end{frame}  
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Proteins}
+    \framesubtitle{CitAP}
 
     \begin{itemize}
-        \item Part of a two component system of a sensor and a response regulator
+        \item Periplasmic domain of a two component system of a sensor and a response regulator
         \item CitA: Sensor Histidine Kinase
-        \item PAS: Per--Arnt--Sim domain superfamily of $\alpha/\beta$ proteins
         \item CitB: is the corresponding response regulator
         \item \textit{Klebsiella pneumoniae} two component system is essential for the induction of citrate fermentation genes in the presence of citrate
     \end{itemize}
@@ -159,20 +180,42 @@
 
 % ============================================================================ %
 
-\begin{frame}
-    \frametitle{Proteins}
-    \framesubtitle{CitA-PAS active site opening}
-    \begin{figure}
-        \includegraphics[width=.8\linewidth]{figures/CitA_dimer.pdf}
-    \end{figure}      
-
-\end{frame}   
+%\begin{frame}
+%    \frametitle{Proteins}
+%    \framesubtitle{CitAP active site opening}
+%    \begin{figure}
+%        \includegraphics[width=.8\linewidth]{figures/CitA_dimer.pdf}
+%    \end{figure}      
+%
+%\end{frame}   
 
 % ============================================================================ %
 
 \begin{frame}
     \frametitle{Proteins}
-    \framesubtitle{CitA-PAS signal transduction mechanism}
+    \framesubtitle{CitAP Binding Pocket}
+
+    \begin{figure}
+        \includegraphics[width=.7\linewidth]{figures/CitA_pocket2.pdf}
+    \end{figure}     
+\end{frame}     
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Proteins}
+    \framesubtitle{CitAP Citrate Interactions}
+
+    \begin{figure}
+        \includegraphics[width=0.9\textwidth]{figures/citrate_interactions/citrate_interactions.pdf}
+    \end{figure}     
+\end{frame}      
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Proteins}
+    \framesubtitle{CitAP signal transduction mechanism}
     \begin{figure}
         \includegraphics[width=.9\linewidth]{figures/CitA_mechanism.png}
     \end{figure}      
@@ -180,7 +223,7 @@
     \tiny
     M. Sevvana, et. al,
     \href{http://www.sciencedirect.com/science/article/pii/S0022283608000466}
-    {A LIgand--Induced Switch in the Periplasmic Domain of Sensor Histidine Kinase CitA},
+    {A Ligand--Induced Switch in the Periplasmic Domain of Sensor Histidine Kinase CitA},
     \textit{J. Mol. Biol.}, 377, 512--523, 2008
 
 \end{frame}  
@@ -224,7 +267,22 @@
 
 % ============================================================================ %
 
+
+
+
 \section{Methods}
+
+\begin{frame}
+    \frametitle{Methods}
+    \framesubtitle{GMIN: Basin Hopping with Global Optimization}
+
+    \begin{figure}
+        \includegraphics[width=0.9\textwidth]{figures/GMIN/GMIN.pdf}
+    \end{figure}        
+
+\end{frame}    
+
+% ============================================================================ %
 
 \begin{frame}
     \frametitle{Methods}
@@ -267,97 +325,18 @@
         \end{itemize}
     \end{itemize}
 \end{frame}   
- 
-% ============================================================================ %
-
-\begin{frame}
-    \frametitle{Methods}
-    \framesubtitle{pKa Prediction} 
-
-    \begin{block}{Why different pH?}
-        \begin{itemize}
-            \item Optimum activity at pH 10
-            \item Activity measurements shown performed at pH 7.5
-            \item Other experiments (fluorescence) at pH 10
-            \item Highest CitA--citrate affinity at pH 5.5
-        \end{itemize}
-    \end{block}
-
-    \pause
-    \vspace{0.5cm}
-
-    \center
-    $\Longrightarrow$ Protonation states at different pH \\
-    $\Longrightarrow$ WANTED: reliable pKa predictions
-
-\end{frame}
 
 % ============================================================================ %
 
 \begin{frame}
     \frametitle{Methods}
-    \framesubtitle{pKa Prediction} 
+    \framesubtitle{Dimensionality Reduction}
 
-    Different Methods for pKa prediction (expensive)
-    \begin{itemize}
-        \item Continuum electrostatics based on
-        \begin{itemize}
-            \item linearized Poisson--Boltzmann equation (\textbf{MEAD})
-            \item Generalized--Born approximation
-            \item Multiple rotamers can be considered in a Monte--Carlo approach (\textbf{MCCE})
-        \end{itemize}
+    \begin{figure}
+        \includegraphics[width=1.0\textwidth]{figures/Collective_coords/collective_coords.pdf}
+    \end{figure}        
 
-        \item empirical Methods (including rotamers) (\textbf{PROPKA})
-    \end{itemize}
-
-    \pause
-
-    \begin{center}
-    \begin{tabular}{ c c c c }
-         & \multicolumn{3}{c}{\% predictions} \\
-        $|pKa_{pred} - pKa_{exp}|$ & MEAD & MCCE & PROPKA \\
-        \hline
-        \hline
-        <2   & 66.7 & 76.9 & \textbf{87.2} \\
-        <1.5 & 48.7 & 64.1 & \textbf{82.1} \\
-        <1   & 25.6 & 43.6 & \textbf{66.7} \\
-        <0.5 & 15.4 & 20.1 & \textbf{35.9} \\
-    \end{tabular}
-    \end{center}
-
-\end{frame}
-
-% ============================================================================ %
-
-\begin{frame}
-    \frametitle{Methods}
-    \framesubtitle{pKa Prediction} 
-
-    \begin{equation*}
-        \frac{[A]}{[AH]} = 10^{pH - pKa}
-    \end{equation*} 
-
-    \begin{center}
-    \begin{tabular}{ c c c c }
-         & \multicolumn{3}{c}{\% predictions} \\
-        $|pKa_{pred} - pKa_{exp}|$ & MEAD & MCCE & PROPKA \\
-        \hline
-        \hline
-        <2   & 66.7 & 76.9 & \textbf{87.2} \\
-        <1.5 & 48.7 & 64.1 & \textbf{82.1} \\
-        <1   & 25.6 & 43.6 & \textbf{66.7} \\
-        <0.5 & 15.4 & 20.1 & \textbf{35.9} \\
-    \end{tabular}
-    \end{center}
-
-    \tiny
-    M. N. Davies, C. P. Toseland, D. S. Moss and D. R. Flower,
-    \href{http://www.biomedcentral.com/1471-2091/7/18/}
-    {Benchmarking pKa prediction},
-    BMC Biochemistry, 7(18), 2006
-
-\end{frame}
- 
+\end{frame}     
  
 % ============================================================================ %
 
@@ -365,58 +344,28 @@
 
 \begin{frame}
     \frametitle{Results}
-    \framesubtitle{CitA-PAS Binding Pocket}
+    \framesubtitle{Solo CitAP Binding Pocket}
 
-    \begin{figure}
-        \includegraphics[width=.7\linewidth]{figures/CitA_pocket2.pdf}
-    \end{figure}     
+    \begin{columns}[t]
+        \column{.5\linewidth} 
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/CitAP_opening/CitAP_dist_free.pdf}
+        \end{figure}       
+
+        \column{.5\linewidth} 
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/CitAP_opening/CitAP_dist_bound.pdf}
+        \end{figure}        
+
+    \end{columns} 
+
+
+%    \begin{figure}
+%        \includegraphics[width=.7\linewidth]{figures/CitA_pocket2.pdf}
+%    \end{figure}     
 \end{frame}    
 
-% ============================================================================ %
 
-\begin{frame}
-    \frametitle{Results}
-    \framesubtitle{CitA-PAS Citrate free}
-
-    \begin{figure}
-        \includegraphics[width=1.05\linewidth]{figures/MD/distances_citrate_free.pdf}
-    \end{figure}      
-\end{frame}   
- 
-
-% ============================================================================ %
-
-\begin{frame}
-    \frametitle{Results}
-    \framesubtitle{CitA-PAS Citrate free and bound}
-
-    \begin{figure}
-        \includegraphics[width=1.05\linewidth]{figures/MD/distances_both.pdf}
-    \end{figure}      
-\end{frame}   
- 
-% ============================================================================ %
-
-\begin{frame}
-    \frametitle{Results}
-    \framesubtitle{CitA-PAS Citrate free}
-
-    \begin{figure}
-        \includegraphics[width=.85\linewidth]{figures/MD/angle_citrate_free_GLU74CA-TYR56CA-LEU102N.pdf}
-    \end{figure}       
-\end{frame}   
- 
-% ============================================================================ %
-
-\begin{frame}
-    \frametitle{Results}
-    \framesubtitle{CitA-PAS Citrate free and bound}
-
-    \begin{figure}
-        \includegraphics[width=.85\linewidth]{figures/MD/angle_both_GLU74CA-TYR56CA-LEU102N.pdf}
-    \end{figure}       
-\end{frame}   
- 
 % ============================================================================ %
 
 \section{Outlook}

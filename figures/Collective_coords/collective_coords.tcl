@@ -60,7 +60,7 @@ draw arrow $CitACOM $z blue
 draw arrow $BSLACOM $x2 red
 draw arrow $BSLACOM $y2 green
 draw arrow $BSLACOM $z2 blue
-draw arrow $BSLACOM $Ref magenta
+draw arrow $BSLACOM $Ref yellow
 
 
 

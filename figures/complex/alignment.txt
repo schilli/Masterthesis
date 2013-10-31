@@ -1,0 +1,9 @@
+Unfold complex:
+CitA: Res   1 - 129   Magenta
+Ytva: Res 130 -   5   Cyan
+BsLA: Res   6 - 186   Green
+
+Fold complex:
+CitA: Res   1 - 132   Magenta
+Ytva: Res 133 - 154   Cyan   
+BsLA: Res 155 - 335   Green  

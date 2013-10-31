@@ -50,6 +50,31 @@
 \usepackage{setspace}
 \usepackage[version=3]{mhchem}
 
+\ifdefined\black
+
+\hypersetup{
+    %bookmarks=false,                      % show bookmarks bar?
+    unicode=true,                          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,                       % show Acrobat’s toolbar?
+    pdfmenubar=true,                       % show Acrobat’s menu?
+    pdffitwindow=false,                    % window fit to page when opened
+    pdfstartview={FitH},                   % fits the width of the page to the window
+    pdftitle={Masterthesis},               % title
+    pdfauthor={Oliver Schillinger},
+    pdfsubject={Masterthesis},             % subject of the document
+    pdfcreator={Oliver Schillinger},       % creator of the document
+    pdfproducer={Oliver Schillinger},      % producer of the document
+    pdfkeywords={Lipase} {CitA} {GROMACS}, % list of keywords
+    pdfnewwindow=true,                     % links in new window
+    colorlinks=true,                       % false: boxed links; true: colored links
+    linkcolor=black,                       % color of internal links
+    citecolor=black,                        % color of links to bibliography
+    filecolor=black,                         % color of file links
+    urlcolor=black                          % color of external links 
+}
+
+\else
+
 \hypersetup{
     %bookmarks=false,                      % show bookmarks bar?
     unicode=true,                          % non-Latin characters in Acrobat’s bookmarks
@@ -70,6 +95,8 @@
     filecolor=red,                         % color of file links
     urlcolor=cyan                          % color of external links
 }
+
+\fi
 
 \newcommand{\PDB}[1]{\href{http://pdb.rcsb.org/pdb/explore/explore.do?structureId=#1}{#1}}
 
@@ -102,7 +129,7 @@
 \vspace{2cm}
 
 {\textbf{Registered Title:} \\
-Elucidating the structure of a fusion protein of a lipase and a citrate binding domain by Molecular Dynamics simulation
+Elucidating the Structure of a Fusion Protein of a Lipase and a Citrate Binding Domain by Molecular Dynamics Simulation
 }
 
 \vspace{2cm}
@@ -120,7 +147,7 @@ of \textit{Bacillus Subtilis} Lipase LipA Fused to the Ligand-Binding Domain of 
 
 \vspace{2cm}
 
-Oliver Schillinger \\
+B.Sc. Oliver Schillinger \\
 Forschungszentrum J\"ulich \\ Institute of Complex Systems 6 - Structural Biochemistry \\ Multiscale Modelling Group \\
 Supervisor: Jun.-Prof. Dr. Birgit Strodel \\
 \vspace{1cm}
@@ -880,7 +907,7 @@ For the determination of local energy minima of the CitAP--BSLA complex for exam
 The main quantities of interest were the orientation of the two globular protein parts relative to each other at the energy basins.
 In order to arrive at a reduced set of coordinates that still distinguish the determined structures, the center of mass of the CitAP domain was shifted to the origin of the coordinate system.
 To superimpose the CitAP domains of all structures, the protein was rotated to align the \ce{C_{$\alpha$}} atom of Lysine 34 with the positive $x$-axis and then the \ce{C_{$\alpha$}} of Proline 71 was rotated into domain of the $xy$-plane with positive y coordinate (residue numbering based on the fusion protein sequence starting with 1).
-See Figure \ref{fig:collective_coords} for a graphical description.
+Figure \ref{fig:collective_coords} illustrates the construction of the collective coordinates.
 The position of the BSLA domain of the fusion protein with respect to CitAP could now be described with three spherical coordinates: the radius between the two centers of mass $r$, the polar angle $\phi_{Complex}$ and the azimuthal angle $\theta_{Complex}$.
 Finally, the orientation of BSLA with respect to a coordinate system located at the BSLA center of mass was defined again with the spherical polar and azimuthal angles ($\phi_{BSLA}$,$\theta_{BSLA}$), this time using the \ce{C_{$\alpha$}} of Threonine 199 as a reference point.
 This resulted in a reduced set of only 5 coordinates, of which the distance of the two centers of mass appeared to be the least interesting, as the structures determined by basin hopping all had similar distances, due to the fact that the two protein domains have globular structure.
@@ -889,8 +916,8 @@ This resulted in a reduced set of only 5 coordinates, of which the distance of t
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figures/Collective_coords/collective_coords.pdf}
-    \caption{Construction of the collective coordinates. The spherical coordinates $\theta_{Complex}$ and $\phi_{Complex}$ are defined as the BSLA center of mass position in the CitAP centered cartesian coordinate system.
-    $\phi_{BSLA}$,$\theta_{BSLA}$ are defined with a reference point (big purple arrow) in the BSLA centered cartesian coordinate system.}
+    \caption{Illustration of the construction of the collective coordinates. The spherical coordinates $\theta_{Complex}$ and $\phi_{Complex}$ are defined as the BSLA center of mass position in the CitAP centered coordinate system.
+    $\theta_{BSLA}$,$\phi_{BSLA}$ are defined with a reference point (yellow arrow) in the BSLA centered coordinate system.}
     \label{fig:collective_coords}
 \end{figure}         
  
@@ -1123,7 +1150,7 @@ The basin hopping simulations thus resulted in a total of 120 structures.
 
 \section{Results}
 
-\subsection{Uncomplexed CitAP MD}
+\subsection{Molecular Dynamics of Solo CitAP}
 
 To arrive at a quantitative description of the CitAP binding pocket geometry, two distances have been defined (Figure \ref{fig:CitA_pocket}).
 Leucine 102 occupies the turning point of the minor loop.
@@ -1181,18 +1208,18 @@ Figure \ref{fig:CitAP_dist_hist} shows the same distance data for the LEU102 - G
 
 
 
-\subsection{Uncomplexed BSLA MD}
+\subsection{Molecular Dynamics of Solo BSLA}
 
 BSLA is very stable in solution during a 100 ns MD simulation.
 Figure \ref{fig:BSLA_solo} a) shows the root mean square fluctuation (RMSF) of the C$_{\alpha}$ atoms.
 The core structure has an RMSF around 0.5 \r{A} and the average RMSF over all C$_{\alpha}$ atoms is 0.55 \r{A}.
-All residues with an RMSD larger than 1.0 \r{A} are colored red in Figure \ref{fig:BSLA_flexibility}.
+All residues with an RMSF larger than 1.0 \r{A} are colored red in Figure \ref{fig:BSLA_flexibility}.
 These residues are located at the C and N termini, as well as at solvent exposed turns.
 Turns are generally more likely to be flexible than other secondary structure elements like helices and $\beta$-sheets, therefore this result shows the inherent stability of the uncomplexed BSLA structure.
 Figure \ref{fig:BSLA_solo} b) shows the minimum distance between the side chains of ASP133 and HIS156 at the active site of BSLA.
 Hydrogen bonding between these residues stabilizes the intermediate tetrahedral structure during ester hydrolysis (Figure \ref{fig:BSLAreaction}).
 This distance might therefore be indicative for disruption of the active site geometry of BSLA resulting in a drop in activity.
-The minimum distance of the uncomplexed BSLA is very stable and close to the crystal structure distance during the MD trajectory with a standard deviation of only 0.07 \r{A}.
+This distance is very stable in the uncomplexed BSLA and close to the crystal structure distance during the MD trajectory with a standard deviation of only 0.07 \r{A}.
 The histogram of Figure \ref{fig:BSLA_solo} b) gives an impression of the distribution of the minimum ASP133 - HIS156 distance.
 The variance in the active site distance distribution serves as a baseline for the complexed structure and its disruption is assumed to be indicative for lipase activity degradation.
 
@@ -1223,7 +1250,7 @@ The variance in the active site distance distribution serves as a baseline for t
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/BSLA_flexibility.png}
-    \caption{The structure of BSLA is shown in cartoon representation. The flexible parts with an RMSF larger than 1.0 \r{A} are shown in red van der Waals representation. The active site residues are colored.}
+    \caption{The structure of BSLA is shown in cartoon representation. The flexible parts with an RMSF larger than 1.0 \r{A} are shown in red van der Waals representation. The active site residues are colored and shown in licorice representation.}
     \label{fig:BSLA_flexibility}
 \end{figure}       
  
@@ -1231,7 +1258,7 @@ The variance in the active site distance distribution serves as a baseline for t
 
 
 
-\subsection{Complex Basin Hopping}
+\subsection{Basin Hopping of the CitAP--BSLA fusion protein}
 
 The 12 basin hopping runs each resulted in 10 possible structures for the fusion protein.
 To arrive at a small set on which to perform molecular dynamics simulations, these 120 structures were clustered with the mean shift clustering algorithm, as described in section \ref{sec:meanShift}.
@@ -1251,16 +1278,16 @@ When adapting the mean shift window parameter to further reduce the number of cl
     \label{fig:GMIN_CitA_phi}
 \end{figure}        
 
-It should be noted that the grey points in Figure \ref{fig:GMIN_CitA_phi} coincide almost part with the colored points.
+It should be noted that most grey points in Figure \ref{fig:GMIN_CitA_phi} almost coincide with the colored points.
 This is due to the fact that GMIN runs with different parameters often arrived at very similar energy minima.
 Figure \ref{fig:GMIN_results} shows a three dimensional plot of the BSLA centers of mass around superpositions of CitAP domains in order to give an impression of the distribution of the structures after clustering.
 Each BSLA structure in addition has a unique orientation with respect to the position of CitAP.
 Four structures have been selected for further investigation.
 Table \ref{tab:GMIN_structures} lists all GMIN output structures with their corresponding energies and basin hopping parameters.
 The structures shaded in grey are the four selected output structures.
-Structure 3 and 5 have been skipped as they were found to be too similar to already selected structures by visual inspection.
+Structures 3 and 5 have been skipped as they were found to be too similar to already selected structures based on visual inspection.
 The mean shift clustering algorithm assigned those two structures to separate clusters because the energy was used as a separate coordinate during clustering and their energy differs from structures that would be in the same cluster base solely on the reduced spherical coordinates.
-The four output structures used for the fusion protein MD simulations are shown in Figure \ref{fig:GMIN_output}.
+The four GMIN structures used for the fusion protein MD simulations are shown in Figure \ref{fig:GMIN_output}.
 In structure 1 the active site of CitAP faces the BSLA domain, effectively restricting its minor loop movement.
 Structures 2 and 3 also make contact with their CitAP active site and the BSLA domain, although less severe than in structure 1.
 In structure 4 the CitAP active site faces away from the BSLA domain and has therefore the largest conformational freedom.
@@ -1307,7 +1334,7 @@ The BSLA active site is in all four structures freely accessible.
     -7996.48   &  1000    &  90               & 0.5               & 1        \\
     \hline \hline
 \end{tabular}
-\caption{Representative structures for the clusters of GMIN output structures, ranked according to the lowest energy.
+\caption{Representative structures for the clusters of GMIN output structures, ranked according to energy (lowest to highest).
 The number of basin hopping (BH) steps, the maximum angular step size and the convergence criterion for the energy minimization are given, as well as the rank of each structure in the GMIN run in which they have been obtained.
     The four structures used in subsequent experiments are shaded in grey and referenced in the text according to their enumeration as structures 1 to 4.}
 \label{tab:GMIN_structures}
@@ -1333,7 +1360,7 @@ The number of basin hopping (BH) steps, the maximum angular step size and the co
         4)
         \includegraphics[width=\textwidth]{figures/Complex_structures/structure4.png}  
     \end{minipage}
-    \caption{The fours selected output structures.
+    \caption{The four selected GMIN structures.
         The BSLA active site residues are shown in blue and the CitAP active site is shown in red.
         The BSLA domains have been superimposed to indicate the relative CitAP conformations.
     The structures are numbered from 1 to 4.}
@@ -1343,14 +1370,14 @@ The number of basin hopping (BH) steps, the maximum angular step size and the co
 
 
 
-\subsection{CitAP--BSLA fusion protein MD}
+\subsection{Molecular Dynamics of the CitAP--BSLA fusion protein}
 
 The first important property of interest that is accessible by molecular dynamics simulation is the general stability of the fusion protein.
 This has been addressed on more than one scale.
 The secondary structure of the complexes has been estimated with the DSSP program \cite{DSSPalgorithm, DSSPwebsite}.
 Figure \ref{fig:DSSP_bound} shows the secondary structure evolution during the course of 100 ns MD runs for the citrate bound simulations, Figure \ref{fig:DSSP_free} displays the same for the citrate free cases.
 The secondary structure of the fusion protein is remarkably stable during all simulations and hardly any structure gets lost, apart from some minor fluctuations.
-Only during the citrate free simulation of structure 2, the fifth $\alpha$-helix vanishes and forms a turn.
+Only during the citrate free simulation of structure 2, the fifth $\alpha$-helix of BSLA vanishes and forms a turn.
 This helix is very small, located at the solvent interface and surrounded by unstructured coils and therefore one of the least stable secondary structure elements in the fusion protein.
 The linker helix remains stable in all four structures, whether citrate bound or citrate free.
 
@@ -1359,7 +1386,7 @@ The linker helix remains stable in all four structures, whether citrate bound or
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{figures/DSSP/dssp_bound.pdf}
-    \caption{Secondary structure of the citrate bound complexes.}
+    \caption{Secondary structure of the citrate bound CitAP--BSLA complexes.}
     \label{fig:DSSP_bound}
 \end{figure}          
 
@@ -1369,7 +1396,7 @@ The linker helix remains stable in all four structures, whether citrate bound or
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{figures/DSSP/dssp_free.pdf}
-    \caption{Secondary structure of the citrate free complexes.}
+    \caption{Secondary structure of the citrate free CitAP--BSLA complexes.}
     \label{fig:DSSP_free}
 \end{figure}
 
@@ -1412,7 +1439,7 @@ The general theme of the structure of globular proteins is a mostly hydrophobic 
 This is also true for the two proteins under study, with the exception of the inside of the CitAP binding pocket, which is hydrophilic to accommodate the charged citrate.
 Figure \ref{fig:hydrophobic_contacts} shows the fraction of hydrophobic contacts of all inter-domain interactions in the fusion protein during the MD simulations.
 In all four structures the number of hydrophobic contacts in the interface region is relatively low, with the tendency to increase slightly in the course of the simulation.
-As for the favourable contacts, this effect is more pronounced for the citrate free structures.
+As for the total favourable contacts, this effect is more pronounced for the citrate free structures.
 It is interesting to note that by design all structures have a conformation with two separated domains corresponding to the original proteins, each with its own hydrophobic core (Figure \ref{fig:hydrophobic_core}).
 These cores stay mostly isolated during the simulation, even though there are hydrophobic patches at which the two domains could attach to each other.
 
@@ -1476,6 +1503,7 @@ The trajectories of structure 2, 3 and 4, with and without citrate bound, are hi
 Structure 1 shows different trajectories, depending on whether citrate is bound or not.
 This is in accordance with Figures \ref{fig:favourable_contacts} and \ref{fig:hydrophobic_contacts}, in which the citrate bound and citrate free trajectories are less similar than they are for the other three structures.
 The two domains show considerably more flexibility for structures 1 and 3 than they do for structures 2 and 4.
+The variance of $\theta_{Complex}$ is considerably larger than of $\phi_{Complex}$.
 
 
 
@@ -1504,23 +1532,25 @@ The two domains show considerably more flexibility for structures 1 and 3 than t
 
 Only few experimental results exist that the simulations can be directly compared to. 
 One experiment that has been performed in the group of Karl-Erich Jaeger is a measurement of the Tryptophan and Tyrosine fluorescence.
-Tryptophan has been excited with radiation at 278 nm.
+Tryptophan and Tyrosine have been excited with radiation at 278 nm, which is intermediate to their peak absorption frequencies of 280 nm for Tryptophan and 274 nm for Tyrosine \cite{FluorescenceWeb}.
 The emitted light intensity was measured for wavelengths between 290 and 380 nm.
-The intensities at each wavelength are influenced by energy transfer from Tryptophan to Tyrosine residues.
-Therefore the mutual orientations of and distances between Tryptophan and Tyrosine residues influence the emitted spectrum.
-Figure \ref{fig:TyrTrp_fluorescence} shows that the fluorescence signal is altered by the presence or absence of citrate from the fusion protein, while it has no effect on the solo BSLA.
-Neither does succinate as a reference probe show any influence on the fluorescence spectrum of solo BSLA nor of fusion protein.
-This result indicates that citrate binding to the fusion protein triggers a conformational change that results in a change in Tryptophan to Tyrosine distances or orientations.
-To compare the MD results to this experimental result, the minimum distance between any two Tryptophan and Tyrosine residues was analyzed.
+Tyrosine emits light in the lower wavelength of the spectrum around 303 nm and Tryptophan in the higher wavelength regime around 348 nm.
+After excitation, Tyrosin can transfer energy to Tryptophan if permitted by a sufficiently short distance and favourable orientation between these residues.
+This leads to a reduction in Tyrosin emission and therefore to an emission change in the lower wavelength regime of the measured spectrum.
+Exactly this effect is observed when citrate is present in a sample containing fusion protein (Figure \ref{fig:TyrTrp_fluorescence}), and it is absent without citrate.
+Succinate as a reference probe does not show any influence on the fluorescence spectrum of solo BSLA, nor on the fusion protein.
+This result indicates that citrate changes the conformation of the fusion protein in a way that reduces the distance between one or more pairs of Tyrosine and Tryptophan residues, or changes their mutual orientations.
+
+To compare the MD results to this experiment, the minimum distance between any two Tryptophan and Tyrosine residues was analyzed.
 This distance is shown in Figure \ref{fig:TyrTrp_distance} for all four fusion protein structures with and without citrate.
 While structures 1 and 2 do not show a significant difference of the minimum Tyrosine to Tryptophan distance, structures 3 and 4 indicate such a conformational change.
-Figure \ref{fig:TyrTrp_average} backs this result, as the variations of the average minimum Tyr/Trp distance for the citrate bound and citrate free simulations are insignificant for structures 1 and 2, while they are more pronounced for structures 3 and 4, although in opposite directions.
-While the minimum Tyr/Trp distance increases during the simulation of structure 3 from the citrate free to the citrate bound case it decreases for structure 4.
+Figure \ref{fig:TyrTrp_average} backs this result, as the differences of the average minimum TYR/TRP distance for the citrate bound and citrate free simulations are insignificant for structures 1 and 2, while they are more pronounced for structures 3 and 4, although in opposite directions.
+While the minimum TYR/TRP distance increases during the simulation of structure 3 from the citrate free to the citrate bound case it decreases for structure 4.
 The experimental fluorescence experiment shows that citrate binding to the fusion protein results in a drop of fluorescence intensity in the lower part of the measured spectrum.
-This might be indicative for an increasing distance between Trosine and Tryptophan residues or an orientational change that makes energy transfer between those residue pairs less favourable.
-Therefore structure 3 would be in accordance with experiment, as the average minimal Tyr/Trp distance increases from the citrate free to the citrate bound state.
-Structure 4 on the other hand would then go against the experimental findings.
-As the mutual Trp/Tyr orientations have not been taken into account, there is also a possibility left for structures 1 and 2 to be in accordance with the experimentally measured fluorescence change.
+As outlined above, this might be indicative for a decreasing distance between Tyrosine and Tryptophan residues or an orientational change that makes energy transfer between those residue pairs more favourable.
+Therefore structure 4 would be in accordance with experiment, as the average minimal TYR/TRP distance decreases from the citrate free to the citrate bound state.
+Structure 3 on the other hand would then go against the experimental findings.
+As the mutual TYR/TRP orientations have not been taken into account, there is also a possibility left for structures 1 and 2 to be in accordance with the experimentally measured fluorescence change.
 
  
 
@@ -1565,7 +1595,8 @@ As the mutual Trp/Tyr orientations have not been taken into account, there is al
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.pdf}
-    \caption{Averages of the minimal distances between Tyrosine and Tryptophan as displayed in Figure \ref{fig:TyrTrp_distance}.}
+    \caption{Averages of the minimal distances between Tyrosine and Tryptophan as displayed in Figure \ref{fig:TyrTrp_distance}.
+        Red points correspond to the citrate bound, blue points to the citrate free simulations.}
     \label{fig:TyrTrp_average}
 \end{figure}         
 
@@ -1578,12 +1609,12 @@ Further experimental data exists about the effect of citrate binding on the acti
 One possible explanation for this effect might be a change in the BSLA binding pocket conformation triggered by citrate binding.
 Visual inspection of the MD trajectories showed that the distance between the side chains of ASP133 and HIS156 is the strongest varying distance in the BSLA binding pocket (residue numbering according to solo BSLA).
 As hydrogen bonding between these two residues stabilizes the tetrahedral intermediate structure of the substrate, an increase in this distance might be related to a disruption of BSLA activity.
-As it is already known from the study of the solo CitAP binding pocket, that its geometry depends on the presence or absence of citrate, the distance between LEU102:N to GLU56:C$_{\alpha}$ of the CitAP binding pocket has been related to the afore mentioned distance of the BSLA binding pocket.
+As it is already known from the study of solo CitAP binding pocket, that its geometry depends on the presence or absence of citrate, the distance between LEU102:N to GLU56:C$_{\alpha}$ of the CitAP binding pocket has been related to the afore mentioned distance of the BSLA binding pocket.
 Figure \ref{fig:active_site_mean_sd} shows the mean of the last 50 ns of each simulation and the standard deviation of these distances for each structure in their citrate bound and citrate free forms.
 The BSLA binding pocket distance is a measure for the disruption of its active site and therefore a large distance is thought to correspond to a low BSLA activity.
 The standard deviations of the distances are a measure for the pocket flexibility, which is assumed to be correlated to the BSLA activity.
 The standard deviation of the corresponding distance in the solo BSLA MD run is very small (0.07 \r{A}).
-Structure 1 and 3 exhibit a positive correlation for the two active site distances.
+Structures 1 and 3 exhibit a positive correlation for the two active site distances.
 When their CitAP pockets open up in the absence of citrate and become more flexible, the BSLA pocket also gains flexibility and the ASP133--HIS156 distance increases.
 In structure 2 the CitAP binding pocket opens up even in the presence of citrate and this is even more true for structure 4.
 Interestingly, while the CitAP binding pocket is similarly open on average in the citrate bound and free simulations, the BSLA pocket is on average much wider in the citrate bound case.
@@ -1653,7 +1684,7 @@ Structure 4 is even in the citrate bound case a lot more open than the other str
 
 
 Figure \ref{fig:active_site_free_distribution} displays analogous distributions for the citrate free simulations.
-Structure 1 and 2 have remarkably stable CitAP binding pockets in the absence of citrate.
+Structures 1 and 2 have remarkably stable CitAP binding pockets in the absence of citrate.
 One possible origin is the fact that the minor loop, which opens up in the solo CitAP simulations, has some interactions with the BSLA domain.
 But as this is also true for structure 3, which even has a very stable open conformation in the absence of citrate, this is unlikely to be the only source of this effect.
 Structure 4 has for both binding pocket distances the largest flexibility among all structures.
@@ -1696,9 +1727,15 @@ Structure 4 has for both binding pocket distances the largest flexibility among 
 
 \section{Discussion \& Conclusion}
 
+The structure and dynamics of a fusion protein of the periplasmic citrate binding domain of sensor histidine kinase of \emph{Klebsielle Pneumoniae} (CitAP) and the lipase A of \emph{Bacillus Subtilis} (BSLA) was investigated by computational methods.
+This research was inspired by experiments that showed an activiy down regulation of the fusion protein due to citrate.
+Each of the proteins was also studied on its own during 100 ns molecular dynamics (MD) simulations.
+The basin hopping (BH) approach to global optimization was used to generate low energy structures of the fusion protein, as no experimental structure is available.
+Four selected structures were studied in more detail during 100 ns MD simulations, with and without a bound citrate ligand.
+
 The MD simulations of the solo CitAP and BSLA domains are very promising.
-BSLA not only stays folded and close to its crystal structure conformation through the whole course of the simulation, it is moreover very stable with a small RMSF for the core structure and only slightly larger fluctuations in loop regions in contact with the solvent.
-This is indicative for simulations at or near equilibrium.
+BSLA not only stays folded and close to its crystal structure through the whole course of the simulation, it is moreover very stable with a small root mean square fluctuation (RMSF) for the core structure and only slightly larger fluctuations in loop regions in contact with the solvent.
+This is typical for simulations at or near equilibrium.
 The active site, especially the conformation of the catalytic triad residues is very stable, with only small fluctuations in the mutual distances and orientations.
 This is an indication that the proposed reaction mechanism for ester hydrolysis, that is based on the crystal structure, is likely to be correct.
 
@@ -1707,34 +1744,34 @@ The hypothesized open conformation in the absence of citrate could be confirmed 
 Unfortunately the long timescale of binding kinetics does not permit a simulation to start at the open conformation withe goal to observe a closing of the pocket in the presence of citrate.
 It is however hard to detect the proposed piston mechanism that is induced by the opening of the minor loop.
 The neighbouring $\beta$-sheet is hypothesized to bend upon active site opening.
-This motion is small in magnitude, so that no theory can yet be based on this conformational change.
+This motion is small in magnitude, so that no conclusion can yet be drawn from this conformational change.
 
-From the basin hopping results, four possible structures have been selected.
+From the basin hopping results of the CitAP--BSLA fusion protein, four possible structures have been selected.
 Due to lack of experimental data it is unknown which structural properties the fusion protein possesses in reality.
-The secondary structures of all four of these structures are stable for at least 100 ns.
+The secondary structures of all four of these structures are stable for at least 100 ns, as probed by MD simulations.
 Interestingly, the two protein domains make only a moderate fraction of favourable contacts, although both possess hydrophobic patches on their solvent interface.
 One reason might simply be a geometric misfit of the hydrophobic interface domains, that would make major conformational rearrangements necessary.
+Another reason might be that the linker domain of the fusion protein restricts the range of possible conformations.
 These cannot be observed during the simulation timescales.
 It would be interesting to try to dock the two isolated domains by protein--protein docking to each other and compare the result to the GMIN output structures to see if these sample the most favourable inter-protein interactions.
 
 In general the two domains maintain their separated hydrophobic cores.
 This is due to the restrictions imposed on the basin hopping algorithm, as only the linker domain was allowed to adapt new conformations.
-It is however questionable whether the real structure of the fusion protein might not undergo more drastic rearrangements to fuse the two hydrophobic cores.
-In that respect it would be very interesting to see whether this structure would still possess undisrupted active sites.
+It is however questionable whether the real structure of the fusion protein might not undergo more drastic rearrangements upon fusion of CitAP to BSLA via the YtvA linker helix, that even involves fusion of the two hydrophobic cores.
+In that respect it would be very interesting to see whether this structure would still possess undisrupted active sites, i. e. wheter, for instance, BSLA in the fusion protein, without citrate added, displays the same activity as solo BSLA.
 
 The MD trajectories in reduced coordinate space show that the two protein domains significantly move relative to each other for three of the four structures (1, 3 and 4).
 This is likely an indication of an unequilibrated system.
-The equilibration time necessary for the rearrangements to complete and the fusion protein to reach its native state, might simply be too long to be accessible by MD simulations and range in regime of protein folding simulations.
+The equilibration time necessary for the rearrangements to complete and the fusion protein to reach its native state, might simply be too long to be accessible by standard MD simulations on the nanosecond timescale and range in regime of protein folding simulations.
 
 
 Assuming that the structures under study contain the native fusion protein conformation, or at least one of several possible, as these might as well be an ensemble of multiple conformations, it is instructive to compare structural properties to experimental data.
-While structure 3 is in accordance with the experimental fluorescence measurements, structure 4 clearly goes against them.
-Structures 1 and 2 do not show any Tyr/Trp distance change.
-But as structure 3 also undergoes one of the largest conformational rearrangements between the two protein domains as outlined earlier,
-The Tyr/Trp distance change might simply be a result of domain movements not present in the equilibrated structure.
+While structure 4 is in accordance with the experimental fluorescence measurements, structure 3 clearly goes against them.
+Structures 1 and 2 do not show any TYR/TRP distance change.
+But as structure 3 also undergoes one of the largest conformational rearrangements between the two protein domains as outlined earlier, the TYR/TRP distance change might simply be a result of domain movements not present in the equilibrated structure.
 
 The comparison of the introduced active site distances give interesting insights.
-The BSLA distance is very stable for the solo BSLA and the solo CitAP distance follows the proposed dynamics.
+The BSLA distance is very stable for the solo BSLA and the solo CitAP distance follows the proposed dynamics upon citrate binding.
 But in the fusion protein, the CitAP distance is not as stable in the citrate bound case for three of the four structures.
 One possible explanation for this observation are the additional interactions that the CitAP domain has in the fusion protein, especially as the minor loop makes direct contact with the BSLA domain in structures 1, 2 and 3.
 But interestingly enough the CitAP distance is largest and most variable for structure 4, in which the CitAP binding pocket points away from the BSLA domain and is solvent exposed, similar to the solo structure.
@@ -1751,7 +1788,8 @@ This conformational change might then in turn disrupt the BSLA active site, or a
 This effect could not be observed for any of the structures.
 Structures 1 and 3 even show the exact opposite behaviour, where the more flexible citrate free structure correlates with a more (and not less) flexible BSLA pocket.
 
-As experimental evidence on the true conformation of the fusion protein is still lacking, the validity of the reported results of the fusion protein dynamics remains rather uncertain.
+As experimental evidence on the true conformation of the fusion protein is still lacking, the validity of the reported results of the fusion protein dynamics remains to be proven.
+
 
 
 % ============================================================================ %

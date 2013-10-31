@@ -1,4 +1,5 @@
 DOCUMENT=masterthesis
+PRESENTATION=mastertalk
 
 final: $(DOCUMENT).tex
 	pdflatex $(DOCUMENT).tex
@@ -13,11 +14,23 @@ draft: $(DOCUMENT).tex
 	pdflatex "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 	pdflatex "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 
+black: $(DOCUMENT).tex
+	pdflatex "\def\black{1} \input{$(DOCUMENT).tex}"
+	bibtex   $(DOCUMENT).aux
+	pdflatex "\def\black{1} \input{$(DOCUMENT).tex}"
+	pdflatex "\def\black{1} \input{$(DOCUMENT).tex}" 
+
 partial: $(DOCUMENT)_part.tex
 	pdflatex $(DOCUMENT)_part.tex
 	bibtex   $(DOCUMENT)_part.aux
 	pdflatex $(DOCUMENT)_part.tex
 	pdflatex $(DOCUMENT)_part.tex 
+
+talk: $(PRESENTATION).tex
+	pdflatex $(PRESENTATION).tex
+#	bibtex   $(PRESENTATION).aux
+#	pdflatex $(PRESENTATION).tex
+	pdflatex $(PRESENTATION).tex  
 
 clean:
 	rm -f $(DOCUMENT).aux \
@@ -35,4 +48,12 @@ clean:
 		  $(DOCUMENT)_part.snm \
 		  $(DOCUMENT)_part.toc \
 		  $(DOCUMENT)_part.bbl \
-		  $(DOCUMENT)_part.blg  
+		  $(DOCUMENT)_part.blg \
+ 		  $(PRESENTATION).aux \
+		  $(PRESENTATION).log \
+		  $(PRESENTATION).nav \
+		  $(PRESENTATION).out \
+		  $(PRESENTATION).snm \
+		  $(PRESENTATION).toc \
+		  $(PRESENTATION).bbl \
+		  $(PRESENTATION).blg   
