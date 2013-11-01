@@ -14,9 +14,16 @@
 \usepackage{amsmath}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc} 
+\usepackage{setspace}
+
+%\usepackage[perpage,para,symbol]{footmisc}
+%\renewcommand\footnotelayout{\tiny}
+\usepackage{biblatex}
+\bibliography{masterthesis}
 
 \usepackage{ulem}
 
+\setbeamercovered{transparent}
 \setbeamertemplate{slide counter}[showall][]
 
 \hypersetup{
@@ -65,7 +72,8 @@
 
 % Titlepage
 \title[Masterthesis]{Masterthesis}
-\subtitle[Structure]{Structure of Lipase-CitAP complex}
+\subtitle[Structure]{Structure of Lipase-CitAP Complex\\
+\textit{\small Supervisor: Jun.-Prof. Dr. Birgit Strodel}}
 \author{Oliver Schillinger}
 \institute{ICS-6 | Multiscale Modelling Group}
 \date{4th November 2013} 
@@ -221,10 +229,12 @@
     \end{figure}      
 
     \tiny
-    M. Sevvana, et. al,
-    \href{http://www.sciencedirect.com/science/article/pii/S0022283608000466}
-    {A Ligand--Induced Switch in the Periplasmic Domain of Sensor Histidine Kinase CitA},
-    \textit{J. Mol. Biol.}, 377, 512--523, 2008
+    \fullcite{CitA_2J80}
+
+%    M. Sevvana, et. al,
+%    \href{http://www.sciencedirect.com/science/article/pii/S0022283608000466}
+%    {A Ligand--Induced Switch in the Periplasmic Domain of Sensor Histidine Kinase CitA},
+%    \textit{J. Mol. Biol.}, 377, 512--523, 2008
 
 \end{frame}  
 
@@ -234,6 +244,8 @@
     \frametitle{Proteins}
     \framesubtitle{Complex}
 
+    \setbeamercovered{invisible}
+
     \begin{block}{Why make a complex?}
         If citrate could trigger lipase activity we had a switchable detergent!
     \end{block}
@@ -242,9 +254,11 @@
 
     \begin{columns}[t]
         \column{.88\linewidth} 
+        \vspace{-3ex}
         \begin{figure}
             \includegraphics[width=.7\linewidth]{figures/complex/dose_response_curve.png}
         \end{figure}       
+        \vfill
 
         \column{.12\linewidth} 
         \tiny
@@ -295,12 +309,14 @@
     \end{figure}        
 
     \tiny
-    K. A. Beauchamp, Y. Lin, R. Das and V. S. Pande,
-    \href{http://pubs.acs.org/doi/abs/10.1021/ct2007814}
-    {Are Protein Force Fields Getting Better?
-    A Systematic Benchmark on 524 Diverse NMR Measurements},
-    \textit{J. Chem. Theory Comput.},
-    8, 1409--1414, 2012
+    \fullcite{proteinFF}
+
+%    K. A. Beauchamp, Y. Lin, R. Das and V. S. Pande,
+%    \href{http://pubs.acs.org/doi/abs/10.1021/ct2007814}
+%    {Are Protein Force Fields Getting Better?
+%    A Systematic Benchmark on 524 Diverse NMR Measurements},
+%    \textit{J. Chem. Theory Comput.},
+%    8, 1409--1414, 2012
     
 
 \end{frame}   
@@ -346,6 +362,15 @@
     \frametitle{Results}
     \framesubtitle{Solo CitAP Binding Pocket}
 
+    \vspace{1.0\topmargin}
+
+    \begin{figure}
+        \hspace{0.2\textwidth}
+        \includegraphics[width=.4\linewidth]{figures/CitA_pocket2.pdf}
+    \end{figure}     
+
+    \vspace{-1.2cm}
+
     \begin{columns}[t]
         \column{.5\linewidth} 
         \begin{figure}
@@ -360,11 +385,311 @@
     \end{columns} 
 
 
-%    \begin{figure}
-%        \includegraphics[width=.7\linewidth]{figures/CitA_pocket2.pdf}
-%    \end{figure}     
 \end{frame}    
 
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Solo BSLA MD} 
+
+    \vspace{0.10\topmargin}
+
+    \begin{figure}
+        \begin{minipage}[t]{0.45\linewidth}
+            \centering
+            \includegraphics[width=1.0\textwidth]{figures/BSLA_solo/BSLA_solo_rmsf.pdf}  
+            \linebreak
+            \includegraphics[width=0.65\textwidth]{figures/BSLA_flexibility.png}
+        \end{minipage}
+    \hspace{0.5cm}
+        \begin{minipage}[t]{0.45\linewidth}
+            \centering
+            \includegraphics[width=1.0\textwidth]{figures/BSLA_solo/BSLA_solo_dist_ASP133_HIS156.pdf} 
+            \linebreak
+            \includegraphics[width=1.0\textwidth]{figures/BSLA_pocket/BSLA_pocket_cartoon.pdf}
+            %\includegraphics[width=0.9\textwidth]{figures/BSLA_solo/BSLA_distribution_ASP133_HIS156.pdf}  
+        \end{minipage}
+    \end{figure}  
+
+\end{frame}    
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{GMIN Basin Hopping} 
+
+    \vspace{0.10\topmargin}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        \centering
+        Dimensionality Reduction
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/CitA_phi.png}
+        \end{figure}      
+
+        \column{.5\linewidth}
+        \centering
+        Basin Hopping Structures
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/GMIN/CitA_phi_theta_3D.pdf}
+        \end{figure}     
+
+    \end{columns}  
+
+\end{frame}     
+
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{GMIN Basin Hopping} 
+
+    \vspace{0.06\topmargin}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        1)
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_structures/structure1.png}  
+        \end{figure}      
+        3)
+        \vspace{-8ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_structures/structure3.png}   
+        \end{figure}       
+
+        \column{.5\linewidth}
+        2)
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_structures/structure2.png}  
+        \end{figure}      
+        4)
+        \vspace{-8ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_structures/structure4.png}   
+        \end{figure}       
+
+    \end{columns}  
+
+
+\end{frame}      
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Secondary Structure}  
+
+    \begin{figure}
+        \includegraphics[width=0.78\textwidth]{figures/DSSP/dssp_presentation.pdf}
+    \end{figure}        
+    
+\end{frame}      
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Favourable Contacts}  
+
+    \vspace{0.06\topmargin}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure1.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure3.pdf}  
+        \end{figure}       
+
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure2.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/favourable_cont_structure4.pdf}  
+        \end{figure}       
+
+    \end{columns}   
+    
+\end{frame}       
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Hydrophobic Contacts}  
+
+    \vspace{0.06\topmargin}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure1.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure3.pdf}  
+        \end{figure}       
+
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure2.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_cont_structure4.pdf}  
+        \end{figure}       
+
+    \end{columns}   
+    
+\end{frame}       
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Hydrophobic Contacts}  
+
+    \vspace{0.06\topmargin}
+
+    \begin{figure}
+        \begin{minipage}[]{0.45\linewidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/hydrophobic_core_linker.png}
+        \end{minipage}
+    \hspace{0.5cm}
+        \begin{minipage}[]{0.45\linewidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/Complex_hydrophobic_core/protein.png}
+        \end{minipage}
+    \end{figure}     
+ 
+    
+\end{frame}       
+ 
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Trajectory}  
+
+    \vspace{0.06\topmargin}
+
+    \begin{columns}[t]
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_trajectory/collecitve_coords_structure1.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_trajectory/collecitve_coords_structure3.pdf}  
+        \end{figure}       
+
+        \column{.5\linewidth}
+        \vspace{-4ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_trajectory/collecitve_coords_structure2.pdf}  
+        \end{figure}      
+        \vspace{-5ex}
+        \begin{figure}
+            \includegraphics[width=0.85\textwidth]{figures/Complex_trajectory/collecitve_coords_structure4.pdf}   
+        \end{figure}       
+
+    \end{columns}   
+    
+\end{frame}        
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- TYR/TRP Fluorescence}  
+
+    \vfill
+
+    \begin{columns}[]
+        \column{.5\linewidth}
+        \vfill
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/TyrTrp/TyrTrp_experiment.pdf}
+        \end{figure}         
+
+        \column{.5\linewidth}
+        \vfill
+        \begin{figure}
+            \includegraphics[width=1.0\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.pdf}
+        \end{figure}      
+
+    \end{columns}    
+
+    \vfill
+ 
+\end{frame}        
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Fusion Protein MD -- Active Site Distances}  
+
+    \vfill
+
+    \begin{columns}[]
+        \column{.5\linewidth}
+        \vfill
+        \centering
+        Open / Closed Conformation
+        \begin{figure}
+            \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_analyzed_with_average_of_last_50_ns.pdf}  
+        \end{figure}         
+
+        \column{.5\linewidth}
+        \vfill
+        \centering
+        Flexibility
+        \begin{figure}
+            \includegraphics[width=\textwidth]{figures/CitAP_BSLA_distance/BSLA_CitAP_analyzed_with_standard_deviation.pdf}  
+        \end{figure}      
+
+    \end{columns}    
+
+    \vfill 
+
+\end{frame}        
+ 
+% ============================================================================ %
+
+\section{Conclusion}
+
+\begin{frame}
+    \frametitle{Conclusions}
+
+    \begin{itemize}
+        \item<1-> Solo MD simulations gave expected results
+        \item<2-> 4 different fusion protein structures
+        \item<3-> Secondary structure is stable
+        \item<4-> 2 hydrophobic cores
+        \item<5-> Systems not equilibrated after 100 ns
+        \item<6-> Only structure 4 in accordance with TYR/TRP fluorescence
+        \item<7-> No unique active site distance correlation between domains
+    \end{itemize}
+
+\end{frame}        
 
 % ============================================================================ %
 
@@ -372,28 +697,34 @@
 
 \begin{frame}
     \frametitle{Outlook}
-    \framesubtitle{Future Plans}
+
+    \setstretch{2}
 
     \begin{itemize}
-        \item Validate citrate bound \textbf{CitA opening} at different pH
-        \item Check \textbf{BsLA stability} at different pH
-        \item Generate more CitA--BsLA complex structures (GMIN)
-        \item \textbf{Simulate complex} at different pH
-
-        \pause
-
-        \item Compare complex to experiment
+        \item<1-> Lack of experimental data
+        \item<2-> Structural information required
             \begin{itemize}
-                \item \textbf{SAXS} (timescale: \textasciitilde Month)
-                \item \textbf{X--ray} structure (timescale: Masterthesis)
-                \item \textbf{NMR} (timescale: PhD Thesis)
-                \item Tryptophan / Tyrosine \textbf{fluorescence}
+                \item<2-> Full X-ray/NMR structure
+                \item<2-> Information on global shape (SAXS)
+                \item<2-> Intermolecular distances (FRET)
             \end{itemize}
-
-        \pause
-
-    \item Elucidating the mechanism of lipase activation by \textbf{nonequilibrium MD}
     \end{itemize}
+
+    \setstretch{1}
+
+\end{frame}   
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Questions}
+
+    \vfill
+    \centering
+    \Huge ?
+    \vfill
+
+
 \end{frame}   
  
 % ============================================================================ %

@@ -2,6 +2,9 @@ masterthesis.pdf
 mastertalk.pdf
 savedrecs.bib
 
+*-blx.bib
+*.run.xml
+
 *.acn
 *.acr
 *.alg

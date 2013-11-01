@@ -28,8 +28,8 @@ partial: $(DOCUMENT)_part.tex
 
 talk: $(PRESENTATION).tex
 	pdflatex $(PRESENTATION).tex
-#	bibtex   $(PRESENTATION).aux
-#	pdflatex $(PRESENTATION).tex
+	bibtex   $(PRESENTATION).aux
+	pdflatex $(PRESENTATION).tex
 	pdflatex $(PRESENTATION).tex  
 
 clean:
