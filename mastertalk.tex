@@ -223,7 +223,7 @@
 
 \begin{frame}
     \frametitle{Proteins}
-    \framesubtitle{CitAP signal transduction mechanism}
+    \framesubtitle{CitAP Signal Transduction Mechanism}
     \begin{figure}
         \includegraphics[width=.9\linewidth]{figures/CitA_mechanism.png}
     \end{figure}      
@@ -256,7 +256,7 @@
         \column{.88\linewidth} 
         \vspace{-3ex}
         \begin{figure}
-            \includegraphics[width=.7\linewidth]{figures/complex/dose_response_curve.png}
+            \includegraphics[width=0.7\textwidth]{figures/BSLA_activity/BSLA_activity.png}
         \end{figure}       
         \vfill
 
@@ -332,14 +332,18 @@
     \end{figure}      
 
     \begin{itemize}
-        \item Parameterized with the general AMBER force field (GAFF) from Ambertools
+        \item Parameterized with the general AMBER force field (GAFF) from Ambertools using ACPYPE
         \item Partial charges come from
         \begin{itemize}
             \item \textbf{Antechamber} -- AM1-BCC (parameterized fit to \textit{ab initio} calculations)
-            \item YASARA AutoSIMLES Server -- ''improved'' AM1-BCC
-            \item \textit{ab initio}
+%            \item YASARA AutoSIMLES Server -- ''improved'' AM1-BCC
+%            \item \textit{ab initio}
         \end{itemize}
     \end{itemize}
+
+    \tiny
+    \fullcite{ACPYPE}
+
 \end{frame}   
 
 % ============================================================================ %
@@ -585,9 +589,18 @@
 
 \begin{frame}
     \frametitle{Results}
-    \framesubtitle{Fusion Protein MD -- Trajectory}  
+\framesubtitle{Fusion Protein MD}% -- Trajectory}  
 
-    \vspace{0.06\topmargin}
+    \vspace{0.94\topmargin}
+
+    \begin{figure}
+        \hspace{0.0\textwidth}
+        \includegraphics[width=0.40\textwidth]{figures/Collective_coords/collective_coords.pdf}
+    \end{figure}     
+
+    \vspace{-0.5cm}
+ 
+%    \vspace{0.06\topmargin}
 
     \begin{columns}[t]
         \column{.5\linewidth}
@@ -620,24 +633,45 @@
     \frametitle{Results}
     \framesubtitle{Fusion Protein MD -- TYR/TRP Fluorescence}  
 
-    \vfill
+%    \vfill
+    \vspace{-4ex}
 
-    \begin{columns}[]
+    \begin{columns}[t]
         \column{.5\linewidth}
-        \vfill
         \begin{figure}
             \includegraphics[width=1.0\textwidth]{figures/TyrTrp/TyrTrp_experiment.pdf}
         \end{figure}         
 
+        \centering
+        Excitation: 278 nm 
+
+        \begin{center}
+        \begin{table}
+        \tiny
+        \begin{tabular}{l c c} 
+                       & Absorbtion & Fluorescence \\
+            \hline
+            Tyrosine   & 280 nm & 348 nm \\
+            Tryptophan & 274 nm & 303 nm \\
+        \end{tabular}
+        \end{table}
+        \end{center}
+
         \column{.5\linewidth}
-        \vfill
         \begin{figure}
             \includegraphics[width=1.0\textwidth]{figures/TyrTrp/average_mindist_TyrTrp.pdf}
         \end{figure}      
 
+        \centering
+        Tryptophan only in BSLA
+
     \end{columns}    
 
     \vfill
+
+    \vspace{2ex}
+    \tiny
+    \fullcite{FluorescenceWeb}
  
 \end{frame}        
 
@@ -645,7 +679,18 @@
 
 \begin{frame}
     \frametitle{Results}
-    \framesubtitle{Fusion Protein MD -- Active Site Distances}  
+    %\framesubtitle{Fusion Protein MD -- Active Site Distances}  
+    \framesubtitle{Fusion Protein MD}  
+
+    \vspace{0.94\topmargin}
+
+    \begin{figure}
+        \hspace{0.1\textwidth}
+        \includegraphics[width=.3\linewidth]{figures/CitA_pocket2.pdf}
+        \includegraphics[width=.3\textwidth]{figures/BSLA_pocket/BSLA_pocket_cartoon.pdf}
+    \end{figure}     
+
+    \vspace{-0.5cm} 
 
     \vfill
 
