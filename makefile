@@ -1,5 +1,6 @@
 DOCUMENT=masterthesis
 PRESENTATION=mastertalk
+BARCELONA=barcelonatalk
 
 final: $(DOCUMENT).tex
 	pdflatex $(DOCUMENT).tex
@@ -31,6 +32,12 @@ talk: $(PRESENTATION).tex
 	bibtex   $(PRESENTATION).aux
 	pdflatex $(PRESENTATION).tex
 	pdflatex $(PRESENTATION).tex  
+
+barcelona: $(BARCELONA).tex
+	pdflatex $(BARCELONA).tex
+	bibtex   $(BARCELONA).aux
+	pdflatex $(BARCELONA).tex
+	pdflatex $(BARCELONA).tex   
 
 clean:
 	rm -f $(DOCUMENT).aux \
