@@ -1,6 +1,7 @@
 DOCUMENT=masterthesis
 PRESENTATION=mastertalk
 BARCELONA=barcelonatalk
+POSTER=masterposter
 
 final: $(DOCUMENT).tex
 	pdflatex $(DOCUMENT).tex
@@ -39,8 +40,15 @@ barcelona: $(BARCELONA).tex
 	pdflatex $(BARCELONA).tex
 	pdflatex $(BARCELONA).tex   
 
+poster: $(POSTER).tex
+	pdflatex $(POSTER).tex
+#	bibtex   $(POSTER).aux
+#	pdflatex $(POSTER).tex
+	pdflatex $(POSTER).tex    
+
 clean:
-	rm -f $(DOCUMENT).aux \
+	rm -f *run.xml *-blx.bib\
+	      $(DOCUMENT).aux \
 		  $(DOCUMENT).log \
 		  $(DOCUMENT).nav \
 		  $(DOCUMENT).out \
@@ -63,4 +71,20 @@ clean:
 		  $(PRESENTATION).snm \
 		  $(PRESENTATION).toc \
 		  $(PRESENTATION).bbl \
-		  $(PRESENTATION).blg   
+		  $(PRESENTATION).blg \
+  		  $(BARCELONA).aux \
+		  $(BARCELONA).log \
+		  $(BARCELONA).nav \
+		  $(BARCELONA).out \
+		  $(BARCELONA).snm \
+		  $(BARCELONA).toc \
+		  $(BARCELONA).bbl \
+		  $(BARCELONA).blg \
+  		  $(POSTER).aux \
+		  $(POSTER).log \
+		  $(POSTER).nav \
+		  $(POSTER).out \
+		  $(POSTER).snm \
+		  $(POSTER).toc \
+		  $(POSTER).bbl \
+		  $(POSTER).blg    

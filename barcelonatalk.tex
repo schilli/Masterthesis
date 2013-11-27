@@ -72,9 +72,9 @@
 
 % Titlepage
 \title[Masterthesis]{Masterthesis}
-\subtitle[Structure]{Structure of Lipase-CitAP Complex\\
+\subtitle[Structure]{Structure of Lipase-CitAP Fusion Protein\\
 \textit{\small Supervisor: Jun.-Prof. Dr. Birgit Strodel}}
-\author{Oliver Schillinger}
+\author[o.schillinger@fz-juelich.de]{Oliver Schillinger}
 \institute{ICS-6 | Multiscale Modelling Group}
 \date{8th November 2013} 
 
@@ -292,6 +292,7 @@
     \begin{itemize}
         \item GROMACS
         \item \textbf{\texttt{amber99sb-ildn-nmr}} force field
+        \item Citrate paremeterization with GAFF
         \item 10 ns position restrained equilibration
         \item Gradually decreasing restraining force constant
         \item 100 ns production runs
@@ -314,18 +315,7 @@
 \end{frame}    
 
 
-% ============================================================================ %
 
-\begin{frame}
-    \frametitle{Methods}
-    \framesubtitle{Dimensionality Reduction}
-
-    \begin{figure}
-        \includegraphics[width=1.0\textwidth]{figures/Collective_coords/collective_coords.pdf}
-    \end{figure}        
-
-\end{frame}     
- 
 % ============================================================================ %
 
 \section{Results}
@@ -495,6 +485,18 @@
  
     
 \end{frame}       
+
+% ============================================================================ %
+
+\begin{frame}
+    \frametitle{Results}
+    \framesubtitle{Dimensionality Reduction}
+
+    \begin{figure}
+        \includegraphics[width=1.0\textwidth]{figures/Collective_coords/collective_coords.pdf}
+    \end{figure}        
+
+\end{frame}     
  
 % ============================================================================ %
 
